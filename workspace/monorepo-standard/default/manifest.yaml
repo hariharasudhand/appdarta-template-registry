@@ -1,0 +1,55 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: monorepo-standard
+  displayName: Standard Monorepo Workspace
+  description: "Root workspace scaffold: Makefile, stitched docker-compose.yml, .env.example,\
+    \ .gitignore, README. Reads full topology \u2014 all agents, tanks, gateway, and\
+    \ UI nodes."
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: workspace
+  deploymentIntent:
+    required: true
+    question: How will you deploy this system?
+    options:
+    - value: docker-compose
+      label: Docker Compose (local / single host)
+    - value: kubernetes
+      label: Kubernetes (k8s)
+    - value: cloud-paas
+      label: Cloud PaaS (Railway, Fly.io, Render)
+    - value: bare-metal
+      label: Bare metal / systemd
+  files:
+  - path: Makefile
+    template: Makefile.tmpl
+    description: Root build orchestration
+  - path: docker-compose.yml
+    template: docker-compose.yml.tmpl
+    description: Stitched compose file (all nodes)
+  - path: .env.example
+    template: .env.example.tmpl
+    description: Aggregated env var documentation
+  - path: .gitignore
+    template: .gitignore.tmpl
+    description: Standard ignores
+  - path: README.md
+    template: README.md.tmpl
+    description: Project overview
+  promptHints:
+    skeleton: Workspace root with per-service Makefile targets and stitched docker-compose.
+    implementation: Run 'make dev' to start the full stack locally.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 1
+    complexityIdeal: 2
+    complexityCeiling: 5
+    tags:
+    - workspace
+    - monorepo
+    - makefile
+    - docker-compose
+    - devops
+templatesApiVersion: '1'

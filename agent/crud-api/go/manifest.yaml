@@ -1,0 +1,83 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: go-crud-api
+  displayName: Go CRUD API Companion
+  description: Companion scaffold for CRUD-oriented Go agents with HTTP handlers,
+    validation, and repository wiring.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Go
+  patternKind: crud-api
+  files:
+  - path: agents/{{ .AgentName }}/crud/http.go
+    template: http.go.tmpl
+    description: CRUD HTTP handler helpers
+  - path: agents/{{ .AgentName }}/crud/validation.go
+    template: validation.go.tmpl
+    description: Field validation helpers
+  - path: agents/{{ .AgentName }}/crud/repository.go
+    template: repository.go.tmpl
+    description: Repository contract for CRUD persistence
+  promptHints:
+    skeleton: Use this companion when the use case is a structured CRUD-style API
+      with DTO validation and persistence wiring.
+    implementation: Prefer explicit field validation, status-specific error responses,
+      and repository/service separation.
+    tanks: Pair with a relational or document tank connector that matches the use
+      case storage model.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 2
+    complexityIdeal: 5
+    complexityCeiling: 12
+    compositesWith:
+    - sql-postgres-go
+    - agent-runtime-docker-go
+    - agent-runtime-process
+    tags:
+    - crud
+    - rest
+    - validation
+    - go
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Go
+      - CRUD
+      - REST
+      scale:
+        workload: structured entity workflows
+    doesNotApplyWhen:
+    - event-driven
+    - GraphQL
+    - streaming
+  triggerIncidents:
+    exactMatches:
+    - Go::crud-api[*]
+    - Go::REST[*] + CRUD[standard]
+    semanticTriggers:
+      keywords:
+        required:
+        - go
+        - crud
+        - rest
+        optional:
+        - validation
+        - repository
+        - dto
+        - postgres
+      antiKeywords:
+      - graphql
+      - event-driven
+      - streaming
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

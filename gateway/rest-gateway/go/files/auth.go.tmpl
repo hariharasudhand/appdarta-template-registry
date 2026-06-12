@@ -1,0 +1,8 @@
+package gateway
+
+import "net/http"
+
+// AuthGate is the default insertion point for auth, tenant checks, and request validation.
+func AuthGate(next http.Handler) http.Handler {
+	return next
+}

@@ -1,0 +1,84 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: stateful-graph-workflow-python
+  displayName: Stateful Graph Workflow (Python)
+  description: LangGraph-style StateGraph with graph nodes, state schema, pluggable
+    checkpoint adapter, and recovery on restart. Python implementation.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: service
+  techStacks:
+  - Python
+  patternKind: stateful-graph-workflow
+  files:
+  - path: services/{{ .ServiceName }}/workflow.py
+    template: workflow.py.tmpl
+    description: Graph workflow definition
+  - path: services/{{ .ServiceName }}/state.py
+    template: state.py.tmpl
+    description: State schema
+  - path: services/{{ .ServiceName }}/checkpoint.py
+    template: checkpoint.py.tmpl
+    description: Checkpoint adapter interface
+  - path: services/{{ .ServiceName }}/requirements.txt
+    template: requirements.txt.tmpl
+    description: Python dependencies
+  promptHints:
+    skeleton: StateGraph with typed nodes, edges, entry/exit points, and checkpoint
+      serialisation.
+    implementation: Add nodes and transitions in workflow.py; swap checkpoint backend
+      in checkpoint.py.
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 5
+    complexityIdeal: 7
+    complexityCeiling: 10
+    tags:
+    - langgraph
+    - state-machine
+    - graph
+    - python
+    - workflow
+    - checkpoint
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Python
+      - graph workflow
+      - checkpointed state
+      scale:
+        workflow: stateful-node-graph
+    doesNotApplyWhen:
+    - stateless simple service
+    - crud-only
+    - frontend-only
+    - event stream consumer only
+  triggerIncidents:
+    exactMatches:
+    - Python::stateful-graph-workflow[*]
+    - Python::workflow[*] + Architecture[Graph]
+    semanticTriggers:
+      keywords:
+        required:
+        - python
+        - graph
+        optional:
+        - workflow
+        - state
+        - checkpoint
+        - langgraph
+        - nodes
+      antiKeywords:
+      - stateless simple service
+      - crud-only
+      - frontend-only
+      - event stream consumer only
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

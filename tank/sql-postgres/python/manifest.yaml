@@ -1,0 +1,78 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: sql-postgres-python
+  displayName: Postgres SQL Connector
+  description: Python async Postgres connector for relational tanks.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Python
+  patternKind: sql-postgres
+  files:
+  - path: tanks/{{ .TankName }}/connector.py
+    template: connector.py.tmpl
+    description: Async Postgres connector
+  - path: tanks/{{ .TankName }}/queries.py
+    template: queries.py.tmpl
+    description: Query helpers
+  - path: tanks/{{ .TankName }}/migrations/001_init.sql
+    template: 001_init.sql.tmpl
+    description: Initial migration
+  promptHints:
+    skeleton: Open asyncpg pool and keep statements in one place.
+    implementation: Wrap queries in repository-style helpers.
+    tanks: Use when workers prefer Python runtime.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 2
+    complexityIdeal: 5
+    complexityCeiling: 12
+    compositesWith:
+    - ingestor-web-python
+    tags:
+    - sql
+    - postgres
+    - connector
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Python
+      - PostgreSQL
+      - SQL
+      scale:
+        storage: relational-or-json
+    doesNotApplyWhen:
+    - MongoDB
+    - Redis
+    - vector
+    - document store
+  triggerIncidents:
+    exactMatches:
+    - Python::sql-postgres[*]
+    - Python::connector[*] + DB[PostgreSQL]
+    semanticTriggers:
+      keywords:
+        required:
+        - python
+        - postgres
+        optional:
+        - sql
+        - migration
+        - connector
+        - queries
+        - asyncpg
+      antiKeywords:
+      - mongodb
+      - redis
+      - vector
+      - document
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

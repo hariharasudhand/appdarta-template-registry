@@ -1,0 +1,31 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: gateway-runtime-docker
+  displayName: Gateway Runtime Overlay (Docker)
+  description: Build-time runtime overlay for the AppDarta gateway.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: gateway
+  techStacks:
+  - Go
+  patternKind: runtime-docker
+  files:
+  - path: gateway/Dockerfile
+    template: Dockerfile.tmpl
+    description: Gateway Dockerfile
+  - path: gateway/docker-compose.yml
+    template: docker-compose.yml.tmpl
+    description: Gateway compose service
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 1
+    complexityIdeal: 2
+    complexityCeiling: 4
+    tags:
+    - overlay
+    - docker
+    - runtime
+    - gateway
+templatesApiVersion: '1'

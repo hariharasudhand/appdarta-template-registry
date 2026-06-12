@@ -1,0 +1,82 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: rag-agent-go
+  displayName: RAG Agent
+  description: Retrieval augmented Go agent scaffold.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Go
+  patternKind: rag-agent
+  files:
+  - path: agents/{{ .AgentName }}/handler.go
+    template: handler.go.tmpl
+    description: HTTP handler
+  - path: agents/{{ .AgentName }}/service.go
+    template: service.go.tmpl
+    description: RAG orchestration
+  - path: agents/{{ .AgentName }}/retriever.go
+    template: retriever.go.tmpl
+    description: Retriever abstraction
+  - path: agents/{{ .AgentName }}/dto.go
+    template: dto.go.tmpl
+    description: Models
+  promptHints:
+    skeleton: HTTP service with context-service RAG synthesis dependency.
+    implementation: POST query/domain/plane to /context/rag/synthesize and return
+      grounded answer + citations.
+    tanks: Bind vector tanks through context-service retrieval and synthesis.
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 2
+    complexityIdeal: 5
+    complexityCeiling: 12
+    compositesWith:
+    - hexagonal-go
+    tags:
+    - rag
+    - retrieval
+    - llm
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Go
+      - RAG
+      - retrieval
+      scale:
+        workflow: query-context-answer
+    doesNotApplyWhen:
+    - event-driven-only
+    - crud-only
+    - no retrieval
+    - frontend-only
+  triggerIncidents:
+    exactMatches:
+    - Go::rag-agent[*]
+    - Go::REST[*] + Capability[RAG]
+    semanticTriggers:
+      keywords:
+        required:
+        - go
+        - rag
+        optional:
+        - retrieval
+        - retriever
+        - context
+        - llm
+        - vector
+      antiKeywords:
+      - event-driven-only
+      - crud-only
+      - frontend-only
+      - no retrieval
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

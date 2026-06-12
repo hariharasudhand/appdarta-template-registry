@@ -1,0 +1,83 @@
+apiVersion: appdarta.io/v1
+kind: WizardPromptPack
+metadata:
+  name: approval-queue-module-design-prompts
+  template: approval-queue-module
+  stage: design
+spec:
+  output-spec: HumanApprovalGateSpec
+  output-path: "specs/ui/approval-gate.yaml"
+  questions:
+    - id: approval-roles
+      text: "Which roles can approve decisions? (space-separated)"
+      type: multi-text
+      output-field: bypass_roles
+      required: true
+      hint: "e.g. clinical-reviewer compliance-officer ops-lead"
+
+    - id: confidence-threshold
+      text: "Confidence score threshold — items at or below this always gate (0.0–1.0)?"
+      type: number
+      output-field: confidence_threshold
+      required: true
+      default: 0.7
+
+    - id: quality-threshold
+      text: "Quality score threshold — items at or below this always gate (0.0–1.0)?"
+      type: number
+      output-field: quality_threshold
+      required: true
+      default: 0.7
+
+    - id: escalation-action
+      text: "What action triggers when an item is not decided within the SLA?"
+      type: text
+      output-field: escalation_action
+      required: true
+      hint: "e.g. notify-on-call, auto-reject, escalate-to-senior"
+
+    - id: verticals-always-gate
+      text: "Which domains always require human review regardless of score?"
+      type: multi-text
+      output-field: verticals_always_gate
+      required: false
+      hint: "e.g. healthcare finance legal"
+
+    - id: callback-url
+      text: "Gateway base URL for approval callbacks?"
+      type: text
+      output-field: gateway_url
+      required: true
+      hint: "Module will POST to {url}/callbacks/approval — never /approve"
+
+    - id: auth-token-env
+      text: "Env var name holding the approval auth bearer token?"
+      type: text
+      output-field: auth_token_env
+      required: true
+      default: "APPROVAL_AUTH_TOKEN"
+
+    - id: surface-kind
+      text: "Surface kind for the approval console?"
+      type: choice
+      output-field: surface_kind
+      required: true
+      options:
+        - value: operator-console
+          label: "Operator console (dedicated screen)"
+          default: true
+        - value: review-panel
+          label: "Review panel (embedded in existing dashboard)"
+
+  uishell-output:
+    surfaces:
+      - name: "approval-console"
+        kind: "{{ .SurfaceKind }}"
+        description: "Human-in-the-loop approval queue for {{ .Domain }} agents"
+    navigation:
+      - label: "Approvals"
+        surface: "approval-console"
+    extension-points:
+      - name: "approval-queue"
+        accepts: ["ui-module"]
+        description: "Approval queue module insertion point"

@@ -1,0 +1,16 @@
+apiVersion: appdarta.io/v1
+kind: AgentPolicy
+metadata:
+  name: "{{ .AgentName }}"
+  domain: "{{ .Domain }}"
+spec:
+  gateway_pipeline:
+    in:
+      - type: auth_enforcement
+      - type: stateful-agent-invoke
+        config:
+          endpoint: "http://{{ .AgentName }}:8000"
+          checkpoint_dir: ".appdarta/checkpoints"
+    out:
+      - type: audit_logger
+        async: true

@@ -1,0 +1,8 @@
+version: "1.0"
+handlers:
+  - name: response-log
+    package: gateway
+    file: gateway/handlers/out/response_log.go
+  - name: error-normalize
+    package: gateway
+    file: gateway/handlers/out/error_normalize.go

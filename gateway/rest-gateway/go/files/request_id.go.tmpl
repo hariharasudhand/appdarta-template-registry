@@ -1,0 +1,8 @@
+package gateway
+
+import "net/http"
+
+// RequestID marks the inbound trace boundary for AppDarta gateway requests.
+func RequestID(next http.Handler) http.Handler {
+	return next
+}

@@ -1,0 +1,81 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: multi-agent-orchestrator-python
+  displayName: Multi-Agent Orchestrator (Python)
+  description: Supervisor agent with role-based worker delegation, tool routing, and
+    result aggregation. Python implementation using LangChain-compatible interfaces.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: service
+  techStacks:
+  - Python
+  patternKind: multi-agent-orchestrator
+  files:
+  - path: services/{{ .ServiceName }}/orchestrator.py
+    template: orchestrator.py.tmpl
+    description: Supervisor orchestrator
+  - path: services/{{ .ServiceName }}/worker.py
+    template: worker.py.tmpl
+    description: Worker agent base
+  - path: services/{{ .ServiceName }}/tools.py
+    template: tools.py.tmpl
+    description: Shared tool registry
+  - path: services/{{ .ServiceName }}/requirements.txt
+    template: requirements.txt.tmpl
+    description: Python dependencies
+  promptHints:
+    skeleton: Supervisor delegates tasks to role-specific workers; aggregates results.
+    implementation: Add worker classes in worker.py; register tools in tools.py.
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 5
+    complexityIdeal: 7
+    complexityCeiling: 10
+    tags:
+    - multi-agent
+    - orchestrator
+    - supervisor
+    - python
+    - llm
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Python
+      - multi-agent orchestration
+      - supervisor-worker pattern
+      scale:
+        workflow: delegation-and-aggregation
+    doesNotApplyWhen:
+    - single-agent only
+    - crud-only
+    - frontend-only
+    - simple api wrapper
+  triggerIncidents:
+    exactMatches:
+    - Python::multi-agent-orchestrator[*]
+    - Python::service[*] + Architecture[MultiAgent]
+    semanticTriggers:
+      keywords:
+        required:
+        - python
+        - multi-agent
+        optional:
+        - orchestrator
+        - supervisor
+        - workers
+        - delegation
+        - llm
+      antiKeywords:
+      - single-agent
+      - crud-only
+      - frontend-only
+      - simple api wrapper
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

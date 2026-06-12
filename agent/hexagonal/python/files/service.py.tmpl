@@ -1,0 +1,6 @@
+from .dto import {{ pascal .AgentName }}Request, {{ pascal .AgentName }}Response
+
+
+class {{ pascal .AgentName }}Service:
+    async def execute(self, payload: {{ pascal .AgentName }}Request) -> {{ pascal .AgentName }}Response:
+        return {{ pascal .AgentName }}Response()

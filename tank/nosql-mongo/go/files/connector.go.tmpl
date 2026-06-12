@@ -1,0 +1,7 @@
+package {{ snake .TankName }}
+
+import "go.mongodb.org/mongo-driver/mongo"
+
+type Connector struct {
+	Collection *mongo.Collection
+}

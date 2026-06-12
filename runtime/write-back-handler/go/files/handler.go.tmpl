@@ -1,0 +1,262 @@
+// Code generated from write-back-handler CodeTemplate. Customize dispatch hooks as needed.
+package writeback
+
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+	"path/filepath"
+	"strings"
+	"time"
+
+	"gopkg.in/yaml.v3"
+)
+
+type Auth struct {
+	Type     string `yaml:"type"`
+	TokenEnv string `yaml:"token-env,omitempty"`
+}
+
+type Retry struct {
+	MaxAttempts          int     `yaml:"max-attempts,omitempty"`
+	InitialDelayMs       int     `yaml:"initial-delay-ms,omitempty"`
+	BackoffMultiplier    float64 `yaml:"backoff-multiplier,omitempty"`
+	MaxDelayMs           int     `yaml:"max-delay-ms,omitempty"`
+	RetryableStatusCodes []int   `yaml:"retryable-status-codes,omitempty"`
+}
+
+type Operation struct {
+	ID          string `yaml:"id" json:"id"`
+	Method      string `yaml:"method" json:"method"`
+	Path        string `yaml:"path" json:"path"`
+	ContractRef string `yaml:"contract-ref" json:"contract_ref"`
+	Trigger     string `yaml:"trigger" json:"trigger"`
+	Auth        string `yaml:"auth,omitempty" json:"auth,omitempty"`
+}
+
+type WriteBack struct {
+	Enabled    bool        `yaml:"enabled"`
+	Operations []Operation `yaml:"operations,omitempty"`
+}
+
+type Config struct {
+	BaseURL   string     `yaml:"base-url" json:"base_url"`
+	Auth      Auth       `yaml:"auth,omitempty"`
+	Retry     *Retry     `yaml:"retry,omitempty"`
+	WriteBack *WriteBack `yaml:"write-back,omitempty"`
+}
+
+type AuditEntry struct {
+	Timestamp   string `json:"timestamp"`
+	Connector   string `json:"connector"`
+	OperationID string `json:"operation_id"`
+	Method      string `json:"method"`
+	Path        string `json:"path"`
+	StatusCode  int    `json:"status_code,omitempty"`
+	Success     bool   `json:"success"`
+	Error       string `json:"error,omitempty"`
+	RetryCount  int    `json:"retry_count,omitempty"`
+}
+
+type Handler struct {
+	ProjectRoot   string
+	ConnectorPath string
+	Config        Config
+	Client        *http.Client
+}
+
+func Load(projectRoot, connectorPath string) (*Handler, error) {
+	raw, err := os.ReadFile(connectorPath)
+	if err != nil {
+		return nil, err
+	}
+	cfg, err := parseConfig(raw)
+	if err != nil {
+		return nil, err
+	}
+	return &Handler{
+		ProjectRoot:   projectRoot,
+		ConnectorPath: connectorPath,
+		Config:        cfg,
+		Client:        http.DefaultClient,
+	}, nil
+}
+
+func parseConfig(raw []byte) (Config, error) {
+	var doc map[string]any
+	if err := yaml.Unmarshal(raw, &doc); err != nil {
+		return Config{}, err
+	}
+	connector := doc["connector-config"]
+	if connector == nil {
+		if specMap, ok := doc["spec"].(map[string]any); ok {
+			connector = specMap["connector-config"]
+		}
+	}
+	if connector != nil {
+		raw, _ = yaml.Marshal(connector)
+	}
+	var cfg Config
+	if err := yaml.Unmarshal(raw, &cfg); err != nil {
+		return Config{}, err
+	}
+	if cfg.WriteBack == nil || !cfg.WriteBack.Enabled || len(cfg.WriteBack.Operations) == 0 {
+		return Config{}, fmt.Errorf("connector has no enabled write-back operations")
+	}
+	return cfg, nil
+}
+
+func (h *Handler) DispatchApprovalGate(decision string, payload map[string]any) ([]AuditEntry, error) {
+	if strings.ToLower(strings.TrimSpace(decision)) != "approved" {
+		return nil, nil
+	}
+	var audits []AuditEntry
+	for _, op := range h.Config.WriteBack.Operations {
+		if strings.TrimSpace(op.Trigger) != "approval-gate" {
+			continue
+		}
+		entry, err := h.dispatch(op, payload)
+		if err != nil {
+			entry.Error = err.Error()
+		}
+		_ = h.appendAudit(entry)
+		audits = append(audits, entry)
+		if err != nil {
+			return audits, err
+		}
+	}
+	return audits, nil
+}
+
+func (h *Handler) dispatch(op Operation, payload map[string]any) (AuditEntry, error) {
+	entry := AuditEntry{
+		Timestamp:   time.Now().UTC().Format(time.RFC3339),
+		Connector:   filepath.ToSlash(h.ConnectorPath),
+		OperationID: op.ID,
+		Method:      strings.ToUpper(strings.TrimSpace(op.Method)),
+		Path:        op.Path,
+	}
+	if entry.Method == "" {
+		entry.Method = http.MethodPost
+	}
+	if !strings.Contains(strings.TrimSpace(op.ContractRef), "FunctionalModel.contracts.") {
+		return entry, fmt.Errorf("invalid contract-ref %q", op.ContractRef)
+	}
+	base := strings.TrimRight(strings.TrimSpace(h.Config.BaseURL), "/")
+	if base == "" {
+		return entry, fmt.Errorf("connector base-url is required")
+	}
+	opPath := strings.TrimSpace(op.Path)
+	if !strings.HasPrefix(opPath, "/") {
+		opPath = "/" + opPath
+	}
+	body, _ := json.Marshal(payload)
+	attempts := 1
+	if h.Config.Retry != nil && h.Config.Retry.MaxAttempts > 0 {
+		attempts = h.Config.Retry.MaxAttempts
+	}
+	var lastErr error
+	for attempt := 0; attempt < attempts; attempt++ {
+		if attempt > 0 {
+			entry.RetryCount = attempt
+			time.Sleep(retryDelay(h.Config.Retry, attempt))
+		}
+		req, err := http.NewRequest(entry.Method, base+opPath, bytes.NewReader(body))
+		if err != nil {
+			return entry, err
+		}
+		req.Header.Set("Content-Type", "application/json")
+		if err := h.applyAuth(req, op); err != nil {
+			return entry, err
+		}
+		resp, err := h.Client.Do(req)
+		if err != nil {
+			lastErr = err
+			continue
+		}
+		respBody, _ := io.ReadAll(resp.Body)
+		resp.Body.Close()
+		entry.StatusCode = resp.StatusCode
+		if resp.StatusCode >= 200 && resp.StatusCode < 300 {
+			entry.Success = true
+			return entry, nil
+		}
+		lastErr = fmt.Errorf("write-back HTTP %d: %s", resp.StatusCode, strings.TrimSpace(string(respBody)))
+		if !statusRetryable(h.Config.Retry, resp.StatusCode) {
+			break
+		}
+	}
+	return entry, lastErr
+}
+
+func (h *Handler) applyAuth(req *http.Request, op Operation) error {
+	mode := strings.TrimSpace(op.Auth)
+	if mode == "" {
+		mode = "inherit"
+	}
+	if mode != "inherit" || h.Config.Auth.TokenEnv == "" {
+		return nil
+	}
+	token := os.Getenv(h.Config.Auth.TokenEnv)
+	if token == "" {
+		return fmt.Errorf("env %s is empty", h.Config.Auth.TokenEnv)
+	}
+	if strings.EqualFold(h.Config.Auth.Type, "bearer") {
+		req.Header.Set("Authorization", "Bearer "+token)
+	} else {
+		req.Header.Set("Authorization", token)
+	}
+	return nil
+}
+
+func (h *Handler) appendAudit(entry AuditEntry) error {
+	path := filepath.Join(h.ProjectRoot, ".darta", "write-back-audit.jsonl")
+	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+		return err
+	}
+	raw, err := json.Marshal(entry)
+	if err != nil {
+		return err
+	}
+	f, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	_, err = f.Write(append(raw, '\n'))
+	return err
+}
+
+func retryDelay(retry *Retry, attempt int) time.Duration {
+	ms := 500
+	if retry != nil && retry.InitialDelayMs > 0 {
+		ms = retry.InitialDelayMs
+	}
+	mult := 2.0
+	if retry != nil && retry.BackoffMultiplier > 0 {
+		mult = retry.BackoffMultiplier
+	}
+	for i := 1; i < attempt; i++ {
+		ms = int(float64(ms) * mult)
+		if retry != nil && retry.MaxDelayMs > 0 && ms > retry.MaxDelayMs {
+			ms = retry.MaxDelayMs
+			break
+		}
+	}
+	return time.Duration(ms) * time.Millisecond
+}
+
+func statusRetryable(retry *Retry, code int) bool {
+	if retry == nil || len(retry.RetryableStatusCodes) == 0 {
+		return code == 429 || code >= 500
+	}
+	for _, retryable := range retry.RetryableStatusCodes {
+		if retryable == code {
+			return true
+		}
+	}
+	return false
+}

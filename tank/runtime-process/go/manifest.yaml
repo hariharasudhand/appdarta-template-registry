@@ -1,0 +1,28 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: tank-runtime-process
+  displayName: Tank Runtime Overlay (Process)
+  description: Build-time runtime overlay for local process execution.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Go
+  - Python
+  patternKind: runtime-process
+  files:
+  - path: tanks/{{ .TankName }}/run-local.sh
+    template: run-local.sh.tmpl
+    description: Local process launch script
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 1
+    complexityIdeal: 1
+    complexityCeiling: 3
+    tags:
+    - overlay
+    - process
+    - runtime
+templatesApiVersion: '1'

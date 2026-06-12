@@ -1,0 +1,13 @@
+# Agent {{ .AgentName }} — Docker+WASM runtime overlay
+# WASM modules mount under /wasm; HTTP on PORT (default 8080)
+FROM golang:1.22-alpine AS build
+WORKDIR /src
+COPY . .
+RUN go build -o /out/agent .
+
+FROM alpine:3.19
+WORKDIR /app
+COPY --from=build /out/agent /app/agent
+ENV PORT=8080 WASM_DIR=/wasm
+EXPOSE 8080
+CMD ["/app/agent"]

@@ -1,0 +1,33 @@
+package domain
+
+import (
+	"context"
+	"fmt"
+
+	"{{ .ModulePath }}/agents/{{ .AgentName }}/dto"
+	port "{{ .ModulePath }}/agents/{{ .AgentName }}/ports/in"
+{{ if .HasTanks }}	out "{{ .ModulePath }}/agents/{{ .AgentName }}/ports/out"
+{{ end }})
+
+type {{ pascal .AgentName }}Service struct {
+{{ range .TankRefs }}	{{ camel . }} out.{{ pascal . }}Repository
+{{ end }}}
+
+func New({{ range .TankRefs }}{{ camel . }} out.{{ pascal . }}Repository, {{ end }}) *{{ pascal .AgentName }}Service {
+	return &{{ pascal .AgentName }}Service{
+{{ range .TankRefs }}		{{ camel . }}: {{ camel . }},
+{{ end }}	}
+}
+
+func (s *{{ pascal .AgentName }}Service) Execute(ctx context.Context, req dto.{{ pascal .AgentName }}Request) (dto.{{ pascal .AgentName }}Response, error) {
+	if err := s.validate(req); err != nil {
+		return dto.{{ pascal .AgentName }}Response{}, fmt.Errorf("validate: %w", err)
+	}
+	return dto.{{ pascal .AgentName }}Response{}, nil
+}
+
+func (s *{{ pascal .AgentName }}Service) validate(req dto.{{ pascal .AgentName }}Request) error {
+	return nil
+}
+
+var _ port.{{ pascal .AgentName }}Service = (*{{ pascal .AgentName }}Service)(nil)

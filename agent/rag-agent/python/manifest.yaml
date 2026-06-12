@@ -1,0 +1,81 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: rag-agent-python
+  displayName: RAG Agent
+  description: Retrieval augmented Python agent scaffold.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Python
+  patternKind: rag-agent
+  files:
+  - path: agents/{{ .AgentName }}/app.py
+    template: app.py.tmpl
+    description: FastAPI route
+  - path: agents/{{ .AgentName }}/service.py
+    template: service.py.tmpl
+    description: RAG orchestration
+  - path: agents/{{ .AgentName }}/retriever.py
+    template: retriever.py.tmpl
+    description: Retriever
+  - path: agents/{{ .AgentName }}/dto.py
+    template: dto.py.tmpl
+    description: Models
+  promptHints:
+    skeleton: Expose ask endpoint and delegate retrieval to retriever module.
+    implementation: Pull context first, then synthesize answer.
+    tanks: Use vector tanks as retrieval backends.
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 2
+    complexityIdeal: 5
+    complexityCeiling: 12
+    compositesWith:
+    - hexagonal-python
+    tags:
+    - rag
+    - retrieval
+    - llm
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Python
+      - RAG
+      - retrieval
+      scale:
+        workflow: query-context-answer
+    doesNotApplyWhen:
+    - event-driven-only
+    - crud-only
+    - no retrieval
+    - frontend-only
+  triggerIncidents:
+    exactMatches:
+    - Python::rag-agent[*]
+    - Python::API[*] + Capability[RAG]
+    semanticTriggers:
+      keywords:
+        required:
+        - python
+        - rag
+        optional:
+        - retrieval
+        - retriever
+        - context
+        - llm
+        - vector
+      antiKeywords:
+      - event-driven-only
+      - crud-only
+      - frontend-only
+      - no retrieval
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

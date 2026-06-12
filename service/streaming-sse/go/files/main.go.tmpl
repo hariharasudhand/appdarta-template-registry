@@ -1,0 +1,23 @@
+package main
+
+import (
+	"log"
+	"net/http"
+	"os"
+)
+
+func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "9002"
+	}
+
+	mux := http.NewServeMux()
+	mux.HandleFunc("/v1/stream", handleStream)
+	mux.HandleFunc("/v1/health_check", handleHealthCheck)
+
+	log.Printf("{{ .ServiceName }} SSE server listening on :%s", port)
+	if err := http.ListenAndServe(":"+port, mux); err != nil {
+		log.Fatalf("server error: %v", err)
+	}
+}

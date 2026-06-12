@@ -1,0 +1,74 @@
+package {{ snake .AgentName }}
+
+import (
+	"context"
+	"errors"
+	"os"
+)
+
+type Service struct {
+	Model ModelClient
+	Audit Auditor
+}
+
+func NewServiceFromEnv() Service {
+	return Service{
+		Model: NewModelClientFromEnv(),
+		Audit: NoopAuditor{},
+	}
+}
+
+func (s Service) Execute(ctx context.Context, req Request) (Response, error) {
+	inputs := normalizeInputs(req)
+	if len(inputs) == 0 {
+		return Response{}, errors.New("at least one text input is required")
+	}
+	modelRef := req.ModelRef
+	if modelRef == "" {
+		modelRef = os.Getenv("APPDARTA_ML_MODEL_REF")
+	}
+	if modelRef == "" {
+		modelRef = "vertical-owned-model"
+	}
+	model := s.Model
+	if model == nil {
+		model = NewModelClientFromEnv()
+	}
+	audit := s.Audit
+	if audit == nil {
+		audit = NoopAuditor{}
+	}
+	invocation := ModelInvocation{
+		Inputs: inputs,
+		ModelRef: modelRef,
+		TraceID: req.TraceID,
+		Metadata: req.Metadata,
+	}
+	auditID := audit.RecordInvoke(ctx, invocation)
+	embeddings, err := model.Embed(ctx, invocation)
+	audit.RecordResult(ctx, auditID, err)
+	if err != nil {
+		return Response{ModelRef: modelRef, AuditID: auditID}, err
+	}
+	dimensions := 0
+	if len(embeddings) > 0 {
+		dimensions = len(embeddings[0])
+	}
+	return Response{
+		Embeddings: embeddings,
+		ModelRef: modelRef,
+		Dimensions: dimensions,
+		AuditID: auditID,
+		Metadata: map[string]string{"owner": "vertical-model-artifact", "wrapper": "platform"},
+	}, nil
+}
+
+func normalizeInputs(req Request) []string {
+	if len(req.Inputs) > 0 {
+		return req.Inputs
+	}
+	if req.Text != "" {
+		return []string{req.Text}
+	}
+	return nil
+}

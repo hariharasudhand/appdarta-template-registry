@@ -1,0 +1,95 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: ml-embed-wrapper
+  displayName: ML Embed Wrapper
+  description: Thin Go wrapper for model embedding/inference via HTTP or subprocess,
+    with invoke/audit hooks.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Go
+  patternKind: ml-embed-wrapper
+  files:
+  - path: agents/{{ .AgentName }}/handler.go
+    template: handler.go.tmpl
+    description: HTTP entrypoint
+  - path: agents/{{ .AgentName }}/service.go
+    template: service.go.tmpl
+    description: Wrapper orchestration and validation
+  - path: agents/{{ .AgentName }}/model_client.go
+    template: model_client.go.tmpl
+    description: HTTP/subprocess model adapters
+  - path: agents/{{ .AgentName }}/audit.go
+    template: audit.go.tmpl
+    description: Platform-owned invoke/audit hook surface
+  - path: agents/{{ .AgentName }}/dto.go
+    template: dto.go.tmpl
+    description: Request and response models
+  - path: agents/{{ .AgentName }}/service_test.go
+    template: service_test.go.tmpl
+    description: Deterministic wrapper test harness
+  - path: agents/{{ .AgentName }}/README.md
+    template: README.md.tmpl
+    description: Ownership and runtime notes
+  promptHints:
+    skeleton: HTTP handler plus service layer wrapping a vertical-owned model artifact.
+    implementation: Use APPDARTA_ML_EMBED_ENDPOINT for HTTP inference or APPDARTA_ML_EMBED_COMMAND
+      for subprocess inference.
+    tanks: No tank dependency by default; callers persist embeddings through platform
+      tanks when needed.
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 2
+    complexityIdeal: 4
+    complexityCeiling: 8
+    compositesWith:
+    - vector-pgvector-go
+    - vector-pgvector-python
+    - rag-agent-go
+    tags:
+    - ml
+    - embedding
+    - inference
+    - wrapper
+    - audit
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Go
+      - ML
+      - embedding
+      scale:
+        workflow: model-wrapper
+    doesNotApplyWhen:
+    - frontend-only
+    - crud-only
+    - no model artifact
+  triggerIncidents:
+    exactMatches:
+    - Go::ml-embed-wrapper[*]
+    - Capability[ML Embed] + Go::service[*]
+    semanticTriggers:
+      keywords:
+        required:
+        - ml
+        - embed
+        optional:
+        - embedding
+        - inference
+        - model
+        - subprocess
+        - http
+      antiKeywords:
+      - frontend-only
+      - crud-only
+      - no model
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

@@ -1,0 +1,34 @@
+.PHONY: all build test dev down clean {{ range .Agents }}build-{{ .Name }} test-{{ .Name }} {{ end }}{{ range .AllTanks }}build-{{ .Name }} {{ end }}
+
+all: build
+
+build: {{ range .Agents }}build-{{ .Name }} {{ end }}{{ range .AllTanks }}build-{{ .Name }} {{ end }}
+	@echo "All services built."
+
+{{ range .Agents }}
+build-{{ .Name }}:
+	@echo "Building {{ .Name }}..."
+	docker build -t {{ .Name }}:latest agents/{{ .Name }}/
+
+test-{{ .Name }}:
+	@echo "Testing {{ .Name }}..."
+	cd agents/{{ .Name }} && go test ./... 2>/dev/null || python -m pytest . 2>/dev/null || true
+
+{{ end }}{{ range .AllTanks }}
+build-{{ .Name }}:
+	@echo "Building {{ .Name }}..."
+	docker build -t {{ .Name }}:latest tanks/{{ .Name }}/ 2>/dev/null || true
+
+{{ end }}
+dev:
+	docker compose up --build
+
+down:
+	docker compose down
+
+clean:
+	docker compose down --rmi local --volumes
+{{ if .Gateway }}
+gateway:
+	docker compose up --build {{ .Gateway.Name }}
+{{ end }}

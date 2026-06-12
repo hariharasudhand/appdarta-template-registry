@@ -1,0 +1,30 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: ui-runtime-process
+  displayName: UI Runtime Overlay (Process)
+  description: Build-time runtime overlay for local UI execution.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: ui
+  techStacks:
+  - React
+  - Vue
+  - Next.js
+  patternKind: runtime-process
+  files:
+  - path: ui/run-local.sh
+    template: run-local.sh.tmpl
+    description: UI local process launcher
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 1
+    complexityIdeal: 1
+    complexityCeiling: 3
+    tags:
+    - overlay
+    - process
+    - runtime
+    - ui
+templatesApiVersion: '1'

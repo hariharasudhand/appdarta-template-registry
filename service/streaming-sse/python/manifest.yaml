@@ -1,0 +1,44 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: streaming-sse-python
+  displayName: SSE Streaming Responder (Python)
+  description: Server-Sent Events streaming service in Python. FastAPI StreamingResponse
+    with async generator. Standard pattern for LLM token streaming.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: service
+  techStacks:
+  - Python
+  patternKind: streaming-sse
+  files:
+  - path: services/{{ .ServiceName }}/handler.py
+    template: handler.py.tmpl
+    description: FastAPI SSE handler
+  - path: services/{{ .ServiceName }}/requirements.txt
+    template: requirements.txt.tmpl
+    description: Python dependencies
+  - path: services/{{ .ServiceName }}/Dockerfile
+    template: Dockerfile.tmpl
+    description: Container definition
+  - path: services/{{ .ServiceName }}/docker-compose.yml
+    template: docker-compose.yml.tmpl
+    description: Local dev compose
+  promptHints:
+    skeleton: FastAPI StreamingResponse with async generator for token-by-token SSE
+      output.
+    implementation: Replace generate_tokens() with your LLM client call.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 1
+    complexityIdeal: 3
+    complexityCeiling: 7
+    tags:
+    - streaming
+    - sse
+    - python
+    - fastapi
+    - llm
+    - token-stream
+templatesApiVersion: '1'

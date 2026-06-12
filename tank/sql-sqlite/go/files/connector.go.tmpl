@@ -1,0 +1,24 @@
+package {{ snake .TankName }}
+
+import (
+	"context"
+	"database/sql"
+
+	_ "modernc.org/sqlite"
+)
+
+type Connector struct {
+	db *sql.DB
+}
+
+func Open(dsn string) (*Connector, error) {
+	db, err := sql.Open("sqlite", dsn)
+	if err != nil {
+		return nil, err
+	}
+	return &Connector{db: db}, nil
+}
+
+func (c *Connector) Read(ctx context.Context, id string) (*sql.Row, error) {
+	return c.db.QueryRowContext(ctx, "SELECT payload FROM {{ snake .TankName }} WHERE id = ?", id), nil
+}

@@ -1,0 +1,22 @@
+"""OCR helper stub for {{ .TankName }}.
+
+Replace body with Tesseract, AWS Textract, or Google Document AI
+when q2-ocr-required=true (set in S1 intake).
+"""
+from __future__ import annotations
+
+import pathlib
+
+
+def extract_text_ocr(path: pathlib.Path) -> str:
+    """Extract text from a scanned document via OCR.
+
+    Stub — install pytesseract + Tesseract and uncomment:
+        import pytesseract
+        from PIL import Image
+        return pytesseract.image_to_string(Image.open(path))
+    """
+    raise NotImplementedError(
+        f"OCR not configured for {{ .TankName }}. "
+        "Implement extract_text_ocr or set --no-ocr if documents are text-native."
+    )

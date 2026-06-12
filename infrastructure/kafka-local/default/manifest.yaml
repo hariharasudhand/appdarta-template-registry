@@ -1,0 +1,22 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: kafka-local-infra
+  displayName: Kafka / Redpanda local infra scaffold
+  description: docker-compose Kafka/Redpanda service and env contract for P8.3 event
+    streaming.
+  version: 1.0.0
+spec:
+  nodeKind: infrastructure
+  patternKind: kafka-local
+  files:
+  - path: scripts/proof-kafka-consume-to-tank.sh
+    template: proof-kafka-consume-to-tank.sh.tmpl
+    description: 'Manual Redpanda proof: produce one event, consume it, POST to context-service
+      tank ingest.'
+  tags:
+  - kafka
+  - redpanda
+  - infrastructure
+  - scaffold
+templatesApiVersion: '1'

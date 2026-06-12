@@ -1,0 +1,6 @@
+package out
+{{ range .TankRefs }}
+type {{ pascal . }}Repository interface {
+	Get(id string) (any, error)
+}
+{{ end }}

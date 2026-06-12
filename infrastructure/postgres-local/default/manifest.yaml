@@ -1,0 +1,16 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: postgres-local-infra
+  displayName: PostgreSQL local infra scaffold
+  description: docker-compose postgres service, env contract, and starter migration
+    for Analyze build-dependency assessment.
+  version: 1.0.0
+spec:
+  nodeKind: infrastructure
+  patternKind: postgres-local
+  tags:
+  - postgres
+  - infrastructure
+  - scaffold
+templatesApiVersion: '1'

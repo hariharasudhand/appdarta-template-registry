@@ -1,0 +1,11 @@
+services:
+  {{ .ServiceName }}:
+    build: .
+    ports:
+      - "${PORT:-9000}:${PORT:-9000}"
+    env_file: .env.example
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${PORT:-9000}/v1/health_check"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

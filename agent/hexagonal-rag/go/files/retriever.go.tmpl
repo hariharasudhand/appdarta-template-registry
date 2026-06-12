@@ -1,0 +1,7 @@
+package {{ snake .AgentName }}
+
+import "context"
+
+type Retriever interface {
+	Search(ctx context.Context, query string) ([]string, error)
+}

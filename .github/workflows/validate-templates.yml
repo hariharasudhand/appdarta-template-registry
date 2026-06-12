@@ -1,0 +1,43 @@
+name: Validate templates
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate bundle structure
+        run: |
+          set -euo pipefail
+          fail=0
+          while IFS= read -r manifest; do
+            bundle="$(dirname "$manifest")"
+            if [ ! -d "$bundle/files" ]; then
+              echo "FAIL: $bundle missing files/"
+              fail=1
+              continue
+            fi
+            bash scripts/lint-template-bundle.sh "$bundle" || fail=1
+          done < <(find . -path './prompt-rulebooks' -prune -o -name manifest.yaml -print | grep -v '^\./\.')
+          if [ ! -f index.yaml ]; then
+            echo "FAIL: missing index.yaml"
+            fail=1
+          fi
+          exit $fail
+      - name: Render-smoke one bundle per nodeKind
+        run: |
+          set -euo pipefail
+          declare -A seen=()
+          while IFS= read -r manifest; do
+            bundle="$(dirname "$manifest")"
+            nk="$(grep -E '^\s*nodeKind:' "$manifest" | head -1 | sed 's/.*nodeKind:\s*//' | tr -d '"' | tr -d "'")"
+            [ -n "$nk" ] || nk="unknown"
+            if [ -n "${seen[$nk]+x}" ]; then continue; fi
+            seen[$nk]=1
+            count="$(find "$bundle/files" -name '*.tmpl' | wc -l | tr -d ' ')"
+            echo "smoke: nodeKind=$nk bundle=$bundle tmpl_files=$count"
+            [ "$count" -gt 0 ] || exit 1
+          done < <(find . -path './prompt-rulebooks' -prune -o -name manifest.yaml -print | grep -v '^\./\.')

@@ -1,0 +1,3 @@
+package {{ snake .TankName }}
+
+const upsertStatement = "INSERT INTO {{ snake .TankName }} (id, payload) VALUES ($1, $2) ON CONFLICT (id) DO UPDATE SET payload = EXCLUDED.payload"

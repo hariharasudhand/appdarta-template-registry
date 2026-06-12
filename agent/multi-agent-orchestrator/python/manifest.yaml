@@ -1,0 +1,46 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: multi-agent-orchestrator
+  displayName: Multi-Agent Orchestrator
+  description: FastAPI orchestrator that fans out work to sub-agents through the gateway.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Python
+  patternKind: multi-agent-orchestrator
+  dhil_dt_routing:
+    preferred_tier: l2
+    required_skills:
+    - coder
+    - python
+    role: implementation/complex
+  files:
+  - path: agents/{{ .AgentName }}/orchestrator.py
+    template: orchestrator.py.tmpl
+    description: Sub-agent fanout service
+  - path: agents/{{ .AgentName }}/appdarta-policy.yaml
+    template: appdarta-policy.yaml.tmpl
+    description: Gateway pipeline policy
+  - path: agents/{{ .AgentName }}/agent-spec.yaml
+    template: agent-spec.yaml.tmpl
+    description: AppDarta agent spec
+  gateway_policy:
+    handlers:
+    - auth_enforcement
+    - rate_limit
+    - multi-agent-dispatch
+    - audit_logger
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 5
+    complexityIdeal: 9
+    complexityCeiling: 20
+    tags:
+    - multi-agent
+    - orchestrator
+    - fanout
+    - python
+templatesApiVersion: '1'

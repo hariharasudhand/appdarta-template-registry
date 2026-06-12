@@ -1,0 +1,28 @@
+import os
+from fastapi import FastAPI
+from langchain_openai import ChatOpenAI
+
+app = FastAPI()
+
+LITELLM_ENDPOINT = os.environ.get("LITELLM_PROXY_URL", "http://localhost:4000")
+llm = ChatOpenAI(
+    base_url=f"{LITELLM_ENDPOINT}/v1",
+    api_key=os.environ.get("RUNTIME_L2_API_KEY", "not-set"),
+    model=os.environ.get("RUNTIME_MODEL", "gpt-4o"),
+)
+
+def retrieve(query: str) -> list[str]:
+    # Replace with pgvector lookup using PGVECTOR_DSN and collection metadata.
+    return []
+
+@app.post("/invoke")
+async def invoke(body: dict):
+    query = body.get("input", {}).get("query") or body.get("input", "")
+    docs = retrieve(str(query))
+    prompt = f"Answer using context:\n{docs}\n\nQuestion: {query}"
+    answer = llm.invoke(prompt).content
+    return {"output": {"answer": answer, "citations": docs}}
+
+@app.get("/health")
+def health():
+    return {"status": "ok", "agent": "{{ .AgentName }}"}

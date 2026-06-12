@@ -1,0 +1,109 @@
+"""{{ .ServiceName }} — Stateful graph workflow."""
+from __future__ import annotations
+import os
+import uuid
+from typing import Any, Callable
+
+from state import WorkflowState
+from checkpoint import CheckpointAdapter, InMemoryCheckpoint, RedisCheckpoint
+
+# Node type: receives state, returns mutated state
+NodeFn = Callable[[WorkflowState], WorkflowState]
+
+_NODES: dict[str, NodeFn] = {}
+_EDGES: dict[str, str] = {}  # node_name -> next_node_name
+_ENTRY = "start"
+_EXIT = "end"
+
+
+def node(name: str):
+    def decorator(fn: NodeFn) -> NodeFn:
+        _NODES[name] = fn
+        return fn
+    return decorator
+
+
+def edge(from_node: str, to_node: str) -> None:
+    _EDGES[from_node] = to_node
+
+
+class StateGraph:
+    def __init__(self, checkpoint: CheckpointAdapter | None = None) -> None:
+        self._checkpoint = checkpoint or InMemoryCheckpoint()
+
+    async def run(self, input: str, run_id: str | None = None) -> WorkflowState:
+        run_id = run_id or str(uuid.uuid4())
+
+        existing = await self._checkpoint.load(run_id)
+        if existing:
+            state = WorkflowState.from_dict(existing)
+        else:
+            state = WorkflowState(run_id=run_id, input=input, current_node=_ENTRY)
+
+        while not state.is_complete:
+            fn = _NODES.get(state.current_node)
+            if fn is None:
+                state.error = f"No node: {state.current_node}"
+                state.is_complete = True
+                break
+
+            state = fn(state)
+            await self._checkpoint.save(run_id, state.to_dict())
+
+            next_node = _EDGES.get(state.current_node)
+            if next_node is None or next_node == _EXIT:
+                state.is_complete = True
+            else:
+                state.current_node = next_node
+
+        await self._checkpoint.delete(run_id)
+        return state
+
+
+# --- Define your graph nodes below ---
+
+@node("start")
+def start_node(state: WorkflowState) -> WorkflowState:
+    state.messages.append({"role": "system", "content": "Workflow started"})
+    return state
+
+
+@node("process")
+def process_node(state: WorkflowState) -> WorkflowState:
+    # TODO: add your processing logic
+    state.artifacts["result"] = f"Processed: {state.input}"
+    return state
+
+
+# Wire edges: start → process → end
+edge("start", "process")
+edge("process", "end")
+
+
+# FastAPI entrypoint
+if __name__ == "__main__":
+    import asyncio
+    from fastapi import FastAPI
+    from pydantic import BaseModel
+    import uvicorn
+
+    app = FastAPI(title="{{ .ServiceName }}", version="1.0.0")
+    redis_url = os.getenv("REDIS_URL", "")
+    checkpoint = RedisCheckpoint(redis_url) if redis_url else InMemoryCheckpoint()
+    graph = StateGraph(checkpoint=checkpoint)
+
+    class RunRequest(BaseModel):
+        input: str
+        run_id: str | None = None
+
+    @app.post("/v1/run")
+    async def run(req: RunRequest):
+        result = await graph.run(req.input, req.run_id)
+        return result.to_dict()
+
+    @app.get("/v1/health_check")
+    async def health_check():
+        return {"status": "healthy"}
+
+    port = int(os.getenv("PORT", "9004"))
+    uvicorn.run(app, host="0.0.0.0", port=port)

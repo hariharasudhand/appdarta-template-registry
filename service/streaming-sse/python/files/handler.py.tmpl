@@ -1,0 +1,44 @@
+import asyncio
+import os
+from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+
+app = FastAPI(title="{{ .ServiceName }}", version="1.0.0")
+
+PORT = int(os.getenv("PORT", "9002"))
+
+
+class StreamRequest(BaseModel):
+    prompt: str
+
+
+async def generate_tokens(prompt: str):
+    """Integration point — replace with your LLM client call."""
+    tokens = [f"Hello from {{ .ServiceName }}! You asked: ", prompt]
+    for token in tokens:
+        yield f"data: {token}\n\n"
+        await asyncio.sleep(0.05)
+    yield "data: [DONE]\n\n"
+
+
+@app.post("/v1/stream")
+async def stream(req: StreamRequest):
+    return StreamingResponse(
+        generate_tokens(req.prompt),
+        media_type="text/event-stream",
+        headers={
+            "Cache-Control": "no-cache",
+            "X-Accel-Buffering": "no",
+        },
+    )
+
+
+@app.get("/v1/health_check")
+async def health_check():
+    return {"status": "healthy"}
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=PORT)

@@ -1,0 +1,19 @@
+apiVersion: appdarta.io/v1
+kind: AgentPolicy
+metadata:
+  name: "{{ .AgentName }}"
+  domain: "{{ .Domain }}"
+spec:
+  gateway_pipeline:
+    in:
+      - type: auth_enforcement
+      - type: rate_limit
+        config:
+          requests_per_minute: 60
+      - type: langchain-invoke
+        config:
+          endpoint: "http://{{ .AgentName }}:8000"
+          timeout_seconds: 30
+    out:
+      - type: audit_logger
+        async: true

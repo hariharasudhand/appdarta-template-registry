@@ -1,0 +1,52 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: tank-connector-config-push
+  displayName: Push / Webhook Connector
+  description: "Configures a tank to receive inbound webhook pushes from external\
+    \ systems. Uses TankConnectorConfig.push with HMAC-SHA256 verification. Context-service\
+    \ exposes POST /tanks/{name}/webhook/{path} automatically. Default for webhook-event\
+    \ integration class (plan \xA77.3).\n"
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Go
+  patternKind: push-connector
+  files: []
+  promptHints:
+    skeleton: 'Declare push.enabled=true in connector-config. Set push.path, push.secret-env,
+      push.signature-header, and push.signature-prefix to match vendor webhook docs.
+      Context-service handles HMAC-SHA256 verification and tank upsert.
+
+      '
+    implementation: "Vendor must be configured to POST to:\n  https://{context-service-host}/tanks/{tank-name}/webhook/{push.path}\n\
+      Use push.secret-env to point to the HMAC shared secret env var. Combine with\
+      \ retry config for re-ingestion on transient errors.\n"
+    tanks: Use for event-driven, near-real-time data arrival (PO events, payment webhooks).
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 1
+    complexityIdeal: 3
+    complexityCeiling: 6
+    compositesWith:
+    - ingestor-api-go
+    tags:
+    - push
+    - webhook
+    - event
+    - connector
+  integrationClasses:
+  - webhook-event
+  exampleConfig:
+    connector-config:
+      type: http
+      system: example-vendor
+      push:
+        enabled: true
+        path: po-events
+        secret-env: VENDOR_WEBHOOK_SECRET
+        signature-header: X-Hub-Signature-256
+        signature-prefix: sha256=
+templatesApiVersion: '1'

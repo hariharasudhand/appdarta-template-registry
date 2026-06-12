@@ -1,0 +1,78 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: vector-pgvector-go
+  displayName: pgvector Store
+  description: Go vector store scaffold on Postgres pgvector.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Go
+  patternKind: vector-pgvector
+  files:
+  - path: tanks/{{ .TankName }}/connector.go
+    template: connector.go.tmpl
+    description: pgvector connector
+  - path: tanks/{{ .TankName }}/embed.go
+    template: embed.go.tmpl
+    description: Embedding settings
+  - path: tanks/{{ .TankName }}/migrations/001_vectors.sql
+    template: 001_vectors.sql.tmpl
+    description: Vector schema
+  promptHints:
+    skeleton: Persist chunks and embeddings in Postgres vector columns.
+    implementation: Keep similarity search adapters separate from embedding generation.
+    tanks: Natural backend for Go RAG agents.
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 3
+    complexityIdeal: 6
+    complexityCeiling: 14
+    compositesWith:
+    - rag-agent-go
+    tags:
+    - vector
+    - pgvector
+    - retrieval
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Go
+      - pgvector
+      - vector retrieval
+      scale:
+        storage: postgres-backed embeddings
+    doesNotApplyWhen:
+    - MongoDB
+    - Redis
+    - document store
+    - no similarity search
+  triggerIncidents:
+    exactMatches:
+    - Go::vector-pgvector[*]
+    - Go::connector[*] + DB[pgvector]
+    semanticTriggers:
+      keywords:
+        required:
+        - go
+        - pgvector
+        optional:
+        - vector
+        - embedding
+        - retrieval
+        - similarity
+        - postgres
+      antiKeywords:
+      - mongodb
+      - redis
+      - document
+      - no similarity search
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

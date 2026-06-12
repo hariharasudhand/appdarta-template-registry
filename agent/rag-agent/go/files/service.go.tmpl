@@ -1,0 +1,16 @@
+package {{ snake .AgentName }}
+
+import "context"
+
+func (s Service) Execute(ctx context.Context, req Request) (Response, error) {
+	if req.Domain == "" {
+		req.Domain = "general"
+	}
+	if req.Plane == "" {
+		req.Plane = "runtime"
+	}
+	if req.TopK <= 0 {
+		req.TopK = 5
+	}
+	return s.Retriever.Synthesize(ctx, req)
+}

@@ -1,0 +1,87 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: vue-app-shell
+  displayName: Vue 3 App Shell
+  description: Vue 3 + Vite SPA with Vue Router, Pinia store, and typed gateway API
+    client.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: ui
+  techStacks:
+  - Vue
+  - TypeScript
+  - Vite
+  patternKind: spa
+  dhilTaskType: implementation/simple
+  dhilComplexity: l1
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 1
+    complexityIdeal: 2
+    complexityCeiling: 3
+    compositesWith: []
+    tags:
+    - vue
+    - vue3
+    - vite
+    - typescript
+    - pinia
+    - spa
+    - frontend
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Vue
+      - TypeScript
+      - SPA
+      scale:
+        delivery: vite-powered single-page shell
+    doesNotApplyWhen:
+    - React
+    - Next.js
+    - SSR-first
+    - server components
+  triggerIncidents:
+    exactMatches:
+    - TypeScript::spa[*] + Framework[Vue]
+    - Vue::spa[*]
+    semanticTriggers:
+      keywords:
+        required:
+        - vue
+        - spa
+        optional:
+        - typescript
+        - vite
+        - pinia
+        - router
+        - frontend
+      antiKeywords:
+      - react
+      - next.js
+      - ssr
+      - server components
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+  files:
+  - path: ui/package.json
+    template: package.json.tmpl
+  - path: ui/vite.config.ts
+    template: vite.config.ts.tmpl
+  - path: ui/tsconfig.json
+    template: tsconfig.json.tmpl
+  - path: ui/src/App.vue
+    template: App.vue.tmpl
+  - path: ui/src/router/index.ts
+    template: router.ts.tmpl
+  - path: ui/src/api/client.ts
+    template: client.ts.tmpl
+  - path: ui/src/stores/index.ts
+    template: store.ts.tmpl
+templatesApiVersion: '1'

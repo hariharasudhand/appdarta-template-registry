@@ -1,0 +1,51 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: hexagonal-rag-go
+  displayName: Hexagonal + RAG
+  description: Go hexagonal scaffold extended with retrieval hooks.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Go
+  patternKind: hexagonal-rag
+  files:
+  - path: agents/{{ .AgentName }}/handler/handler.go
+    template: handler.go.tmpl
+    description: Entry point handler
+  - path: agents/{{ .AgentName }}/domain/domain.go
+    template: domain.go.tmpl
+    description: Core business logic
+  - path: agents/{{ .AgentName }}/ports/in/port.go
+    template: port_in.go.tmpl
+    description: Inbound service contract
+  - path: agents/{{ .AgentName }}/ports/out/adapter.go
+    template: port_out.go.tmpl
+    description: Outbound repository contracts
+  - path: agents/{{ .AgentName }}/dto/dto.go
+    template: dto.go.tmpl
+    description: Request and response DTOs
+  - path: agents/{{ .AgentName }}/service.go
+    template: service.go.tmpl
+    description: RAG orchestration
+  - path: agents/{{ .AgentName }}/retriever.go
+    template: retriever.go.tmpl
+    description: Retriever abstraction
+  promptHints:
+    skeleton: Combine clean ports with retriever abstraction.
+    implementation: Keep retrieval as an outbound dependency of domain service.
+    tanks: Prefer vector tank adapters behind ports.
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 4
+    complexityIdeal: 8
+    complexityCeiling: 18
+    compositesWith:
+    - vector-pgvector-go
+    tags:
+    - hexagonal
+    - rag
+    - composite
+templatesApiVersion: '1'

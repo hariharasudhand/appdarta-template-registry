@@ -1,0 +1,48 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: hexagonal-rag-python
+  displayName: Hexagonal + RAG
+  description: Python hexagonal scaffold extended with retrieval hooks.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Python
+  patternKind: hexagonal-rag
+  files:
+  - path: agents/{{ .AgentName }}/handler.py
+    template: handler.py.tmpl
+    description: FastAPI entrypoint
+  - path: agents/{{ .AgentName }}/service.py
+    template: service.py.tmpl
+    description: Domain service
+  - path: agents/{{ .AgentName }}/ports.py
+    template: ports.py.tmpl
+    description: Port definitions
+  - path: agents/{{ .AgentName }}/dto.py
+    template: dto.py.tmpl
+    description: Pydantic DTOs
+  - path: agents/{{ .AgentName }}/service.py
+    template: service.py.tmpl
+    description: RAG orchestration
+  - path: agents/{{ .AgentName }}/retriever.py
+    template: retriever.py.tmpl
+    description: Retriever
+  promptHints:
+    skeleton: Blend FastAPI edge with domain service and retriever modules.
+    implementation: Push retrieval behind protocols.
+    tanks: Use vector stores as adapters.
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 4
+    complexityIdeal: 8
+    complexityCeiling: 18
+    compositesWith:
+    - vector-pgvector-python
+    tags:
+    - hexagonal
+    - rag
+    - composite
+templatesApiVersion: '1'

@@ -1,0 +1,11 @@
+package {{ snake .AgentName }}
+
+import "context"
+
+type Consumer struct {
+	Handler Handler
+}
+
+func (c Consumer) Consume(ctx context.Context, event Event) error {
+	return c.Handler.Handle(ctx, event)
+}

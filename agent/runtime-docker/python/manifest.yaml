@@ -1,0 +1,35 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: agent-runtime-docker-python
+  displayName: Agent Runtime Overlay (Docker, Python)
+  description: 'Build-time runtime overlay for Python agents: Dockerfile and docker-compose
+    service.'
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Python
+  - LangChain
+  - LangGraph
+  - FastAPI
+  patternKind: runtime-docker
+  files:
+  - path: agents/{{ .AgentName }}/Dockerfile
+    template: Dockerfile.tmpl
+    description: Python agent Dockerfile
+  - path: agents/{{ .AgentName }}/docker-compose.yml
+    template: docker-compose.yml.tmpl
+    description: Python agent compose service
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 1
+    complexityIdeal: 2
+    complexityCeiling: 4
+    tags:
+    - overlay
+    - docker
+    - runtime
+    - python
+templatesApiVersion: '1'

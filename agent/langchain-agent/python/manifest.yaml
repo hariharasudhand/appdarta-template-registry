@@ -1,0 +1,63 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: langchain-agent
+  displayName: LangChain Agent
+  description: LangChain agent with LiteLLM-backed LLM - all AI calls through DHIL-RT.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Python
+  patternKind: langchain-agent
+  dhil_dt_routing:
+    preferred_tier: l2
+    required_skills:
+    - coder
+    - python
+    role: implementation/complex
+  files:
+  - path: agents/{{ .AgentName }}/agent.py
+    template: agent.py.tmpl
+    description: LangChain agent with tool binding
+  - path: agents/{{ .AgentName }}/appdarta-policy.yaml
+    template: appdarta-policy.yaml.tmpl
+    description: Gateway pipeline policy
+  - path: agents/{{ .AgentName }}/agent-spec.yaml
+    template: agent-spec.yaml.tmpl
+    description: AppDarta agent spec
+  promptHints:
+    skeleton: LangChain agent with tool binding. LLM call goes through LiteLLM endpoint
+      - never direct to Anthropic/OpenAI.
+    implementation: Bind tools, set up LiteLLM-backed ChatOpenAI, expose invoke endpoint.
+  gateway_policy:
+    handlers:
+    - auth_enforcement
+    - rate_limit
+    - langchain-invoke
+    - audit_logger
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 3
+    complexityIdeal: 7
+    complexityCeiling: 15
+    tags:
+    - langchain
+    - agent
+    - llm
+    - tool-use
+  triggerIncidents:
+    exactMatches:
+    - Python::langchain-agent[*]
+    semanticTriggers:
+      keywords:
+        required:
+        - langchain
+        optional:
+        - agent
+        - tools
+        - python
+        - llm
+      threshold: 0.75
+templatesApiVersion: '1'

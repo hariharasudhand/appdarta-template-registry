@@ -1,0 +1,10 @@
+FROM golang:1.23 AS build
+WORKDIR /src
+COPY . .
+RUN test -f go.mod && go build -o /out/{{ snake .TankName }} ./tanks/{{ .TankName }} || (echo "expected Go tank source under tanks/{{ .TankName }}" && exit 1)
+
+FROM gcr.io/distroless/base-debian12
+WORKDIR /app
+COPY --from=build /out/{{ snake .TankName }} /app/{{ snake .TankName }}
+EXPOSE 8080
+ENTRYPOINT ["/app/{{ snake .TankName }}"]

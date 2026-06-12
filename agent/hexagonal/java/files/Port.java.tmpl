@@ -1,0 +1,5 @@
+package agents.{{ snake .AgentName }};
+
+public interface {{ pascal .AgentName }}Port {
+    {{ pascal .AgentName }}Response execute({{ pascal .AgentName }}Request request);
+}

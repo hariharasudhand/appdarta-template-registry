@@ -1,0 +1,75 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: nosql-redis-go
+  displayName: Redis Connector
+  description: Go Redis connector scaffold for cache-style tanks.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Go
+  patternKind: nosql-redis
+  files:
+  - path: tanks/{{ .TankName }}/connector.go
+    template: connector.go.tmpl
+    description: Redis connector
+  - path: tanks/{{ .TankName }}/cache.go
+    template: cache.go.tmpl
+    description: Cache helpers
+  promptHints:
+    skeleton: Open redis client and centralize key prefixes.
+    implementation: Keep TTL strategy close to repository methods.
+    tanks: Use for cache, session, or coordination state.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 1
+    complexityIdeal: 3
+    complexityCeiling: 8
+    compositesWith:
+    - event-driven-go
+    tags:
+    - redis
+    - cache
+    - nosql
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Go
+      - Redis
+      - cache-or-session state
+      scale:
+        storage: low-latency key-value
+    doesNotApplyWhen:
+    - PostgreSQL
+    - MongoDB
+    - vector database
+    - document-centric persistence
+  triggerIncidents:
+    exactMatches:
+    - Go::nosql-redis[*]
+    - Go::connector[*] + DB[Redis]
+    semanticTriggers:
+      keywords:
+        required:
+        - go
+        - redis
+        optional:
+        - cache
+        - ttl
+        - session
+        - key-value
+        - connector
+      antiKeywords:
+      - postgres
+      - mongodb
+      - vector
+      - document
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

@@ -1,0 +1,997 @@
+apiVersion: appdarta.io/v1
+kind: TemplateRegistryIndex
+metadata:
+  version: 1.0.0
+  generatedAt: '2026-06-12T22:55:08Z'
+spec:
+  templatesApiVersion: '1'
+  entries:
+  - name: cqrs-go
+    path: agent/cqrs/go
+    nodeKind: agent
+    patternKind: cqrs
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:e7a841026a0a2fd1e81a73ddff3e985f1a7c291e19156f4109c224abfb604016
+    status: active
+    description: Go scaffold splitting command and query flows.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: crewai-crew
+    path: agent/crewai-crew/python
+    nodeKind: agent
+    patternKind: crewai-crew
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:3b1547a614e2f561ab296871f17dddad60fc5699ec666f1f726df9279b0a7013
+    status: active
+    description: CrewAI crew with LiteLLM-backed agents and DHIL-RT gateway policy.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: go-crud-api
+    path: agent/crud-api/go
+    nodeKind: agent
+    patternKind: crud-api
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:f8975526c4ab6a916dd4db8cb8ed881249f7830bff0271ea163a958cbbe33937
+    status: active
+    description: Companion scaffold for CRUD-oriented Go agents with HTTP handlers,
+      validation, and repository wiring.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: event-driven-go
+    path: agent/event-driven/go
+    nodeKind: agent
+    patternKind: event-driven
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:cac3aa10363f76a90d73777592ae261163234068b1b6fb43eb089c7e4363d70c
+    status: active
+    description: Go worker scaffold for asynchronous event processing.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: event-driven-python
+    path: agent/event-driven/python
+    nodeKind: agent
+    patternKind: event-driven
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:74e2abee82ea7bdffffb0ec1cdd0633f8721730fde5f9502065aac5b5cd93a9d
+    status: active
+    description: Python async worker scaffold for event processing.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: go-stateful-agent
+    path: agent/go-stateful-agent/go
+    nodeKind: agent
+    patternKind: go-stateful-agent
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:8570abb1ba91cfaae1abd85db1e85eeb487db73164490af0b3ba13505d88e9e1
+    status: active
+    description: Go HTTP agent with checkpoint-aware state and DHIL-RT policy.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: hexagonal-go
+    path: agent/hexagonal/go
+    nodeKind: agent
+    patternKind: hexagonal
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:ee481662f0a782564c4573c57efd35e859218309169d1c878174043d9fdb2996
+    status: active
+    description: Ports and adapters agent scaffold for Go.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: hexagonal-java
+    path: agent/hexagonal/java
+    nodeKind: agent
+    patternKind: hexagonal
+    techStack:
+    - Java
+    - Spring Boot
+    version: 1.0.0
+    fingerprint: sha256:e9b676cea3dd03094d4801ca0895e8e32786a3bb9379ede08530aed0898e0759
+    status: active
+    description: Java hexagonal scaffold for Spring-style services.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: hexagonal-python
+    path: agent/hexagonal/python
+    nodeKind: agent
+    patternKind: hexagonal
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:00b25997395cc6af9728a318a8be8a4040dd7a5ebdd77361337bdd09b0175c0e
+    status: active
+    description: Hexagonal Python scaffold with FastAPI entrypoint.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: hexagonal-rag-go
+    path: agent/hexagonal-rag/go
+    nodeKind: agent
+    patternKind: hexagonal-rag
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:3f9377f120bb6f9ad4bea5218693ba75196f385d504f231512934720849e3f2a
+    status: active
+    description: Go hexagonal scaffold extended with retrieval hooks.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: hexagonal-rag-python
+    path: agent/hexagonal-rag/python
+    nodeKind: agent
+    patternKind: hexagonal-rag
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:dc6e027501a71158727fb0ff606b5ecc00a822ec940c3ea27a8b7bb27c339bf9
+    status: active
+    description: Python hexagonal scaffold extended with retrieval hooks.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: langchain-agent
+    path: agent/langchain-agent/python
+    nodeKind: agent
+    patternKind: langchain-agent
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:de4a37bcaa8b053c32d147a6d6ddd1458897b0f60792cf7388147137249f0319
+    status: active
+    description: LangChain agent with LiteLLM-backed LLM - all AI calls through DHIL-RT.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: ml-embed-wrapper
+    path: agent/ml-embed-wrapper/go
+    nodeKind: agent
+    patternKind: ml-embed-wrapper
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:e7ab565b7ea020e12c8ae6c7d1da80d8307a00f2ed202fe123734bd90cf30167
+    status: active
+    description: Thin Go wrapper for model embedding/inference via HTTP or subprocess,
+      with invoke/audit hooks.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: multi-agent-orchestrator
+    path: agent/multi-agent-orchestrator/python
+    nodeKind: agent
+    patternKind: multi-agent-orchestrator
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:66073b3c5e58063b86b583c564da1d864e4bd5e7379671a2b3e8172a81efec3f
+    status: active
+    description: FastAPI orchestrator that fans out work to sub-agents through the
+      gateway.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: rag-agent-go
+    path: agent/rag-agent/go
+    nodeKind: agent
+    patternKind: rag-agent
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:8921df57823876fa40e37784f6e5ddea1845ed9749353a60936234fdfbc31468
+    status: active
+    description: Retrieval augmented Go agent scaffold.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: rag-agent-python
+    path: agent/rag-agent/python
+    nodeKind: agent
+    patternKind: rag-agent
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:a5f488d2b2270bd31f9f077a34ff6490158172c2e9c0f5f83229fe405eec58f8
+    status: active
+    description: Retrieval augmented Python agent scaffold.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: rag-pipeline-agent
+    path: agent/rag-pipeline-agent/python
+    nodeKind: agent
+    patternKind: rag-pipeline-agent
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:ee5ce80aae288a59d21ca97833f6c8d25343e9789e39b218b55e721ba4aab4fd
+    status: active
+    description: LangChain RAG pipeline with pgvector retrieval and LiteLLM generation.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: agent-runtime-cloud-run-go
+    path: agent/runtime-cloud-run/go
+    nodeKind: agent
+    patternKind: runtime-cloud-run
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:1b05c3ae353219a48a344460c682926b0557f8bd3ef36bce1b96790b81a4d411
+    status: active
+    description: Knative-style service fragment for Cloud Run deployment.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: agent-runtime-docker-go
+    path: agent/runtime-docker/go
+    nodeKind: agent
+    patternKind: runtime-docker
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:9e2ebd4b668b052aad21b7df756c15aa09aba3a4c8a5912f56344bb426ddc19b
+    status: active
+    description: 'Build-time runtime overlay for Go agents: Dockerfile and docker-compose
+      service.'
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: agent-runtime-docker-java
+    path: agent/runtime-docker/java
+    nodeKind: agent
+    patternKind: runtime-docker
+    techStack:
+    - Java
+    - Spring Boot
+    version: 1.0.0
+    fingerprint: sha256:d9d1a2a0a57f55b2bc5f49cb9d0d2e93a6f2166390abfb4945a373c661c0f920
+    status: active
+    description: 'Build-time runtime overlay for Java agents: Dockerfile and docker-compose
+      service.'
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: agent-runtime-docker-python
+    path: agent/runtime-docker/python
+    nodeKind: agent
+    patternKind: runtime-docker
+    techStack:
+    - Python
+    - LangChain
+    - LangGraph
+    - FastAPI
+    version: 1.0.0
+    fingerprint: sha256:54370a2f5ab940afafd89b2bf79d8915a21a9e9a231d4f0ce76c9f055af70077
+    status: active
+    description: 'Build-time runtime overlay for Python agents: Dockerfile and docker-compose
+      service.'
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: agent-runtime-docker-wasm-go
+    path: agent/runtime-docker-wasm/go
+    nodeKind: agent
+    patternKind: runtime-docker-wasm
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:b071783be92c5e97cb51bef0b924d61e7aed2515b1b9116e0d0fcc46b1029165
+    status: active
+    description: Build-time runtime overlay for Go agents with WASM sidecar support.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: agent-runtime-process
+    path: agent/runtime-process/go
+    nodeKind: agent
+    patternKind: runtime-process
+    techStack:
+    - Go
+    - Python
+    - Java
+    version: 1.0.0
+    fingerprint: sha256:cfb476058aff840e89be8eb2afc26b5c66ff41b7e68d28ad76dba6ff3f66a1d8
+    status: active
+    description: Build-time runtime overlay for local process execution.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: saga-go
+    path: agent/saga/go
+    nodeKind: agent
+    patternKind: saga
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:efe69a705dd23cec4de70e5aca92a9f1128b00b82c65c250dce277c11e51c2d9
+    status: active
+    description: Go saga coordinator for distributed step orchestration.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: simple-service-go
+    path: agent/simple-service/go
+    nodeKind: agent
+    patternKind: simple-service
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:80a01acc7d5d9fb28437e672c49ee0e4a8520e451745cb9aacb36b8a1cddd3c8
+    status: active
+    description: Thin Go handler and service for straightforward workflows.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: simple-service-python
+    path: agent/simple-service/python
+    nodeKind: agent
+    patternKind: simple-service
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:2a734b367c2fea1558d4494dbb4e7844c82150418407bcee1b2466e2203e0fe5
+    status: active
+    description: Minimal FastAPI service for low-complexity flows.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: rest-gateway
+    path: gateway/rest-gateway/go
+    nodeKind: gateway
+    patternKind: rest-gateway
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:a09a59a2d92c27da3e17a26d67cbfd5ca3673c238bb58939245b4a0fb4c4c5d4
+    status: active
+    description: Shared AppDarta gateway scaffold with routing, handler folders, policy
+      hooks, and config handoff.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: gateway-runtime-docker
+    path: gateway/runtime-docker/go
+    nodeKind: gateway
+    patternKind: runtime-docker
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:4e3e4e52713ff00510cb9f6fa5e87b43133d91028777b4e5051d6720fcc199df
+    status: active
+    description: Build-time runtime overlay for the AppDarta gateway.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: gateway-runtime-process
+    path: gateway/runtime-process/go
+    nodeKind: gateway
+    patternKind: runtime-process
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:e6c81e87092cab1c5716429e62232444c0b6785e2cd3f1b37ad79eadbffd8848
+    status: active
+    description: Build-time runtime overlay for local gateway execution.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: kafka-local-infra
+    path: infrastructure/kafka-local/default
+    nodeKind: infrastructure
+    patternKind: kafka-local
+    techStack:
+    - default
+    version: 1.0.0
+    fingerprint: sha256:89a907d20401e7eb5c2b73bb436139f6f762c1d7c7963aabb2ba29bdc7c728d6
+    status: active
+    description: docker-compose Kafka/Redpanda service and env contract for P8.3 event
+      streaming.
+    contributor: Dhruvia Labs
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: postgres-local-infra
+    path: infrastructure/postgres-local/default
+    nodeKind: infrastructure
+    patternKind: postgres-local
+    techStack:
+    - default
+    version: 1.0.0
+    fingerprint: sha256:9bbeecaa04103f367d346d162e442b3760fa38e926b1ccaaa6e8f75d1992b2ed
+    status: active
+    description: docker-compose postgres service, env contract, and starter migration
+      for Analyze build-dependency assessment.
+    contributor: Dhruvia Labs
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: redis-local-infra
+    path: infrastructure/redis-local/default
+    nodeKind: infrastructure
+    patternKind: redis-local
+    techStack:
+    - default
+    version: 1.0.0
+    fingerprint: sha256:13e80ddd3e24e972ae020573ba3f46a8b6973708d629a9baeac742b1c395f283
+    status: active
+    description: ''
+    contributor: Dhruvia Labs
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: opea-embedding-tei-python
+    path: microservice/opea-embedding/python
+    nodeKind: microservice
+    patternKind: opea-embedding
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:6b5247f2c947a70243b21e7108e8c76f193d40ee76c4ec0f81932dcf220c38d8
+    status: active
+    description: OPEA-compliant embedding service scaffold. FastAPI, TEI backend,
+      OpenAI /v1/embeddings API.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: opea-llm-vllm-python
+    path: microservice/opea-llm/python
+    nodeKind: microservice
+    patternKind: opea-llm
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:42e198dce1121a2f328185759499f58700b93b33005a95fd0c57d5777a1ed71e
+    status: active
+    description: OPEA-compliant LLM inference service scaffold. FastAPI, vLLM backend,
+      OpenAI /v1/chat/completions with streaming.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: opea-retriever-redis-go
+    path: microservice/opea-retrieval/go
+    nodeKind: microservice
+    patternKind: opea-retrieval
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:4127db631dcf27641e2f40e6236ff19e6bd117aedd24d0bc61776e01a4704b01
+    status: active
+    description: OPEA-compliant retrieval service in Go. Redis vector search backend.
+      Proves any-language OPEA compliance.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: write-back-handler
+    path: runtime/write-back-handler/go
+    nodeKind: runtime
+    patternKind: write-back-handler
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:8534301d40f262fe1780a331f178dedda512f163f88ca2e4b7767f2c2bf0deb9
+    status: active
+    description: "Standalone runtime module executing TankConnectorConfig.write-back\
+      \ operations. Wires approval-gate trigger to POST /callbacks/approval completion.\
+      \ P8.1 deliverable \u2014 Industry_readiness_plan Phase 5.\n"
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: mcp-server-go
+    path: service/mcp-server/go
+    nodeKind: service
+    patternKind: mcp-server
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:47ab4197749b5a9b976f9e3ebf356b1915668ff72df730fb2e698d1a6b48df51
+    status: active
+    description: Model Context Protocol server in Go. Tools, Resources handlers with
+      JSON-RPC 2.0 transport over stdio or HTTP.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: mcp-server-python
+    path: service/mcp-server/python
+    nodeKind: service
+    patternKind: mcp-server
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:a9846949093406a5c0a4e88beb854ab8b8c36a9d495c674598fe1d2f33e87a98
+    status: active
+    description: Model Context Protocol server in Python. Tools, Resources, and Prompts
+      handlers with JSON-RPC 2.0 transport over stdio or HTTP. ~85% boilerplate scaffold.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: multi-agent-orchestrator-python
+    path: service/multi-agent-orchestrator/python
+    nodeKind: service
+    patternKind: multi-agent-orchestrator
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:31ed0be24e1bfb8cebb158db7dade6c6b52a7310a9e52260489c8fe205f9e38f
+    status: active
+    description: Supervisor agent with role-based worker delegation, tool routing,
+      and result aggregation. Python implementation using LangChain-compatible interfaces.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: rag-evaluation-harness-python
+    path: service/rag-evaluation/python
+    nodeKind: service
+    patternKind: rag-evaluation
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:e4e8f998ca1975f0f039b706b1c00bbc0dfdbea730f8d920d096dac763f9f925
+    status: active
+    description: RAGAS metrics runner with faithfulness, context_precision, and answer_relevancy.
+      Langfuse trace integration for per-run observability. Evaluation report generator.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: stateful-graph-workflow-python
+    path: service/stateful-graph-workflow/python
+    nodeKind: service
+    patternKind: stateful-graph-workflow
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:d9085922cdaabb6402eaedaa8dbebe70f40ea9d2e44978ae426ac581c9ffd8ae
+    status: active
+    description: LangGraph-style StateGraph with graph nodes, state schema, pluggable
+      checkpoint adapter, and recovery on restart. Python implementation.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: streaming-sse-go
+    path: service/streaming-sse/go
+    nodeKind: service
+    patternKind: streaming-sse
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:dbd564661f156efcfcf82f7544f2c0c21d3fb08c78b9ef72533a40b6ef06a902
+    status: active
+    description: Server-Sent Events streaming service in Go. Token-stream handler,
+      text/event-stream, HTTP/2 compatible. Standard pattern for LLM token streaming.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: streaming-sse-python
+    path: service/streaming-sse/python
+    nodeKind: service
+    patternKind: streaming-sse
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:bc568dd3e3ca4d27bb7e043c7562b0cda8c34e45361a16df12062d557aadf2f5
+    status: active
+    description: Server-Sent Events streaming service in Python. FastAPI StreamingResponse
+      with async generator. Standard pattern for LLM token streaming.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: cli-ingest-ocr
+    path: tank/cli-ingest/python
+    nodeKind: tank
+    patternKind: cli-ingest
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:1b30f4e6474c83f8bf839d11494c4ccf5e4d68e4e9352db3defa3478fab32b99
+    status: active
+    description: "CLI-driven ingestor for document files (PDF, Word, image). Optionally\
+      \ invokes OCR on scanned pages before persisting extracted text. RAG synthesis\
+      \ wiring deferred to P3 (cli-ingest-ocr-rag alias noted below). Default for\
+      \ document-pdf integration class (plan \xA77.3).\n"
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: event-stream-consumer-go
+    path: tank/event-stream-consumer/go
+    nodeKind: tank
+    patternKind: event-stream-consumer
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:0a0bbd730d7f5b23376fa9f3ee3c73244405c4481c43cd86aabac3834e8d072b
+    status: active
+    description: "Consumer sidecar for TankConnectorConfig.consumer \u2014 poll/consume\
+      \ events, transform, upsert to tank, DLQ on poison messages, offset commit,\
+      \ metrics. P8.3 deliverable.\n"
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: ingestor-api-go
+    path: tank/ingestor-api/go
+    nodeKind: tank
+    patternKind: ingestor-api
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:c8ed83ac78e0d90fd0a3baff46a0f85ffc4c9841cb9d9363a4cdba5eda0f0a0c
+    status: active
+    description: Go ingestor scaffold for polling upstream REST APIs into tanks.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: ingestor-web-python
+    path: tank/ingestor-web/python
+    nodeKind: tank
+    patternKind: ingestor-web
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:2c8bbcbd92a72404e4a30c68221f5e299837369bb6ad720e9b77e29e7deda085
+    status: active
+    description: Python crawler scaffold for scraping or ingesting web sources.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: nosql-mongo-go
+    path: tank/nosql-mongo/go
+    nodeKind: tank
+    patternKind: nosql-mongo
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:f458ddaecae8daa0db636202697ce4b8cd9233ebb57a8dd56cf54a9f459adcc0
+    status: active
+    description: Go MongoDB connector scaffold.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: nosql-mongo-python
+    path: tank/nosql-mongo/python
+    nodeKind: tank
+    patternKind: nosql-mongo
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:23915427e4a65ef047e5eef8a679e041f52f23a8db9624f1980eef242eb07e72
+    status: active
+    description: Python Motor connector scaffold.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: nosql-redis-go
+    path: tank/nosql-redis/go
+    nodeKind: tank
+    patternKind: nosql-redis
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:fed8809de75f67138d105cbf3a12b8ba854f9e0cbf44f949c71c6a4431d264a9
+    status: active
+    description: Go Redis connector scaffold for cache-style tanks.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: nosql-redis-python
+    path: tank/nosql-redis/python
+    nodeKind: tank
+    patternKind: nosql-redis
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:cd1065d06e1157560565385449ff07bbf50b00c5803ce6328b46ee896eb73417
+    status: active
+    description: Python Redis connector scaffold.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: tank-connector-config-push
+    path: tank/push-connector/go
+    nodeKind: tank
+    patternKind: push-connector
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:8a342ca0b6a464249c69a19061553544830f637dc497be04785d71d20eb9cb62
+    status: active
+    description: "Configures a tank to receive inbound webhook pushes from external\
+      \ systems. Uses TankConnectorConfig.push with HMAC-SHA256 verification. Context-service\
+      \ exposes POST /tanks/{name}/webhook/{path} automatically. Default for webhook-event\
+      \ integration class (plan \xA77.3).\n"
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: tank-runtime-docker-go
+    path: tank/runtime-docker/go
+    nodeKind: tank
+    patternKind: runtime-docker
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:03595afc306d548aa447a458c324887d6c04134ba5f0d3774252b4a7e938fdad
+    status: active
+    description: 'Build-time runtime overlay for Go tanks: Dockerfile and docker-compose
+      service.'
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: tank-runtime-docker-python
+    path: tank/runtime-docker/python
+    nodeKind: tank
+    patternKind: runtime-docker
+    techStack:
+    - Python
+    - ChromaDB
+    - MongoDB
+    - Redis
+    version: 1.0.0
+    fingerprint: sha256:62006c5f0106368cafbf647ed1d467056c32cf10ca96fc93518802ad20918b85
+    status: active
+    description: 'Build-time runtime overlay for Python/vector tanks: Dockerfile and
+      docker-compose service.'
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: tank-runtime-process
+    path: tank/runtime-process/go
+    nodeKind: tank
+    patternKind: runtime-process
+    techStack:
+    - Go
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:2693f4a62c3f70324e16ba4f97a6563618a8ca25ec4e43354c8acb839d1d3996
+    status: active
+    description: Build-time runtime overlay for local process execution.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: sql-mysql-go
+    path: tank/sql-mysql/go
+    nodeKind: tank
+    patternKind: sql-mysql
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:ee3d037994957c8df7ae7af2328849178f146c9ab983f47b66b9523e7d614562
+    status: active
+    description: Go SQL connector scaffold for MySQL-backed tanks.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: sql-postgres-go
+    path: tank/sql-postgres/go
+    nodeKind: tank
+    patternKind: sql-postgres
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:9e919aae778ec42e8f30f3ce17c50d97cbc8dd1987accb62c12a89cb7cb57ac3
+    status: active
+    description: Go SQL connector scaffold for Postgres-backed tanks.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: sql-postgres-python
+    path: tank/sql-postgres/python
+    nodeKind: tank
+    patternKind: sql-postgres
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:3fc48fa17ea05d0360c6ad8fbb37592f887aa55b50ae05b971db489896a0fd42
+    status: active
+    description: Python async Postgres connector for relational tanks.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: sql-sqlite-go
+    path: tank/sql-sqlite/go
+    nodeKind: tank
+    patternKind: sql-sqlite
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:6ff6cb3a3e5bde1afeb6d607b79d9c4fa61f1d11dd34171f907b5f891b5782b9
+    status: active
+    description: Embedded SQLite connector scaffold for lightweight local tanks.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: vector-chroma-python
+    path: tank/vector-chroma/python
+    nodeKind: tank
+    patternKind: vector-chroma
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:aebd06e999f6ab34e91e636c6155b39ca8cc9027b99df2ea36c0c5d9608bf1f7
+    status: active
+    description: Python Chroma vector collection scaffold.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: vector-pgvector-go
+    path: tank/vector-pgvector/go
+    nodeKind: tank
+    patternKind: vector-pgvector
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:2d6a92587263419960722ad2d2335f0fafb109377af4fcbaceb79cc066299f3f
+    status: active
+    description: Go vector store scaffold on Postgres pgvector.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: vector-pgvector-python
+    path: tank/vector-pgvector/python
+    nodeKind: tank
+    patternKind: vector-pgvector
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:5859ee6476d5e1c880b1bdd989c49ec13ac8a2beaea62f00b9d6e5c2911c2daf
+    status: active
+    description: Python vector store scaffold on Postgres pgvector.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: eval-dashboard-module
+    path: ui/eval-dashboard/react
+    nodeKind: ui
+    patternKind: eval-dashboard
+    techStack:
+    - React
+    - TypeScript
+    version: 1.0.0
+    fingerprint: sha256:be8f23cc87d72a92eb1db422b3c144acb80f07ed00f30460cbecb52f6827bd3a
+    status: active
+    description: "Operator UI for EvalSpec runs \u2014 criterion scores, weighted\
+      \ pass/fail, trend chart. P8.2 deliverable.\n"
+    contributor: Dhruvia Labs
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: nextjs-app-shell
+    path: ui/nextjs-app/react
+    nodeKind: ui
+    patternKind: nextjs-app
+    techStack:
+    - React
+    - TypeScript
+    - Next.js
+    version: 1.0.0
+    fingerprint: sha256:f07ca563dbc1b32057e568e107c4872a27b39188dc4c9945958345a6e1e1789a
+    status: active
+    description: Next.js 14 App Router shell with typed gateway client, layout, and
+      env-based proxy config.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: approval-queue-module
+    path: ui/operator-console/react
+    nodeKind: ui
+    patternKind: operator-console
+    techStack:
+    - React
+    - TypeScript
+    version: 1.0.0
+    fingerprint: sha256:e8ba543e683a9ab1eeef929aedfab157c368b0f18141b6f7d66e5592641b79ad
+    status: active
+    description: "Operator console module for human-in-the-loop approval queues. Overlays\
+      \ react-app-shell with queue list, item detail, and approve/reject/clear actions\
+      \ posting to POST /callbacks/approval. Plan \xA711 P2 deliverable.\n"
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: rag-operator-module
+    path: ui/operator-console/react-rag-operator-module
+    nodeKind: ui
+    patternKind: operator-console
+    techStack:
+    - React
+    - TypeScript
+    version: 1.0.0
+    fingerprint: sha256:eec20dce9f52051a25cc5c6948f300e8be86c90ab0d5b4c466cb2ccd3e97ba28
+    status: active
+    description: 'Operator console for grounded RAG queries against /context/rag/synthesize.
+      Shows answer, citations, and provenance inline. P3.3 deliverable.
+
+      '
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: ui-runtime-docker
+    path: ui/runtime-docker/react
+    nodeKind: ui
+    patternKind: runtime-docker
+    techStack:
+    - React
+    - Vue
+    - Next.js
+    version: 1.0.0
+    fingerprint: sha256:29ef08d5ee65ba1fca85a08d4c521c8f3dfecd362f72291194f0802ddd3ca0d5
+    status: active
+    description: Build-time runtime overlay for the product UI.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: ui-runtime-process
+    path: ui/runtime-process/react
+    nodeKind: ui
+    patternKind: runtime-process
+    techStack:
+    - React
+    - Vue
+    - Next.js
+    version: 1.0.0
+    fingerprint: sha256:2e4f2db8fc5bc0e116b5b294afd1336e9b7aa0237e8fad8d75d4613cdf64b48c
+    status: active
+    description: Build-time runtime overlay for local UI execution.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: react-app-shell
+    path: ui/spa/react
+    nodeKind: ui
+    patternKind: spa
+    techStack:
+    - React
+    - TypeScript
+    - Vite
+    version: 1.0.0
+    fingerprint: sha256:00a3bb6b9314c325f842cedf42a8501f2044417839835a0a888a553fd90aed0e
+    status: active
+    description: Vite + React SPA with routing, typed gateway API client, and layout
+      scaffold.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: vue-app-shell
+    path: ui/spa/vue
+    nodeKind: ui
+    patternKind: spa
+    techStack:
+    - Vue
+    - TypeScript
+    - Vite
+    version: 1.0.0
+    fingerprint: sha256:ce8a31b9151dbfa71b0a27aca48d16944558be81d5aaed65046df43d15021d1f
+    status: active
+    description: Vue 3 + Vite SPA with Vue Router, Pinia store, and typed gateway
+      API client.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: monorepo-standard
+    path: workspace/monorepo-standard/default
+    nodeKind: workspace
+    patternKind: monorepo-standard
+    techStack:
+    - default
+    version: 1.0.0
+    fingerprint: sha256:323943ba765c28498240b114b9984b17b746c8b43951a531b60e2f2cc361d793
+    status: active
+    description: "Root workspace scaffold: Makefile, stitched docker-compose.yml,\
+      \ .env.example, .gitignore, README. Reads full topology \u2014 all agents, tanks,\
+      \ gateway, and UI nodes."
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0

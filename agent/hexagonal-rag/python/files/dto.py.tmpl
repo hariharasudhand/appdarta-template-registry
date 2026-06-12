@@ -1,0 +1,9 @@
+from pydantic import BaseModel
+
+
+class {{ pascal .AgentName }}Request(BaseModel):
+    pass
+
+
+class {{ pascal .AgentName }}Response(BaseModel):
+    pass

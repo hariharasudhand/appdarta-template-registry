@@ -1,0 +1,33 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: ui-runtime-docker
+  displayName: UI Runtime Overlay (Docker)
+  description: Build-time runtime overlay for the product UI.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: ui
+  techStacks:
+  - React
+  - Vue
+  - Next.js
+  patternKind: runtime-docker
+  files:
+  - path: ui/Dockerfile
+    template: Dockerfile.tmpl
+    description: UI Dockerfile
+  - path: ui/docker-compose.yml
+    template: docker-compose.yml.tmpl
+    description: UI compose service
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 1
+    complexityIdeal: 2
+    complexityCeiling: 4
+    tags:
+    - overlay
+    - docker
+    - runtime
+    - ui
+templatesApiVersion: '1'

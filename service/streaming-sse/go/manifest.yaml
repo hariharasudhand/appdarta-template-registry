@@ -1,0 +1,43 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: streaming-sse-go
+  displayName: SSE Streaming Responder (Go)
+  description: Server-Sent Events streaming service in Go. Token-stream handler, text/event-stream,
+    HTTP/2 compatible. Standard pattern for LLM token streaming.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: service
+  techStacks:
+  - Go
+  patternKind: streaming-sse
+  files:
+  - path: services/{{ .ServiceName }}/main.go
+    template: main.go.tmpl
+    description: Entry point
+  - path: services/{{ .ServiceName }}/handler.go
+    template: handler.go.tmpl
+    description: SSE stream handler
+  - path: services/{{ .ServiceName }}/Dockerfile
+    template: Dockerfile.tmpl
+    description: Container definition
+  - path: services/{{ .ServiceName }}/docker-compose.yml
+    template: docker-compose.yml.tmpl
+    description: Local dev compose
+  promptHints:
+    skeleton: Go net/http server with text/event-stream response and channel-based
+      event loop.
+    implementation: Replace the event source with your LLM or data stream.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 1
+    complexityIdeal: 3
+    complexityCeiling: 7
+    tags:
+    - streaming
+    - sse
+    - go
+    - llm
+    - token-stream
+templatesApiVersion: '1'

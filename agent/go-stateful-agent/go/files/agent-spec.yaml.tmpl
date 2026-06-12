@@ -1,0 +1,11 @@
+apiVersion: appdarta.io/v1
+kind: AgentSpec
+metadata:
+  name: "{{ .AgentName }}"
+spec:
+  node_kind: agent
+  pattern_kind: go-stateful-agent
+  dhil_dt_routing:
+    preferred_tier: l2
+    required_skills: ["coder", "go-coder"]
+    role: implementation/complex

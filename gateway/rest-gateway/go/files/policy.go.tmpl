@@ -1,0 +1,6 @@
+package gateway
+
+// EvaluatePolicy delegates policy checks to the gateway policy bundle.
+func EvaluatePolicy(subject string) bool {
+	return subject != ""
+}

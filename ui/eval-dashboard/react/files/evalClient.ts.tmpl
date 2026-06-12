@@ -1,0 +1,37 @@
+export type EvalSpecSummary = {
+  path: string;
+  name: string;
+  domain: string;
+  criteria_count: number;
+  pass_score: number;
+};
+
+export type EvalReportSummary = {
+  id: string;
+  eval: string;
+  generated: string;
+  weighted: number;
+  overall: string;
+};
+
+export async function fetchEvalSpecs(): Promise<EvalSpecSummary[]> {
+  const res = await fetch('/api/eval/specs');
+  const body = await res.json();
+  return body.specs ?? [];
+}
+
+export async function fetchEvalReports(evalName?: string): Promise<EvalReportSummary[]> {
+  const q = evalName ? `?eval=${encodeURIComponent(evalName)}` : '';
+  const res = await fetch(`/api/eval/reports${q}`);
+  const body = await res.json();
+  return body.reports ?? [];
+}
+
+export async function runEval(specPath: string, inputText: string) {
+  const res = await fetch('/api/eval/run', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ spec_path: specPath, input_text: inputText }),
+  });
+  return res.json();
+}

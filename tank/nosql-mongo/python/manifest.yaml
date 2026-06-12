@@ -1,0 +1,74 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: nosql-mongo-python
+  displayName: Mongo Connector
+  description: Python Motor connector scaffold.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Python
+  patternKind: nosql-mongo
+  files:
+  - path: tanks/{{ .TankName }}/connector.py
+    template: connector.py.tmpl
+    description: Motor connector
+  - path: tanks/{{ .TankName }}/model.py
+    template: model.py.tmpl
+    description: Document schema
+  promptHints:
+    skeleton: Async Motor client with Pydantic schema.
+    implementation: Add query helpers as async functions.
+    tanks: Use with Python ingestion or enrichment workers.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 2
+    complexityIdeal: 4
+    complexityCeiling: 10
+    compositesWith: []
+    tags:
+    - mongo
+    - nosql
+    - document
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Python
+      - MongoDB
+      - document storage
+      scale:
+        storage: schema-flexible documents
+    doesNotApplyWhen:
+    - PostgreSQL
+    - Redis
+    - vector database
+    - strict relational joins
+  triggerIncidents:
+    exactMatches:
+    - Python::nosql-mongo[*]
+    - Python::connector[*] + DB[MongoDB]
+    semanticTriggers:
+      keywords:
+        required:
+        - python
+        - mongodb
+        optional:
+        - mongo
+        - nosql
+        - document
+        - collection
+        - motor
+      antiKeywords:
+      - postgres
+      - redis
+      - vector
+      - joins
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

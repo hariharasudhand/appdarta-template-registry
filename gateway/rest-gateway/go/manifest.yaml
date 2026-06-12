@@ -1,0 +1,109 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: rest-gateway
+  displayName: REST Gateway
+  description: Shared AppDarta gateway scaffold with routing, handler folders, policy
+    hooks, and config handoff.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: gateway
+  techStacks:
+  - Go
+  patternKind: rest-gateway
+  files:
+  - path: gateway/router.go
+    template: router.go.tmpl
+    description: Gateway bootstrap and route registration shell
+  - path: gateway/middleware.go
+    template: middleware.go.tmpl
+    description: Gateway middleware chain entrypoint
+  - path: gateway/policy.go
+    template: policy.go.tmpl
+    description: Policy evaluation adapter
+  - path: gateway/handlers/in/request_id.go
+    template: request_id.go.tmpl
+    description: Inbound request ID/tracing hook
+  - path: gateway/handlers/in/auth.go
+    template: auth.go.tmpl
+    description: Inbound auth/validation hook
+  - path: gateway/handlers/out/response_log.go
+    template: response_log.go.tmpl
+    description: Outbound response logging hook
+  - path: gateway/handlers/out/error_normalize.go
+    template: error_normalize.go.tmpl
+    description: Outbound error normalization hook
+  - path: gateway/policy/README.md
+    template: policy.README.md.tmpl
+    description: Gateway policy folder contract
+  - path: gateway/policy/policy.rego
+    template: policy.rego.tmpl
+    description: Baseline policy starter
+  - path: config/gateway/in-handlers.yaml
+    template: in-handlers.yaml.tmpl
+    description: Inbound handler chain config
+  - path: config/gateway/out-handlers.yaml
+    template: out-handlers.yaml.tmpl
+    description: Outbound handler chain config
+  - path: config/gateway/policy-gate.yaml
+    template: policy-gate.yaml.tmpl
+    description: Policy evaluator binding config
+  promptHints:
+    skeleton: Build the AppDarta gateway shell with owned folders for routes, inbound
+      handlers, outbound handlers, policy, and gateway config.
+    implementation: Attach auth, validation, rate limiting, tracing, metrics, and
+      policy evaluation through the gateway handler chain.
+    tanks: Gateways usually do not talk to tanks directly; keep data access behind
+      agents.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 2
+    complexityIdeal: 5
+    complexityCeiling: 10
+    compositesWith: []
+    tags:
+    - gateway
+    - rest
+    - http
+    - policy
+    - handlers
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - gateway
+      - REST
+      - HTTP
+      scale:
+        topology: shared ingress
+    doesNotApplyWhen:
+    - GraphQL
+    - UI shell
+    - direct tank access
+  triggerIncidents:
+    exactMatches:
+    - Go::rest-gateway[Gateway]
+    - Go::gateway[*] + Policy[OPA]
+    semanticTriggers:
+      keywords:
+        required:
+        - gateway
+        - rest
+        - go
+        optional:
+        - policy
+        - middleware
+        - handler
+        - http
+        - auth
+      antiKeywords:
+      - graphql
+      - frontend
+      - tank connector
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

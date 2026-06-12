@@ -1,0 +1,35 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: tank-runtime-docker-python
+  displayName: Tank Runtime Overlay (Docker, Python)
+  description: 'Build-time runtime overlay for Python/vector tanks: Dockerfile and
+    docker-compose service.'
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Python
+  - ChromaDB
+  - MongoDB
+  - Redis
+  patternKind: runtime-docker
+  files:
+  - path: tanks/{{ .TankName }}/Dockerfile
+    template: Dockerfile.tmpl
+    description: Python tank Dockerfile
+  - path: tanks/{{ .TankName }}/docker-compose.yml
+    template: docker-compose.yml.tmpl
+    description: Python tank compose service
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 1
+    complexityIdeal: 2
+    complexityCeiling: 4
+    tags:
+    - overlay
+    - docker
+    - runtime
+    - tank
+templatesApiVersion: '1'

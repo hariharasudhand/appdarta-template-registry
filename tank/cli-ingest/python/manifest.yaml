@@ -1,0 +1,56 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: cli-ingest-ocr
+  displayName: CLI File Ingestor + OCR
+  description: "CLI-driven ingestor for document files (PDF, Word, image). Optionally\
+    \ invokes OCR on scanned pages before persisting extracted text. RAG synthesis\
+    \ wiring deferred to P3 (cli-ingest-ocr-rag alias noted below). Default for document-pdf\
+    \ integration class (plan \xA77.3).\n"
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Python
+  patternKind: cli-ingest
+  files:
+  - path: tanks/{{ .TankName }}/ingest.py
+    template: ingest.py.tmpl
+    description: 'CLI entry-point: walk files, optionally OCR, chunk, embed, upsert.'
+  - path: tanks/{{ .TankName }}/ocr.py
+    template: ocr.py.tmpl
+    description: "OCR helper stub \u2014 replace with Tesseract or cloud OCR if ocr-required=true."
+  promptHints:
+    skeleton: 'ingest.py walks the configured source directory or file list. For each
+      file: 1. If PDF/image and ocr-required=true: pass to ocr.py before chunking.
+      2. Chunk text by page or paragraph boundary. 3. Embed each chunk via context-service
+      embedding endpoint. 4. Upsert into tank storage with source metadata (filename,
+      page, hash).
+
+      '
+    implementation: "OCR is optional \u2014 controlled by S1 intake question q2-ocr-required.\
+      \ If ocr-required=false, extract text directly from PDF with pdfminer or pypdf.\
+      \ content-field = extracted text chunk (used as embedding input). RAG synthesis\
+      \ route is a P3 dependency \u2014 do not wire here.\n"
+    tanks: Use for legal contracts, clinical SOPs, compliance documents, training
+      manuals.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 2
+    complexityIdeal: 4
+    complexityCeiling: 10
+    compositesWith:
+    - vector-pgvector-python
+    - rag-agent-python
+    tags:
+    - cli
+    - ingest
+    - ocr
+    - pdf
+    - document
+  aliases:
+  - cli-ingest-ocr-rag
+  integrationClasses:
+  - document-pdf
+templatesApiVersion: '1'

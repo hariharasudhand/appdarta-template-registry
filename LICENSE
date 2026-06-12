@@ -1,0 +1,26 @@
+# Dhruvia Labs Evaluation License — Darta Templates
+
+Copyright (c) Dhruvia Labs. All rights reserved.
+
+## Grant
+
+You may use, view, and render these templates **only through the Darta CLI** for:
+
+- local development and evaluation
+- trial deployments and proof-of-concept work
+- contributing structure-only template improvements via pull request
+
+## Restrictions
+
+- **No production or commercial use** without a separate written agreement with Dhruvia Labs.
+- **No standalone use** outside the Darta toolchain (templates are not licensed for copy-paste into unrelated projects).
+- **No rebranding** or removal of Dhruvia Labs attribution.
+- **No redistribution** of rendered output as a competing template registry.
+
+## Contributions
+
+Contributions are welcome under [CONTRIBUTING.md](CONTRIBUTING.md). By contributing, you grant Dhruvia Labs the right to include your contribution under this license.
+
+## Contact
+
+Production rollout, enterprise licensing, and commercial adoption: https://www.dhruvialabs.com/

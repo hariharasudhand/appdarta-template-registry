@@ -1,0 +1,70 @@
+package {{ snake .AgentName }}
+
+import (
+	"bytes"
+	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"os"
+	"strings"
+	"time"
+)
+
+type Retriever interface {
+	Synthesize(ctx context.Context, req Request) (Response, error)
+}
+
+type ContextServiceRetriever struct {
+	BaseURL string
+	Client  *http.Client
+}
+
+func NewContextServiceRetriever() ContextServiceRetriever {
+	baseURL := strings.TrimRight(os.Getenv("APPDARTA_CONTEXT_SERVICE_URL"), "/")
+	if baseURL == "" {
+		baseURL = "http://127.0.0.1:18001"
+	}
+	return ContextServiceRetriever{
+		BaseURL: baseURL,
+		Client:  &http.Client{Timeout: 30 * time.Second},
+	}
+}
+
+func (r ContextServiceRetriever) Synthesize(ctx context.Context, req Request) (Response, error) {
+	payload := map[string]any{
+		"question": req.Query,
+		"domain":   req.Domain,
+		"plane":    req.Plane,
+		"top_k":    req.TopK,
+	}
+	if req.Instructions != "" {
+		payload["instructions"] = req.Instructions
+	}
+	body, err := json.Marshal(payload)
+	if err != nil {
+		return Response{}, err
+	}
+	client := r.Client
+	if client == nil {
+		client = http.DefaultClient
+	}
+	httpReq, err := http.NewRequestWithContext(ctx, http.MethodPost, r.BaseURL+"/context/rag/synthesize", bytes.NewReader(body))
+	if err != nil {
+		return Response{}, err
+	}
+	httpReq.Header.Set("Content-Type", "application/json")
+	resp, err := client.Do(httpReq)
+	if err != nil {
+		return Response{}, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		return Response{}, fmt.Errorf("context-service rag synthesize returned %s", resp.Status)
+	}
+	var out Response
+	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
+		return Response{}, err
+	}
+	return out, nil
+}

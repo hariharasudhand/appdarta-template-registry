@@ -1,0 +1,36 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: nosql-redis-python
+  displayName: Redis Connector
+  description: Python Redis connector scaffold.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Python
+  patternKind: nosql-redis
+  files:
+  - path: tanks/{{ .TankName }}/connector.py
+    template: connector.py.tmpl
+    description: Redis connector
+  - path: tanks/{{ .TankName }}/cache.py
+    template: cache.py.tmpl
+    description: Key helpers
+  promptHints:
+    skeleton: Open async redis client and isolate key naming.
+    implementation: Use for lightweight state or temporary materializations.
+    tanks: Keep serialization explicit.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 1
+    complexityIdeal: 3
+    complexityCeiling: 8
+    compositesWith:
+    - event-driven-python
+    tags:
+    - redis
+    - cache
+    - nosql
+templatesApiVersion: '1'

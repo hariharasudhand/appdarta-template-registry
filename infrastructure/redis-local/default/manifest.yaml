@@ -1,0 +1,10 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: redis-local-infra
+  displayName: Redis local infra scaffold
+  version: 1.0.0
+spec:
+  nodeKind: infrastructure
+  patternKind: redis-local
+templatesApiVersion: '1'

@@ -1,0 +1,6 @@
+from typing import Protocol
+
+
+class {{ pascal .AgentName }}Repository(Protocol):
+    async def get(self, key: str) -> dict:
+        ...

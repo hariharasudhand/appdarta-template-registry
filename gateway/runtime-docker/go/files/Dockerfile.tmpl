@@ -1,0 +1,10 @@
+FROM golang:1.23 AS build
+WORKDIR /src
+COPY . .
+RUN test -f go.mod && go build -o /out/darta-gateway ./gateway || (echo "expected gateway source under gateway/" && exit 1)
+
+FROM gcr.io/distroless/base-debian12
+WORKDIR /app
+COPY --from=build /out/darta-gateway /app/darta-gateway
+EXPOSE 8080
+ENTRYPOINT ["/app/darta-gateway"]

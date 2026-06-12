@@ -1,0 +1,66 @@
+import React from 'react';
+import { fetchEvalSpecs, fetchEvalReports, runEval, type EvalSpecSummary, type EvalReportSummary } from '../api/evalClient';
+
+export function EvalDashboard() {
+  const [specs, setSpecs] = React.useState<EvalSpecSummary[]>([]);
+  const [reports, setReports] = React.useState<EvalReportSummary[]>([]);
+  const [selected, setSelected] = React.useState<string>('');
+  const [input, setInput] = React.useState('');
+  const [running, setRunning] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+
+  const load = React.useCallback(async () => {
+    const s = await fetchEvalSpecs();
+    setSpecs(s);
+    const r = await fetchEvalReports(selected || undefined);
+    setReports(r.slice(0, 20));
+  }, [selected]);
+
+  React.useEffect(() => { void load(); }, [load]);
+
+  const onRun = async () => {
+    if (!selected) return;
+    setRunning(true);
+    setError(null);
+    try {
+      const body = await runEval(selected, input);
+      if (!body.ok) setError(body.error ?? 'run failed');
+      await load();
+    } finally {
+      setRunning(false);
+    }
+  };
+
+  const latest = reports.length ? reports[0] : null;
+  const trend = [...reports].reverse();
+
+  return (
+    <div className="eval-dashboard" style={{ padding: 16 }}>
+      <h2>Eval quality dashboard</h2>
+      <select className="input-field" value={selected} onChange={(e) => setSelected(e.target.value)}>
+        <option value="">Select EvalSpec</option>
+        {specs.map((s) => (
+          <option key={s.path} value={s.path}>{s.name} ({s.domain})</option>
+        ))}
+      </select>
+      <textarea className="input-field" rows={4} placeholder="Output to judge…" value={input} onChange={(e) => setInput(e.target.value)} style={{ width: '100%', marginTop: 8 }} />
+      <button type="button" className="wizard-signoff-btn" disabled={running || !selected} onClick={() => void onRun()} style={{ marginTop: 8 }}>
+        {running ? 'Running…' : 'Run eval'}
+      </button>
+      {error ? <div className="uc-save-status uc-save-status--err">{error}</div> : null}
+      {latest ? (
+        <div style={{ marginTop: 16 }}>
+          <span className={`analyze-chip${latest.overall === 'pass' ? '' : ' analyze-chip--warn'}`}>
+            {latest.overall} · weighted {latest.weighted}
+          </span>
+          <div style={{ fontSize: 12, color: '#64748b', marginTop: 8 }}>Trend (last {reports.length} runs)</div>
+          <div style={{ display: 'flex', gap: 4, alignItems: 'flex-end', height: 48, marginTop: 4 }}>
+            {trend.map((r) => (
+              <div key={r.id} title={`${r.overall} ${r.weighted}`} style={{ width: 12, height: Math.max(4, r.weighted * 48), background: r.overall === 'pass' ? '#22c55e' : '#f59e0b' }} />
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}

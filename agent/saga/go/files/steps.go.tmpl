@@ -1,0 +1,6 @@
+package {{ snake .AgentName }}
+
+type Step interface {
+	Do() error
+	Compensate() error
+}

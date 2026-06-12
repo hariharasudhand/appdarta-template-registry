@@ -1,0 +1,237 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchApprovalItem, submitApprovalDecision } from '../api/approvalClient';
+import { APPROVAL_GATE, mustGate, isBypassRole } from '../config/approvalGate';
+import type { ApprovalItem, ApprovalDecision } from '../config/approvalGate';
+
+const MIN_REASON_LEN = 10;
+
+export default function ApprovalDetail() {
+  const { invocationId } = useParams<{ invocationId: string }>();
+  const navigate = useNavigate();
+
+  const [item, setItem]         = useState<ApprovalItem | null>(null);
+  const [loading, setLoading]   = useState(true);
+  const [error, setError]       = useState<string | null>(null);
+  const [banner, setBanner]     = useState<{ kind: 'error' | 'info'; msg: string } | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  const [decision, setDecision] = useState<ApprovalDecision | null>(null);
+  const [reason, setReason]     = useState('');
+
+  useEffect(() => {
+    if (!invocationId) return;
+    fetchApprovalItem(invocationId)
+      .then(setItem)
+      .catch(() => setError('Could not load approval item.'))
+      .finally(() => setLoading(false));
+  }, [invocationId]);
+
+  if (loading) return <p style={{ padding: 24 }}>Loading…</p>;
+  if (error || !item) return <p style={{ padding: 24, color: '#dc2626' }}>{error ?? 'Not found.'}</p>;
+
+  const isPending   = item.status === 'pending' || item.status === 'escalated';
+  const needsReason = decision === 'rejected' || decision === 'cleared';
+  const reasonValid = !needsReason || reason.trim().length >= MIN_REASON_LEN;
+  const canSubmit   = decision !== null && reasonValid && !submitting;
+
+  const userRole = localStorage.getItem('user_role') ?? '';
+  const bypassAvailable = isBypassRole(userRole) && mustGate(item);
+
+  async function handleSubmit() {
+    if (!decision || !invocationId) return;
+    setSubmitting(true);
+    setBanner(null);
+    try {
+      await submitApprovalDecision({
+        invocation_id:    invocationId,
+        decision,
+        reason:           needsReason ? reason.trim() : undefined,
+        decided_by:       localStorage.getItem('user_id') ?? 'unknown',
+        decided_at:       new Date().toISOString(),
+        confidence_score: item!.confidence_score,
+        quality_score:    item!.quality_score,
+        bypass_used:      bypassAvailable && decision === 'approved',
+      });
+      navigate('/approval');
+    } catch (err: unknown) {
+      const status = (err as { response?: { status: number } })?.response?.status;
+      if (status === 409) {
+        setBanner({ kind: 'info', msg: 'This item was already actioned by another operator.' });
+      } else {
+        setBanner({ kind: 'error', msg: 'Submission failed — please retry.' });
+      }
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
+  const below = mustGate(item);
+  const scoreColor = (v: number, t: number) => v <= t ? '#dc2626' : '#16a34a';
+
+  return (
+    <div style={{ maxWidth: 760, margin: '0 auto' }}>
+      <button onClick={() => navigate('/approval')}
+              style={{ background: 'none', border: 'none', color: '#6366f1', cursor: 'pointer', padding: 0, marginBottom: 16 }}>
+        ← Back to queue
+      </button>
+
+      <h1 style={{ fontSize: 20, fontWeight: 700, marginBottom: 4 }}>
+        Approval — {item.agent}
+      </h1>
+      <p style={{ color: '#64748b', fontSize: 13, marginTop: 0, marginBottom: 24 }}>
+        {item.domain} · submitted {new Date(item.submitted_at).toLocaleString()} · ID: {item.invocation_id}
+      </p>
+
+      {banner && (
+        <div style={{
+          padding: '10px 14px', borderRadius: 6, marginBottom: 16, fontSize: 13,
+          background: banner.kind === 'error' ? '#fee2e2' : '#dbeafe',
+        }}>
+          {banner.msg}
+        </div>
+      )}
+
+      {/* Score summary */}
+      <div style={{ display: 'flex', gap: 16, marginBottom: 24 }}>
+        <ScoreCard label="Confidence"
+                   value={item.confidence_score}
+                   threshold={APPROVAL_GATE.confidenceThreshold}
+                   color={scoreColor(item.confidence_score, APPROVAL_GATE.confidenceThreshold)} />
+        <ScoreCard label="Quality"
+                   value={item.quality_score}
+                   threshold={APPROVAL_GATE.qualityThreshold}
+                   color={scoreColor(item.quality_score, APPROVAL_GATE.qualityThreshold)} />
+        {below && (
+          <div style={{ alignSelf: 'center', padding: '6px 12px', background: '#fef3c7',
+                        borderRadius: 6, fontSize: 12, fontWeight: 600 }}>
+            ⚠ Below threshold — human gate required
+          </div>
+        )}
+      </div>
+
+      {/* Agent output */}
+      <section style={{ marginBottom: 20 }}>
+        <h2 style={{ fontSize: 15, fontWeight: 600, marginBottom: 8 }}>Agent output</h2>
+        <pre style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 6,
+                      padding: 14, fontSize: 13, overflowX: 'auto', whiteSpace: 'pre-wrap' }}>
+          {typeof item.agent_output === 'string'
+            ? item.agent_output
+            : JSON.stringify(item.agent_output, null, 2)}
+        </pre>
+      </section>
+
+      {/* Context summary */}
+      {item.context_summary && (
+        <section style={{ marginBottom: 20 }}>
+          <h2 style={{ fontSize: 15, fontWeight: 600, marginBottom: 8 }}>Context summary</h2>
+          <p style={{ background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: 6,
+                      padding: 14, fontSize: 13, margin: 0 }}>
+            {item.context_summary}
+          </p>
+        </section>
+      )}
+
+      {/* Escalation notice */}
+      {item.status === 'escalated' && (
+        <div style={{ padding: '10px 14px', background: '#fee2e2', borderRadius: 6,
+                      marginBottom: 20, fontSize: 13 }}>
+          Escalated — escalation action: <strong>{APPROVAL_GATE.escalationAction}</strong>
+        </div>
+      )}
+
+      {/* Action panel */}
+      {isPending ? (
+        <section style={{ borderTop: '1px solid #e2e8f0', paddingTop: 20 }}>
+          <h2 style={{ fontSize: 15, fontWeight: 600, marginBottom: 12 }}>Decision</h2>
+
+          <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+            {(['approved', 'rejected', 'cleared'] as ApprovalDecision[]).map((d) => (
+              <DecisionButton key={d} value={d} selected={decision === d}
+                              onSelect={() => { setDecision(d); setReason(''); }} />
+            ))}
+          </div>
+
+          {needsReason && (
+            <div style={{ marginBottom: 16 }}>
+              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, marginBottom: 6 }}>
+                Reason <span style={{ color: '#dc2626' }}>*</span>
+                <span style={{ fontWeight: 400, color: '#94a3b8' }}> (min {MIN_REASON_LEN} chars)</span>
+              </label>
+              <textarea
+                value={reason}
+                onChange={(e) => setReason(e.target.value)}
+                rows={3}
+                style={{ width: '100%', padding: '8px 10px', borderRadius: 6,
+                         border: '1px solid #e2e8f0', fontSize: 13, resize: 'vertical', boxSizing: 'border-box' }}
+                placeholder={`Reason for ${decision} (required)…`}
+              />
+              {reason.length > 0 && reason.trim().length < MIN_REASON_LEN && (
+                <p style={{ color: '#dc2626', fontSize: 12, margin: '4px 0 0' }}>
+                  {MIN_REASON_LEN - reason.trim().length} more chars required.
+                </p>
+              )}
+            </div>
+          )}
+
+          {bypassAvailable && decision === 'approved' && (
+            <p style={{ fontSize: 12, color: '#f59e0b', marginBottom: 12 }}>
+              ⚠ You are approving an item below threshold using bypass role ({userRole}). This will be recorded.
+            </p>
+          )}
+
+          <button
+            onClick={handleSubmit}
+            disabled={!canSubmit}
+            style={{
+              padding: '10px 24px', borderRadius: 6, border: 'none', fontWeight: 600,
+              fontSize: 14, cursor: canSubmit ? 'pointer' : 'not-allowed',
+              background: canSubmit ? '#6366f1' : '#e2e8f0',
+              color: canSubmit ? '#fff' : '#94a3b8',
+            }}
+          >
+            {submitting ? 'Submitting…' : `Confirm ${decision ?? 'decision'}`}
+          </button>
+        </section>
+      ) : (
+        <p style={{ color: '#64748b', fontSize: 14, borderTop: '1px solid #e2e8f0', paddingTop: 16 }}>
+          This item is <strong>{item.status}</strong> — no further action required.
+        </p>
+      )}
+    </div>
+  );
+}
+
+function ScoreCard({ label, value, threshold, color }:
+  { label: string; value: number; threshold: number; color: string }) {
+  return (
+    <div style={{ border: '1px solid #e2e8f0', borderRadius: 8, padding: '12px 16px', minWidth: 130 }}>
+      <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>{label}</div>
+      <div style={{ fontSize: 24, fontWeight: 700, color }}>{(value * 100).toFixed(0)}%</div>
+      <div style={{ fontSize: 11, color: '#94a3b8' }}>threshold {(threshold * 100).toFixed(0)}%</div>
+    </div>
+  );
+}
+
+function DecisionButton({ value, selected, onSelect }:
+  { value: ApprovalDecision; selected: boolean; onSelect: () => void }) {
+  const colors: Record<ApprovalDecision, string> = {
+    approved: '#16a34a',
+    rejected: '#dc2626',
+    cleared:  '#6b7280',
+  };
+  return (
+    <button
+      onClick={onSelect}
+      style={{
+        padding: '8px 20px', borderRadius: 6, border: `2px solid ${selected ? colors[value] : '#e2e8f0'}`,
+        background: selected ? colors[value] : '#fff',
+        color: selected ? '#fff' : '#374151',
+        fontWeight: 600, cursor: 'pointer', fontSize: 14,
+        textTransform: 'capitalize',
+      }}
+    >
+      {value}
+    </button>
+  );
+}

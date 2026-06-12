@@ -1,0 +1,19 @@
+<template>
+  <div style="display: flex; flex-direction: column; min-height: 100vh">
+    <header style="padding: 12px 24px; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 24px">
+      <span style="font-weight: 700; font-size: 18px">{{ title .Domain }}</span>
+      <nav style="display: flex; gap: 16px">
+        <RouterLink to="/" style="color: #6366f1; text-decoration: none">Dashboard</RouterLink>
+        <!-- Add navigation links for your screens here -->
+      </nav>
+    </header>
+
+    <main style="flex: 1; padding: 24px">
+      <RouterView />
+    </main>
+
+    <footer style="padding: 12px 24px; border-top: 1px solid #e2e8f0; font-size: 12px; color: #94a3b8; text-align: center">
+      {{ title .Domain }} · {{ .Domain }}
+    </footer>
+  </div>
+</template>

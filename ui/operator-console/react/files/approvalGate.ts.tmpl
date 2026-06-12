@@ -1,0 +1,50 @@
+// Generated from HumanApprovalGateSpec wizard answers (Design stage).
+// Source: specs/ui/approval-gate.yaml
+// Do not edit — regenerate via `darta build` when wizard answers change.
+
+export const APPROVAL_GATE = {
+  confidenceThreshold: {{ .ConfidenceThreshold }},
+  qualityThreshold:    {{ .QualityThreshold }},
+  escalationAction:    "{{ .EscalationAction }}",
+  bypassRoles:         [{{ range $i, $r := .ApprovalRoles }}{{ if $i }}, {{ end }}"{{ $r }}"{{ end }}],
+  verticalsAlwaysGate: [{{ range $i, $v := .VerticalsAlwaysGate }}{{ if $i }}, {{ end }}"{{ $v }}"{{ end }}],
+  gatewayURL:          import.meta.env.VITE_GATEWAY_URL ?? "{{ .GatewayURL }}",
+  authTokenEnv:        "{{ .AuthTokenEnv }}",
+} as const;
+
+export type ApprovalDecision = "approved" | "rejected" | "cleared";
+
+export interface ApprovalItem {
+  invocation_id:    string;
+  agent:            string;
+  domain:           string;
+  submitted_at:     string;
+  confidence_score: number;
+  quality_score:    number;
+  status:           "pending" | "escalated" | "cleared" | "approved" | "rejected";
+  agent_output:     unknown;
+  context_summary?: string;
+}
+
+export interface ApprovalCallbackPayload {
+  invocation_id:    string;
+  decision:         ApprovalDecision;
+  reason?:          string;
+  decided_by:       string;
+  decided_at:       string;
+  confidence_score: number;
+  quality_score:    number;
+  bypass_used?:     boolean;
+}
+
+/** Returns true if the current user role is a bypass role. */
+export function isBypassRole(userRole: string): boolean {
+  return (APPROVAL_GATE.bypassRoles as readonly string[]).includes(userRole);
+}
+
+/** Returns true if the item is below either threshold and must gate. */
+export function mustGate(item: Pick<ApprovalItem, "confidence_score" | "quality_score" | "domain">): boolean {
+  if ((APPROVAL_GATE.verticalsAlwaysGate as readonly string[]).includes(item.domain)) return true;
+  return item.confidence_score <= APPROVAL_GATE.confidenceThreshold ||
+         item.quality_score    <= APPROVAL_GATE.qualityThreshold;
+}

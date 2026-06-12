@@ -1,0 +1,24 @@
+services:
+  {{ .ServiceName }}:
+    build: .
+    ports:
+      - "${PORT:-9001}:${PORT:-9001}"
+    env_file: .env.example
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${PORT:-9001}/v1/health_check"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  redis:
+    image: redis/redis-stack:latest
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5

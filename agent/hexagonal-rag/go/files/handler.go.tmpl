@@ -1,0 +1,32 @@
+package handler
+
+import (
+	"encoding/json"
+	"net/http"
+
+	"{{ .ModulePath }}/agents/{{ .AgentName }}/dto"
+	port "{{ .ModulePath }}/agents/{{ .AgentName }}/ports/in"
+)
+
+type {{ pascal .AgentName }}Handler struct {
+	svc port.{{ pascal .AgentName }}Service
+}
+
+func New(svc port.{{ pascal .AgentName }}Service) *{{ pascal .AgentName }}Handler {
+	return &{{ pascal .AgentName }}Handler{svc: svc}
+}
+
+func (h *{{ pascal .AgentName }}Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	var req dto.{{ pascal .AgentName }}Request
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "bad request", http.StatusBadRequest)
+		return
+	}
+	resp, err := h.svc.Execute(r.Context(), req)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	_ = json.NewEncoder(w).Encode(resp)
+}

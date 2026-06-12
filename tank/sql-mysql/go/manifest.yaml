@@ -1,0 +1,38 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: sql-mysql-go
+  displayName: MySQL Connector
+  description: Go SQL connector scaffold for MySQL-backed tanks.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Go
+  patternKind: sql-mysql
+  files:
+  - path: tanks/{{ .TankName }}/connector.go
+    template: connector.go.tmpl
+    description: SQL connector
+  - path: tanks/{{ .TankName }}/queries.go
+    template: queries.go.tmpl
+    description: Write queries
+  - path: tanks/{{ .TankName }}/schema.sql
+    template: schema.sql.tmpl
+    description: Schema bootstrap
+  promptHints:
+    skeleton: MySQL connector and schema bootstrap.
+    implementation: Keep writes idempotent and explicit.
+    tanks: Use when existing teams standardize on MySQL.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 2
+    complexityIdeal: 5
+    complexityCeiling: 12
+    compositesWith: []
+    tags:
+    - sql
+    - mysql
+    - connector
+templatesApiVersion: '1'

@@ -1,0 +1,29 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: agent-runtime-cloud-run-go
+  displayName: Agent Runtime Overlay (Cloud Run, Go)
+  description: Knative-style service fragment for Cloud Run deployment.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Go
+  patternKind: runtime-cloud-run
+  files:
+  - path: agents/{{ .AgentName }}/cloud-run.service.yaml
+    template: cloud-run.service.yaml.tmpl
+    description: Cloud Run service fragment
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 2
+    complexityIdeal: 3
+    complexityCeiling: 5
+    tags:
+    - overlay
+    - cloud-run
+    - knative
+    - runtime
+    - go
+templatesApiVersion: '1'

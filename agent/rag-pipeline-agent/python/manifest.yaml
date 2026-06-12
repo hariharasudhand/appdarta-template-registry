@@ -1,0 +1,46 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: rag-pipeline-agent
+  displayName: RAG Pipeline Agent
+  description: LangChain RAG pipeline with pgvector retrieval and LiteLLM generation.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Python
+  patternKind: rag-pipeline-agent
+  dhil_dt_routing:
+    preferred_tier: l2
+    required_skills:
+    - coder
+    - python
+    role: implementation/complex
+  files:
+  - path: agents/{{ .AgentName }}/pipeline.py
+    template: pipeline.py.tmpl
+    description: RAG pipeline service
+  - path: agents/{{ .AgentName }}/appdarta-policy.yaml
+    template: appdarta-policy.yaml.tmpl
+    description: Gateway pipeline policy
+  - path: agents/{{ .AgentName }}/agent-spec.yaml
+    template: agent-spec.yaml.tmpl
+    description: AppDarta agent spec
+  gateway_policy:
+    handlers:
+    - auth_enforcement
+    - rag-pipeline-invoke
+    - citation_check
+    - audit_logger
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 4
+    complexityIdeal: 8
+    complexityCeiling: 18
+    tags:
+    - rag
+    - pipeline
+    - pgvector
+    - python
+templatesApiVersion: '1'

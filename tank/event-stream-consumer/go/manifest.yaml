@@ -1,0 +1,43 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: event-stream-consumer-go
+  displayName: Event stream consumer (Kafka/SQS/NATS)
+  description: "Consumer sidecar for TankConnectorConfig.consumer \u2014 poll/consume\
+    \ events, transform, upsert to tank, DLQ on poison messages, offset commit, metrics.\
+    \ P8.3 deliverable.\n"
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: tank
+  techStacks:
+  - Go
+  patternKind: event-stream-consumer
+  files:
+  - path: connectors/event_consumer.go
+    template: consumer.go.tmpl
+  promptHints:
+    skeleton: 'Declare consumer.enabled=true with type kafka|sqs|nats, brokers, topics[],
+      group-id. Wire deserializer json or avro-ref with schema-registry-url.
+
+      '
+    implementation: 'Consumer loop with max-poll-records backpressure; commit offsets
+      after upsert; route poison messages to dlq-topic; emit consumer.lag and consumer.dlq_count
+      metrics. The default Kafka adapter is RedpandaRPKPoller, a documented sidecar
+      subprocess contract that shells out to rpk from the kafka-local scaffold. Swap
+      in a native Kafka client by implementing EventPoller without changing the consumer
+      loop.
+
+      '
+  intelligence:
+    maturityLevel: stable
+    tags:
+    - kafka
+    - event
+    - consumer
+    - streaming
+  integrationClasses:
+  - kafka-event
+  defaultWhen:
+    consumer_enabled: true
+templatesApiVersion: '1'

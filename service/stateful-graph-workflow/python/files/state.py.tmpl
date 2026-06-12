@@ -1,0 +1,31 @@
+"""State schema for {{ .ServiceName }}."""
+from __future__ import annotations
+from dataclasses import dataclass, field
+from typing import Any
+
+
+@dataclass
+class WorkflowState:
+    """Mutable state passed between graph nodes."""
+    run_id: str
+    input: str
+    messages: list[dict[str, Any]] = field(default_factory=list)
+    artifacts: dict[str, Any] = field(default_factory=dict)
+    current_node: str = "start"
+    is_complete: bool = False
+    error: str | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "run_id": self.run_id,
+            "input": self.input,
+            "messages": self.messages,
+            "artifacts": self.artifacts,
+            "current_node": self.current_node,
+            "is_complete": self.is_complete,
+            "error": self.error,
+        }
+
+    @classmethod
+    def from_dict(cls, d: dict[str, Any]) -> "WorkflowState":
+        return cls(**d)

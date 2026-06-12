@@ -1,0 +1,147 @@
+package {{ snake .AgentName }}
+
+import (
+	"bytes"
+	"context"
+	"crypto/sha256"
+	"encoding/binary"
+	"encoding/json"
+	"fmt"
+	"math"
+	"net/http"
+	"os"
+	"os/exec"
+	"strings"
+	"time"
+)
+
+type ModelClient interface {
+	Embed(ctx context.Context, invocation ModelInvocation) ([][]float64, error)
+}
+
+func NewModelClientFromEnv() ModelClient {
+	if endpoint := strings.TrimSpace(os.Getenv("APPDARTA_ML_EMBED_ENDPOINT")); endpoint != "" {
+		return HTTPModelClient{Endpoint: endpoint, Client: &http.Client{Timeout: 30 * time.Second}}
+	}
+	if command := strings.TrimSpace(os.Getenv("APPDARTA_ML_EMBED_COMMAND")); command != "" {
+		return SubprocessModelClient{Command: strings.Fields(command), Timeout: 30 * time.Second}
+	}
+	return DeterministicModelClient{Dimensions: 8}
+}
+
+type HTTPModelClient struct {
+	Endpoint string
+	Client *http.Client
+}
+
+func (c HTTPModelClient) Embed(ctx context.Context, invocation ModelInvocation) ([][]float64, error) {
+	body, err := json.Marshal(invocation)
+	if err != nil {
+		return nil, err
+	}
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, c.Endpoint, bytes.NewReader(body))
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Content-Type", "application/json")
+	client := c.Client
+	if client == nil {
+		client = http.DefaultClient
+	}
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		return nil, fmt.Errorf("model endpoint returned %s", resp.Status)
+	}
+	var out struct {
+		Embeddings [][]float64 `json:"embeddings"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
+		return nil, err
+	}
+	return out.Embeddings, nil
+}
+
+type SubprocessModelClient struct {
+	Command []string
+	Timeout time.Duration
+}
+
+func (c SubprocessModelClient) Embed(ctx context.Context, invocation ModelInvocation) ([][]float64, error) {
+	if len(c.Command) == 0 {
+		return nil, fmt.Errorf("empty model command")
+	}
+	timeout := c.Timeout
+	if timeout == 0 {
+		timeout = 30 * time.Second
+	}
+	ctx, cancel := context.WithTimeout(ctx, timeout)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, c.Command[0], c.Command[1:]...)
+	stdin, err := cmd.StdinPipe()
+	if err != nil {
+		return nil, err
+	}
+	var stdout bytes.Buffer
+	var stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	if err := cmd.Start(); err != nil {
+		return nil, err
+	}
+	if err := json.NewEncoder(stdin).Encode(invocation); err != nil {
+		_ = stdin.Close()
+		return nil, err
+	}
+	_ = stdin.Close()
+	if err := cmd.Wait(); err != nil {
+		return nil, fmt.Errorf("model command failed: %w: %s", err, strings.TrimSpace(stderr.String()))
+	}
+	var out struct {
+		Embeddings [][]float64 `json:"embeddings"`
+	}
+	if err := json.NewDecoder(&stdout).Decode(&out); err != nil {
+		return nil, err
+	}
+	return out.Embeddings, nil
+}
+
+type DeterministicModelClient struct {
+	Dimensions int
+}
+
+func (c DeterministicModelClient) Embed(_ context.Context, invocation ModelInvocation) ([][]float64, error) {
+	dimensions := c.Dimensions
+	if dimensions <= 0 {
+		dimensions = 8
+	}
+	out := make([][]float64, 0, len(invocation.Inputs))
+	for _, input := range invocation.Inputs {
+		vec := make([]float64, dimensions)
+		digest := sha256.Sum256([]byte(input))
+		for i := 0; i < dimensions; i++ {
+			raw := binary.BigEndian.Uint32(digest[(i*4)%len(digest):((i*4)%len(digest))+4])
+			vec[i] = float64(raw%1000) / 1000.0
+		}
+		normalize(vec)
+		out = append(out, vec)
+	}
+	return out, nil
+}
+
+func normalize(vec []float64) {
+	var sum float64
+	for _, v := range vec {
+		sum += v * v
+	}
+	if sum == 0 {
+		return
+	}
+	norm := math.Sqrt(sum)
+	for i := range vec {
+		vec[i] = vec[i] / norm
+	}
+}

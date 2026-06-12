@@ -1,0 +1,84 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: mcp-server-python
+  displayName: MCP Server (Python)
+  description: Model Context Protocol server in Python. Tools, Resources, and Prompts
+    handlers with JSON-RPC 2.0 transport over stdio or HTTP. ~85% boilerplate scaffold.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: service
+  techStacks:
+  - Python
+  patternKind: mcp-server
+  files:
+  - path: services/{{ .ServiceName }}/server.py
+    template: server.py.tmpl
+    description: MCP server entry point
+  - path: services/{{ .ServiceName }}/tools.py
+    template: tools.py.tmpl
+    description: Tool handlers
+  - path: services/{{ .ServiceName }}/resources.py
+    template: resources.py.tmpl
+    description: Resource handlers
+  - path: services/{{ .ServiceName }}/requirements.txt
+    template: requirements.txt.tmpl
+    description: Python dependencies
+  - path: services/{{ .ServiceName }}/Dockerfile
+    template: Dockerfile.tmpl
+    description: Container definition
+  promptHints:
+    skeleton: MCP server with JSON-RPC 2.0, stdio transport, capability registry.
+    implementation: Add tool functions in tools.py, expose resources in resources.py.
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 2
+    complexityIdeal: 4
+    complexityCeiling: 9
+    tags:
+    - mcp
+    - protocol
+    - python
+    - llm-integration
+    - tool-use
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Python
+      - MCP
+      - tool or resource protocol service
+      scale:
+        interface: json-rpc server for model integrations
+    doesNotApplyWhen:
+    - rest-only api
+    - frontend-only
+    - event-driven-only
+    - graphql gateway
+  triggerIncidents:
+    exactMatches:
+    - Python::mcp-server[*]
+    - Python::service[*] + Protocol[MCP]
+    semanticTriggers:
+      keywords:
+        required:
+        - python
+        - mcp
+        optional:
+        - protocol
+        - tool
+        - resource
+        - json-rpc
+        - server
+      antiKeywords:
+      - rest-only
+      - frontend-only
+      - event-driven-only
+      - graphql
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

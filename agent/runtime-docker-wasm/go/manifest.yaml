@@ -1,0 +1,29 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: agent-runtime-docker-wasm-go
+  displayName: Agent Runtime Overlay (Docker+WASM, Go)
+  description: Build-time runtime overlay for Go agents with WASM sidecar support.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Go
+  patternKind: runtime-docker-wasm
+  files:
+  - path: agents/{{ .AgentName }}/Dockerfile
+    template: Dockerfile.tmpl
+    description: Go agent Dockerfile with WASM runtime notes
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 2
+    complexityIdeal: 3
+    complexityCeiling: 5
+    tags:
+    - overlay
+    - docker
+    - wasm
+    - runtime
+    - go
+templatesApiVersion: '1'

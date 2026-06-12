@@ -1,0 +1,6 @@
+from .event import Event
+from .handler import handle
+
+
+async def consume(event: Event) -> None:
+    await handle(event)

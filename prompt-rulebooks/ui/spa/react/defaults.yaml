@@ -1,0 +1,15 @@
+rulebooks:
+  ui-shell:
+    title: UI Shell
+    summary: Define routes, layout, env/config loading, and top-level UI runtime exports.
+    required_inputs:
+    - exported env variables
+    - route ownership
+    required_outputs:
+    - ui/src/App.tsx
+    - ui/src/router.tsx
+    required_rules:
+    - reference exported runtime variables
+    - define router/layout ownership
+    template_hints:
+    - react-app-shell

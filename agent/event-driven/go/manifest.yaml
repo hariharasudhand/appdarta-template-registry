@@ -1,0 +1,81 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: event-driven-go
+  displayName: Event Driven Worker
+  description: Go worker scaffold for asynchronous event processing.
+  version: 1.0.0
+  author: AppDarta Platform
+spec:
+  nodeKind: agent
+  techStacks:
+  - Go
+  patternKind: event-driven
+  files:
+  - path: agents/{{ .AgentName }}/consumer.go
+    template: consumer.go.tmpl
+    description: Event consumer
+  - path: agents/{{ .AgentName }}/handler.go
+    template: handler.go.tmpl
+    description: Domain event handler
+  - path: agents/{{ .AgentName }}/event.go
+    template: event.go.tmpl
+    description: Event contract
+  - path: agents/{{ .AgentName }}/publisher.go
+    template: publisher.go.tmpl
+    description: Publisher contract
+  promptHints:
+    skeleton: Consumer reads events and passes them to domain handler.
+    implementation: Keep event contract explicit and publish downstream updates.
+    tanks: Use tanks for checkpoints or idempotency state.
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 2
+    complexityIdeal: 4
+    complexityCeiling: 10
+    compositesWith:
+    - saga-go
+    tags:
+    - events
+    - consumer
+    - async
+  contextMapping:
+    appliesWhen:
+      requirements:
+      - Go
+      - event-driven
+      - asynchronous processing
+      scale:
+        workload: consumer-or-worker
+    doesNotApplyWhen:
+    - crud-only
+    - rest-only
+    - graphql-only
+    - sync-request-response
+  triggerIncidents:
+    exactMatches:
+    - Go::event-driven[*]
+    - Go::worker[*] + Messaging[*]
+    semanticTriggers:
+      keywords:
+        required:
+        - go
+        - event
+        optional:
+        - consumer
+        - async
+        - worker
+        - publisher
+        - messaging
+      antiKeywords:
+      - crud-only
+      - rest-only
+      - graphql-only
+      - sync-request-response
+    confidenceScoring:
+      exactMatch: 1.0
+      keywordMatch: 0.85
+      semanticMatch: 0.7
+      contextMatch: 0.6
+      threshold: 0.75
+templatesApiVersion: '1'

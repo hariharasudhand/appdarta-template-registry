@@ -1,0 +1,8 @@
+package gateway
+
+import "net/http"
+
+// ErrorNormalize is the outbound hook that maps internal errors to stable API responses.
+func ErrorNormalize(next http.Handler) http.Handler {
+	return next
+}

@@ -1,0 +1,70 @@
+import { useState } from 'react';
+import { synthesizeQuery, type RAGSynthesisResult } from '../api/ragClient';
+
+export default function RAGQuery() {
+  const [query, setQuery] = useState('');
+  const [partition, setPartition] = useState('default');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [result, setResult] = useState<RAGSynthesisResult | null>(null);
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    try {
+      const data = await synthesizeQuery(query.trim(), partition.trim());
+      setResult(data);
+    } catch (err) {
+      setError((err as Error).message);
+      setResult(null);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div style={{ maxWidth: 960, margin: '0 auto' }}>
+      <h1 style={{ fontSize: 22, fontWeight: 700 }}>RAG Operator</h1>
+      <p style={{ color: '#64748b', fontSize: 14 }}>Grounded synthesis with citations and provenance.</p>
+      <form onSubmit={onSubmit} style={{ display: 'grid', gap: 12, marginTop: 16 }}>
+        <textarea
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Ask a grounded question…"
+          rows={4}
+          style={{ width: '100%', padding: 12, borderRadius: 8, border: '1px solid #e2e8f0' }}
+        />
+        <input
+          value={partition}
+          onChange={(e) => setPartition(e.target.value)}
+          placeholder="Partition"
+          style={{ padding: 8, borderRadius: 6, border: '1px solid #e2e8f0' }}
+        />
+        <button type="submit" disabled={loading || !query.trim()} style={{ padding: '8px 16px' }}>
+          {loading ? 'Synthesizing…' : 'Run synthesis'}
+        </button>
+      </form>
+      {error ? <div style={{ color: '#b91c1c', marginTop: 12 }}>{error}</div> : null}
+      {result ? (
+        <div style={{ marginTop: 24 }}>
+          <h2 style={{ fontSize: 16 }}>Answer</h2>
+          <pre style={{ whiteSpace: 'pre-wrap', background: '#f8fafc', padding: 12, borderRadius: 8 }}>{result.answer}</pre>
+          {result.citations?.length ? (
+            <>
+              <h3 style={{ fontSize: 14, marginTop: 16 }}>Citations</h3>
+              <ul>
+                {result.citations.map((c, i) => (
+                  <li key={i} style={{ marginBottom: 8 }}>
+                    <strong>{c.source || 'source'}</strong>
+                    {c.excerpt ? `: ${c.excerpt}` : null}
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
+        </div>
+      ) : null}
+    </div>
+  );
+}
