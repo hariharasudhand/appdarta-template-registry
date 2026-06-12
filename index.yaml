@@ -2,12 +2,12 @@ apiVersion: appdarta.io/v1
 kind: TemplateRegistryIndex
 metadata:
   version: 1.0.0
-  generatedAt: '2026-06-12T22:55:08Z'
+  generatedAt: '2026-06-12T23:50:04Z'
 spec:
   templatesApiVersion: '1'
   entries:
   - name: cqrs-go
-    path: agent/cqrs/go
+    path: stacks/go/cqrs/go/cqrs-go
     nodeKind: agent
     patternKind: cqrs
     techStack:
@@ -20,7 +20,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: crewai-crew
-    path: agent/crewai-crew/python
+    path: stacks/python/crewai-crew/python/crewai-crew
     nodeKind: agent
     patternKind: crewai-crew
     techStack:
@@ -33,7 +33,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: go-crud-api
-    path: agent/crud-api/go
+    path: stacks/go/crud-api/go/go-crud-api
     nodeKind: agent
     patternKind: crud-api
     techStack:
@@ -47,7 +47,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: event-driven-go
-    path: agent/event-driven/go
+    path: stacks/go/event-driven/go/event-driven-go
     nodeKind: agent
     patternKind: event-driven
     techStack:
@@ -60,7 +60,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: event-driven-python
-    path: agent/event-driven/python
+    path: stacks/python/event-driven/python/event-driven-python
     nodeKind: agent
     patternKind: event-driven
     techStack:
@@ -73,7 +73,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: go-stateful-agent
-    path: agent/go-stateful-agent/go
+    path: stacks/go/go-stateful-agent/go/go-stateful-agent
     nodeKind: agent
     patternKind: go-stateful-agent
     techStack:
@@ -86,7 +86,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: hexagonal-go
-    path: agent/hexagonal/go
+    path: stacks/go/hexagonal/go/hexagonal-go
     nodeKind: agent
     patternKind: hexagonal
     techStack:
@@ -99,7 +99,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: hexagonal-java
-    path: agent/hexagonal/java
+    path: stacks/java/hexagonal/java/hexagonal-java
     nodeKind: agent
     patternKind: hexagonal
     techStack:
@@ -113,7 +113,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: hexagonal-python
-    path: agent/hexagonal/python
+    path: stacks/python/hexagonal/python/hexagonal-python
     nodeKind: agent
     patternKind: hexagonal
     techStack:
@@ -126,7 +126,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: hexagonal-rag-go
-    path: agent/hexagonal-rag/go
+    path: stacks/go/hexagonal-rag/go/hexagonal-rag-go
     nodeKind: agent
     patternKind: hexagonal-rag
     techStack:
@@ -139,7 +139,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: hexagonal-rag-python
-    path: agent/hexagonal-rag/python
+    path: stacks/python/hexagonal-rag/python/hexagonal-rag-python
     nodeKind: agent
     patternKind: hexagonal-rag
     techStack:
@@ -152,7 +152,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: langchain-agent
-    path: agent/langchain-agent/python
+    path: stacks/python/langchain-agent/python/langchain-agent
     nodeKind: agent
     patternKind: langchain-agent
     techStack:
@@ -165,7 +165,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: ml-embed-wrapper
-    path: agent/ml-embed-wrapper/go
+    path: stacks/go/ml-embed-wrapper/go/ml-embed-wrapper
     nodeKind: agent
     patternKind: ml-embed-wrapper
     techStack:
@@ -179,7 +179,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: multi-agent-orchestrator
-    path: agent/multi-agent-orchestrator/python
+    path: stacks/python/multi-agent-orchestrator/python/multi-agent-orchestrator
     nodeKind: agent
     patternKind: multi-agent-orchestrator
     techStack:
@@ -193,7 +193,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: rag-agent-go
-    path: agent/rag-agent/go
+    path: stacks/go/rag-agent/go/rag-agent-go
     nodeKind: agent
     patternKind: rag-agent
     techStack:
@@ -206,7 +206,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: rag-agent-python
-    path: agent/rag-agent/python
+    path: stacks/python/rag-agent/python/rag-agent-python
     nodeKind: agent
     patternKind: rag-agent
     techStack:
@@ -219,7 +219,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: rag-pipeline-agent
-    path: agent/rag-pipeline-agent/python
+    path: stacks/python/rag-pipeline-agent/python/rag-pipeline-agent
     nodeKind: agent
     patternKind: rag-pipeline-agent
     techStack:
@@ -232,7 +232,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: agent-runtime-cloud-run-go
-    path: agent/runtime-cloud-run/go
+    path: stacks/go/runtime-cloud-run/go/agent-runtime-cloud-run-go
     nodeKind: agent
     patternKind: runtime-cloud-run
     techStack:
@@ -245,7 +245,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: agent-runtime-docker-go
-    path: agent/runtime-docker/go
+    path: stacks/go/runtime-docker/go/agent-runtime-docker-go
     nodeKind: agent
     patternKind: runtime-docker
     techStack:
@@ -259,7 +259,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: agent-runtime-docker-java
-    path: agent/runtime-docker/java
+    path: stacks/java/runtime-docker/java/agent-runtime-docker-java
     nodeKind: agent
     patternKind: runtime-docker
     techStack:
@@ -274,7 +274,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: agent-runtime-docker-python
-    path: agent/runtime-docker/python
+    path: stacks/python/runtime-docker/python/agent-runtime-docker-python
     nodeKind: agent
     patternKind: runtime-docker
     techStack:
@@ -291,7 +291,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: agent-runtime-docker-wasm-go
-    path: agent/runtime-docker-wasm/go
+    path: stacks/go/runtime-docker-wasm/go/agent-runtime-docker-wasm-go
     nodeKind: agent
     patternKind: runtime-docker-wasm
     techStack:
@@ -304,7 +304,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: agent-runtime-process
-    path: agent/runtime-process/go
+    path: stacks/go/runtime-process/go/agent-runtime-process
     nodeKind: agent
     patternKind: runtime-process
     techStack:
@@ -319,7 +319,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: saga-go
-    path: agent/saga/go
+    path: stacks/go/saga/go/saga-go
     nodeKind: agent
     patternKind: saga
     techStack:
@@ -332,7 +332,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: simple-service-go
-    path: agent/simple-service/go
+    path: stacks/go/simple-service/go/simple-service-go
     nodeKind: agent
     patternKind: simple-service
     techStack:
@@ -345,7 +345,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: simple-service-python
-    path: agent/simple-service/python
+    path: stacks/python/simple-service/python/simple-service-python
     nodeKind: agent
     patternKind: simple-service
     techStack:
@@ -358,7 +358,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: rest-gateway
-    path: gateway/rest-gateway/go
+    path: stacks/go/rest-gateway/go/rest-gateway
     nodeKind: gateway
     patternKind: rest-gateway
     techStack:
@@ -372,7 +372,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: gateway-runtime-docker
-    path: gateway/runtime-docker/go
+    path: stacks/go/runtime-docker/go/gateway-runtime-docker
     nodeKind: gateway
     patternKind: runtime-docker
     techStack:
@@ -385,7 +385,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: gateway-runtime-process
-    path: gateway/runtime-process/go
+    path: stacks/go/runtime-process/go/gateway-runtime-process
     nodeKind: gateway
     patternKind: runtime-process
     techStack:
@@ -398,7 +398,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: kafka-local-infra
-    path: infrastructure/kafka-local/default
+    path: stacks/infra/kafka-local/yaml/kafka-local-infra
     nodeKind: infrastructure
     patternKind: kafka-local
     techStack:
@@ -412,7 +412,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: postgres-local-infra
-    path: infrastructure/postgres-local/default
+    path: stacks/infra/postgres-local/yaml/postgres-local-infra
     nodeKind: infrastructure
     patternKind: postgres-local
     techStack:
@@ -426,7 +426,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: redis-local-infra
-    path: infrastructure/redis-local/default
+    path: stacks/infra/redis-local/yaml/redis-local-infra
     nodeKind: infrastructure
     patternKind: redis-local
     techStack:
@@ -439,7 +439,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: opea-embedding-tei-python
-    path: microservice/opea-embedding/python
+    path: stacks/python/opea-embedding/python/opea-embedding-tei-python
     nodeKind: microservice
     patternKind: opea-embedding
     techStack:
@@ -453,7 +453,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: opea-llm-vllm-python
-    path: microservice/opea-llm/python
+    path: stacks/python/opea-llm/python/opea-llm-vllm-python
     nodeKind: microservice
     patternKind: opea-llm
     techStack:
@@ -467,7 +467,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: opea-retriever-redis-go
-    path: microservice/opea-retrieval/go
+    path: stacks/go/opea-retrieval/go/opea-retriever-redis-go
     nodeKind: microservice
     patternKind: opea-retrieval
     techStack:
@@ -481,7 +481,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: write-back-handler
-    path: runtime/write-back-handler/go
+    path: stacks/go/write-back-handler/go/write-back-handler
     nodeKind: runtime
     patternKind: write-back-handler
     techStack:
@@ -496,7 +496,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: mcp-server-go
-    path: service/mcp-server/go
+    path: stacks/go/mcp-server/go/mcp-server-go
     nodeKind: service
     patternKind: mcp-server
     techStack:
@@ -510,7 +510,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: mcp-server-python
-    path: service/mcp-server/python
+    path: stacks/python/mcp-server/python/mcp-server-python
     nodeKind: service
     patternKind: mcp-server
     techStack:
@@ -524,7 +524,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: multi-agent-orchestrator-python
-    path: service/multi-agent-orchestrator/python
+    path: stacks/python/multi-agent-orchestrator/python/multi-agent-orchestrator-python
     nodeKind: service
     patternKind: multi-agent-orchestrator
     techStack:
@@ -538,7 +538,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: rag-evaluation-harness-python
-    path: service/rag-evaluation/python
+    path: stacks/python/rag-evaluation/python/rag-evaluation-harness-python
     nodeKind: service
     patternKind: rag-evaluation
     techStack:
@@ -552,7 +552,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: stateful-graph-workflow-python
-    path: service/stateful-graph-workflow/python
+    path: stacks/python/stateful-graph-workflow/python/stateful-graph-workflow-python
     nodeKind: service
     patternKind: stateful-graph-workflow
     techStack:
@@ -566,7 +566,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: streaming-sse-go
-    path: service/streaming-sse/go
+    path: stacks/go/streaming-sse/go/streaming-sse-go
     nodeKind: service
     patternKind: streaming-sse
     techStack:
@@ -580,7 +580,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: streaming-sse-python
-    path: service/streaming-sse/python
+    path: stacks/python/streaming-sse/python/streaming-sse-python
     nodeKind: service
     patternKind: streaming-sse
     techStack:
@@ -594,7 +594,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: cli-ingest-ocr
-    path: tank/cli-ingest/python
+    path: stacks/python/cli-ingest/python/cli-ingest-ocr
     nodeKind: tank
     patternKind: cli-ingest
     techStack:
@@ -610,7 +610,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: event-stream-consumer-go
-    path: tank/event-stream-consumer/go
+    path: stacks/go/event-stream-consumer/go/event-stream-consumer-go
     nodeKind: tank
     patternKind: event-stream-consumer
     techStack:
@@ -625,7 +625,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: ingestor-api-go
-    path: tank/ingestor-api/go
+    path: stacks/go/ingestor-api/go/ingestor-api-go
     nodeKind: tank
     patternKind: ingestor-api
     techStack:
@@ -638,7 +638,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: ingestor-web-python
-    path: tank/ingestor-web/python
+    path: stacks/python/ingestor-web/python/ingestor-web-python
     nodeKind: tank
     patternKind: ingestor-web
     techStack:
@@ -651,7 +651,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: nosql-mongo-go
-    path: tank/nosql-mongo/go
+    path: stacks/go/nosql-mongo/go/nosql-mongo-go
     nodeKind: tank
     patternKind: nosql-mongo
     techStack:
@@ -664,7 +664,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: nosql-mongo-python
-    path: tank/nosql-mongo/python
+    path: stacks/python/nosql-mongo/python/nosql-mongo-python
     nodeKind: tank
     patternKind: nosql-mongo
     techStack:
@@ -677,7 +677,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: nosql-redis-go
-    path: tank/nosql-redis/go
+    path: stacks/go/nosql-redis/go/nosql-redis-go
     nodeKind: tank
     patternKind: nosql-redis
     techStack:
@@ -690,7 +690,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: nosql-redis-python
-    path: tank/nosql-redis/python
+    path: stacks/python/nosql-redis/python/nosql-redis-python
     nodeKind: tank
     patternKind: nosql-redis
     techStack:
@@ -703,7 +703,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: tank-connector-config-push
-    path: tank/push-connector/go
+    path: stacks/go/push-connector/go/tank-connector-config-push
     nodeKind: tank
     patternKind: push-connector
     techStack:
@@ -719,7 +719,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: tank-runtime-docker-go
-    path: tank/runtime-docker/go
+    path: stacks/go/runtime-docker/go/tank-runtime-docker-go
     nodeKind: tank
     patternKind: runtime-docker
     techStack:
@@ -733,7 +733,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: tank-runtime-docker-python
-    path: tank/runtime-docker/python
+    path: stacks/python/runtime-docker/python/tank-runtime-docker-python
     nodeKind: tank
     patternKind: runtime-docker
     techStack:
@@ -750,7 +750,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: tank-runtime-process
-    path: tank/runtime-process/go
+    path: stacks/go/runtime-process/go/tank-runtime-process
     nodeKind: tank
     patternKind: runtime-process
     techStack:
@@ -764,7 +764,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: sql-mysql-go
-    path: tank/sql-mysql/go
+    path: stacks/go/sql-mysql/go/sql-mysql-go
     nodeKind: tank
     patternKind: sql-mysql
     techStack:
@@ -777,7 +777,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: sql-postgres-go
-    path: tank/sql-postgres/go
+    path: stacks/go/sql-postgres/go/sql-postgres-go
     nodeKind: tank
     patternKind: sql-postgres
     techStack:
@@ -790,7 +790,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: sql-postgres-python
-    path: tank/sql-postgres/python
+    path: stacks/python/sql-postgres/python/sql-postgres-python
     nodeKind: tank
     patternKind: sql-postgres
     techStack:
@@ -803,7 +803,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: sql-sqlite-go
-    path: tank/sql-sqlite/go
+    path: stacks/go/sql-sqlite/go/sql-sqlite-go
     nodeKind: tank
     patternKind: sql-sqlite
     techStack:
@@ -816,7 +816,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: vector-chroma-python
-    path: tank/vector-chroma/python
+    path: stacks/python/vector-chroma/python/vector-chroma-python
     nodeKind: tank
     patternKind: vector-chroma
     techStack:
@@ -829,7 +829,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: vector-pgvector-go
-    path: tank/vector-pgvector/go
+    path: stacks/go/vector-pgvector/go/vector-pgvector-go
     nodeKind: tank
     patternKind: vector-pgvector
     techStack:
@@ -842,7 +842,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: vector-pgvector-python
-    path: tank/vector-pgvector/python
+    path: stacks/python/vector-pgvector/python/vector-pgvector-python
     nodeKind: tank
     patternKind: vector-pgvector
     techStack:
@@ -855,7 +855,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: eval-dashboard-module
-    path: ui/eval-dashboard/react
+    path: stacks/typescript/eval-dashboard/react/eval-dashboard-module
     nodeKind: ui
     patternKind: eval-dashboard
     techStack:
@@ -870,7 +870,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: nextjs-app-shell
-    path: ui/nextjs-app/react
+    path: stacks/typescript/nextjs-app/react/nextjs-app-shell
     nodeKind: ui
     patternKind: nextjs-app
     techStack:
@@ -886,7 +886,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: approval-queue-module
-    path: ui/operator-console/react
+    path: stacks/typescript/operator-console/react/approval-queue-module
     nodeKind: ui
     patternKind: operator-console
     techStack:
@@ -902,7 +902,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: rag-operator-module
-    path: ui/operator-console/react-rag-operator-module
+    path: stacks/typescript/operator-console/react/rag-operator-module
     nodeKind: ui
     patternKind: operator-console
     techStack:
@@ -919,7 +919,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: ui-runtime-docker
-    path: ui/runtime-docker/react
+    path: stacks/typescript/runtime-docker/react/ui-runtime-docker
     nodeKind: ui
     patternKind: runtime-docker
     techStack:
@@ -934,7 +934,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: ui-runtime-process
-    path: ui/runtime-process/react
+    path: stacks/typescript/runtime-process/react/ui-runtime-process
     nodeKind: ui
     patternKind: runtime-process
     techStack:
@@ -949,7 +949,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: react-app-shell
-    path: ui/spa/react
+    path: stacks/typescript/spa/react/react-app-shell
     nodeKind: ui
     patternKind: spa
     techStack:
@@ -965,7 +965,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: vue-app-shell
-    path: ui/spa/vue
+    path: stacks/typescript/spa/vue/vue-app-shell
     nodeKind: ui
     patternKind: spa
     techStack:
@@ -981,7 +981,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: monorepo-standard
-    path: workspace/monorepo-standard/default
+    path: stacks/default/monorepo-standard/default/monorepo-standard
     nodeKind: workspace
     patternKind: monorepo-standard
     techStack:

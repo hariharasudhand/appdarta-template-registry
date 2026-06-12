@@ -21,7 +21,7 @@ jobs:
               continue
             fi
             bash scripts/lint-template-bundle.sh "$bundle" || fail=1
-          done < <(find . -path './prompt-rulebooks' -prune -o -name manifest.yaml -print | grep -v '^\./\.')
+          done < <(find . \( -path './.git' -o -path './scripts' \) -prune -o -name manifest.yaml -print | grep -v '^\./\.')
           if [ ! -f index.yaml ]; then
             echo "FAIL: missing index.yaml"
             fail=1
@@ -40,4 +40,4 @@ jobs:
             count="$(find "$bundle/files" -name '*.tmpl' | wc -l | tr -d ' ')"
             echo "smoke: nodeKind=$nk bundle=$bundle tmpl_files=$count"
             [ "$count" -gt 0 ] || exit 1
-          done < <(find . -path './prompt-rulebooks' -prune -o -name manifest.yaml -print | grep -v '^\./\.')
+          done < <(find . \( -path './.git' -o -path './scripts' \) -prune -o -name manifest.yaml -print | grep -v '^\./\.')

@@ -13,11 +13,13 @@
 
 Public **structure-only** code-template bundles for the Darta CLI. Templates declare scaffolds (handlers, connectors, UI shells) with `{{ .Var }}` placeholders — not domain substance.
 
+Part of the [Darta Platform](https://github.com/hariharasudhand/appdarta-framework). Start a vertical with [appdarta-vertical-template](https://github.com/hariharasudhand/appdarta-vertical-template).
+
 ## What this repo contains
 
-- `index.yaml` — catalog the CLI reads on startup (name, nodeKind, patternKind, techStack, version, fingerprint)
-- `{nodeKind}/{patternKind}/{techStack}/` — template bundles (`manifest.yaml`, `TEMPLATE.md`, `files/*.tmpl`)
-- `prompt-rulebooks/` — paired rulebook slices keyed like code-templates (structure guidance only)
+- `index.yaml` — catalog the CLI reads on startup (name, path, nodeKind, patternKind, techStack, version, fingerprint)
+- `stacks/{tech}/{framework}/{language}/{template}/` — template bundles (`manifest.yaml`, `TEMPLATE.md`, `files/*.tmpl`, `prompt/rulebook.yaml`)
+- `stacks/{tech}/README.md` — per-tech stack index
 
 Templates are **viewable** in this repository but **renderable only via the Darta CLI** — not as standalone copy-paste scaffolds outside the toolchain.
 
@@ -29,6 +31,7 @@ Point the CLI at a local checkout (skips git pull):
 export DARTA_TEMPLATE_REGISTRY_PATH=/path/to/appdarta-template-registry
 darta templates sync
 darta templates list
+darta templates list --tech Go
 ```
 
 Optional remote URL override:
@@ -51,6 +54,14 @@ Default target when `DARTA_TEMPLATE_REGISTRY_PATH` is set:
 export DARTA_TEMPLATE_REGISTRY_PATH=/Users/you/work/appdarta-template-registry
 bash scripts/export_public_templates_repo.sh
 ```
+
+## Related repos
+
+| Repo | Purpose |
+|------|---------|
+| [appdarta-framework](https://github.com/hariharasudhand/appdarta-framework) | Darta Platform docs, architecture, releases |
+| [appdarta-vertical-template](https://github.com/hariharasudhand/appdarta-vertical-template) | Start a new domain vertical |
+| [Dhruvia Labs](https://www.dhruvialabs.com/) | Production adoption and support |
 
 ## License
 
