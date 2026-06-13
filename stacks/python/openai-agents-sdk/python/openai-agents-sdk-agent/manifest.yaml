@@ -1,29 +1,30 @@
 apiVersion: appdarta.io/v1
 kind: CodeTemplate
 metadata:
-  name: autogen-agent
-  displayName: AutoGen Agent
-  description: Microsoft AutoGen multi-agent skeleton with DHIL-routed LLM calls.
+  name: openai-agents-sdk-agent
+  displayName: OpenAI Agents SDK Agent
+  description: OpenAI Agents SDK skeleton with DHIL-routed tool calls and handoff
+    hooks.
   version: 1.0.0
   author: Dhruvia Labs
 spec:
   nodeKind: agent
   techStacks:
   - Python
-  patternKind: autogen
+  patternKind: openai-agents-sdk
   files:
   - path: agents/{{ .AgentName }}/agent.py
     template: agent.py.tmpl
-    description: AutoGen assistant agent entrypoint
+    description: OpenAI Agents SDK entrypoint
   intelligence:
     maturityLevel: beta
     complexityFloor: 3
     complexityIdeal: 7
     complexityCeiling: 14
     tags:
-    - autogen
+    - openai-agents-sdk
     - agent
     - python
 templatesApiVersion: '1'
 provenance:
-  signature: sha256:edf21df07957f7e3f87fb9f5564ecefe4302b5e568333e6df7081763212cf27a
+  signature: sha256:8b2b0692b9be988ef683bd1131814fc4920084c678ebd6a21f62dc6ff715727a

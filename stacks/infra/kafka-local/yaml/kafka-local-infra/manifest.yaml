@@ -20,3 +20,5 @@ spec:
   - infrastructure
   - scaffold
 templatesApiVersion: '1'
+provenance:
+  signature: sha256:89a907d20401e7eb5c2b73bb436139f6f762c1d7c7963aabb2ba29bdc7c728d6

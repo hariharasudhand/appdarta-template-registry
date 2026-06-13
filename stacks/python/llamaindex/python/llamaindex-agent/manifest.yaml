@@ -27,3 +27,5 @@ spec:
     - agent
     - python
 templatesApiVersion: '1'
+provenance:
+  signature: sha256:adb713d54a8f2794088035d31a5de482345118b6df13e7952b804f6fd50d0720

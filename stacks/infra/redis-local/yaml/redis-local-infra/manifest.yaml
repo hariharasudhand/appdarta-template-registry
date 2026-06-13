@@ -8,3 +8,5 @@ spec:
   nodeKind: infrastructure
   patternKind: redis-local
 templatesApiVersion: '1'
+provenance:
+  signature: sha256:13e80ddd3e24e972ae020573ba3f46a8b6973708d629a9baeac742b1c395f283

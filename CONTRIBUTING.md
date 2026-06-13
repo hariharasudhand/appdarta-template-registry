@@ -22,6 +22,17 @@ Thank you for helping improve structure-only scaffolds for the Darta community.
 3. `bash scripts/lint-template-bundle.sh <bundle-path>` passes locally.
 4. Run the platform export script and commit the regenerated `index.yaml` if you changed bundles in `appdarta`.
 
+## Unsigned templates (dev only)
+
+Community bundles ship with `provenance.signature` (sha256 content hash) stamped at export.
+The CLI rejects unsigned templates unless you set:
+
+```bash
+export DARTA_ALLOW_UNSIGNED_TEMPLATES=1
+```
+
+Use this **only** for local development when testing draft bundles before promotion.
+
 ## Process
 
 1. Fork and branch from `main`.

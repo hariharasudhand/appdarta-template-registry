@@ -12,6 +12,7 @@ Requires the [Darta Framework](https://github.com/hariharasudhand/appdarta-frame
 - `cli-ingest-ocr` — `stacks/python/cli-ingest/python/cli-ingest-ocr`
 - `crewai-crew` — `stacks/python/crewai-crew/python/crewai-crew`
 - `event-driven-python` — `stacks/python/event-driven/python/event-driven-python`
+- `haystack-agent` — `stacks/python/haystack/python/haystack-agent`
 - `hexagonal-python` — `stacks/python/hexagonal/python/hexagonal-python`
 - `hexagonal-rag-python` — `stacks/python/hexagonal-rag/python/hexagonal-rag-python`
 - `ingestor-web-python` — `stacks/python/ingestor-web/python/ingestor-web-python`
@@ -24,6 +25,7 @@ Requires the [Darta Framework](https://github.com/hariharasudhand/appdarta-frame
 - `nosql-redis-python` — `stacks/python/nosql-redis/python/nosql-redis-python`
 - `opea-embedding-tei-python` — `stacks/python/opea-embedding/python/opea-embedding-tei-python`
 - `opea-llm-vllm-python` — `stacks/python/opea-llm/python/opea-llm-vllm-python`
+- `openai-agents-sdk-agent` — `stacks/python/openai-agents-sdk/python/openai-agents-sdk-agent`
 - `rag-agent-python` — `stacks/python/rag-agent/python/rag-agent-python`
 - `rag-evaluation-harness-python` — `stacks/python/rag-evaluation/python/rag-evaluation-harness-python`
 - `rag-pipeline-agent` — `stacks/python/rag-pipeline-agent/python/rag-pipeline-agent`

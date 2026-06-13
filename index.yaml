@@ -2,7 +2,7 @@ apiVersion: appdarta.io/v1
 kind: TemplateRegistryIndex
 metadata:
   version: 1.0.0
-  generatedAt: '2026-06-13T00:22:57Z'
+  generatedAt: '2026-06-13T09:19:32Z'
 spec:
   templatesApiVersion: '1'
   entries:
@@ -96,6 +96,20 @@ spec:
     status: active
     description: Go HTTP agent with checkpoint-aware state and DHIL-RT policy.
     contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: haystack-agent
+    path: stacks/python/haystack/python/haystack-agent
+    nodeKind: agent
+    patternKind: haystack
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:a5333b2c544cc9bed96b8ab2323edf271de3a157e396c6f867fd0f889ff9c302
+    status: active
+    description: deepset Haystack pipeline skeleton with DHIL-routed LLM and retriever
+      hooks.
+    contributor: Dhruvia Labs
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: hexagonal-go
@@ -217,6 +231,20 @@ spec:
     description: FastAPI orchestrator that fans out work to sub-agents through the
       gateway.
     contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: openai-agents-sdk-agent
+    path: stacks/python/openai-agents-sdk/python/openai-agents-sdk-agent
+    nodeKind: agent
+    patternKind: openai-agents-sdk
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:8b2b0692b9be988ef683bd1131814fc4920084c678ebd6a21f62dc6ff715727a
+    status: active
+    description: OpenAI Agents SDK skeleton with DHIL-routed tool calls and handoff
+      hooks.
+    contributor: Dhruvia Labs
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: rag-agent-go
@@ -437,6 +465,20 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: chromadb-local-infra
+    path: stacks/infra/chromadb-local/yaml/chromadb-local-infra
+    nodeKind: infrastructure
+    patternKind: chromadb-local
+    techStack:
+    - default
+    version: 1.0.0
+    fingerprint: sha256:f599e9380375edb4bc6db9017eb810b608d33ce8134507901fbd6725f3301940
+    status: active
+    description: docker-compose ChromaDB service and env contract for vector-store
+      build dependencies.
+    contributor: Dhruvia Labs
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: kafka-local-infra
     path: stacks/infra/kafka-local/yaml/kafka-local-infra
     nodeKind: infrastructure
@@ -448,6 +490,20 @@ spec:
     status: active
     description: docker-compose Kafka/Redpanda service and env contract for P8.3 event
       streaming.
+    contributor: Dhruvia Labs
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: nats-local-infra
+    path: stacks/infra/nats-local/yaml/nats-local-infra
+    nodeKind: infrastructure
+    patternKind: nats-local
+    techStack:
+    - default
+    version: 1.0.0
+    fingerprint: sha256:5eb7f0a8abf12dfa8800368704050da6c42eaadd8f6932da9cf967c601d7ceae
+    status: active
+    description: docker-compose NATS service and env contract for messaging build
+      dependencies.
     contributor: Dhruvia Labs
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0

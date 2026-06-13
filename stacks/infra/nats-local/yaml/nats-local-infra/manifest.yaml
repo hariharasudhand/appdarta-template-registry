@@ -1,0 +1,25 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: nats-local-infra
+  displayName: NATS local infra scaffold
+  description: docker-compose NATS service and env contract for messaging build dependencies.
+  version: 1.0.0
+spec:
+  nodeKind: infrastructure
+  patternKind: nats-local
+  files:
+  - path: docker-compose.yml
+    template: docker-compose.yml.tmpl
+    description: Local NATS docker-compose fragment
+  - path: .env.example
+    template: env.example.fragment.tmpl
+    description: NATS env contract fragment
+  tags:
+  - nats
+  - messaging
+  - infrastructure
+  - scaffold
+templatesApiVersion: '1'
+provenance:
+  signature: sha256:5eb7f0a8abf12dfa8800368704050da6c42eaadd8f6932da9cf967c601d7ceae
