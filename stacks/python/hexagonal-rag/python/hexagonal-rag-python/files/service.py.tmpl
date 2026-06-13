@@ -1,7 +1,0 @@
-from .dto import AskRequest, AskResponse
-from .retriever import search
-
-
-async def execute(payload: AskRequest) -> AskResponse:
-    _ = await search(payload.query)
-    return AskResponse(answer="")

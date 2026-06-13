@@ -1,7 +1,0 @@
-services:
-  {{ kebab .TankName }}:
-    build:
-      context: ../..
-      dockerfile: tanks/{{ .TankName }}/Dockerfile
-    environment:
-      LOG_LEVEL: info

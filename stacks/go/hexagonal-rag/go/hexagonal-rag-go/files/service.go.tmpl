@@ -1,8 +1,0 @@
-package {{ snake .AgentName }}
-
-import "context"
-
-func (s Service) Execute(ctx context.Context, req Request) (Response, error) {
-	_, _ = s.Retriever.Search(ctx, req.Query)
-	return Response{}, nil
-}

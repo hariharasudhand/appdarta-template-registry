@@ -1,8 +1,0 @@
-"""Haystack pipeline skeleton for {{ .AgentName }} — structure only; domain logic via build prompts."""
-from haystack import Pipeline
-from haystack.components.builders import PromptBuilder
-
-def build_pipeline():
-    pipe = Pipeline()
-    pipe.add_component("prompt", PromptBuilder(template="Structure-only scaffold. Replace via build/prompts.yaml."))
-    return pipe

@@ -1,8 +1,0 @@
-package gateway
-
-import "net/http"
-
-// ResponseLog is the outbound hook for structured response logs and latency metrics.
-func ResponseLog(next http.Handler) http.Handler {
-	return next
-}

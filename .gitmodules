@@ -1,18 +1,15 @@
-# Per-tech submodule scaffold (monorepo-first; enable when split repos exist).
-# CLI reads umbrella index.yaml only; submodule paths stay under stacks/{tech}/.
-#
-# [submodule "stacks/go"]
-# 	path = stacks/go
-# 	url = https://github.com/hariharasudhand/appdarta-templates-go.git
-# [submodule "stacks/python"]
-# 	path = stacks/python
-# 	url = https://github.com/hariharasudhand/appdarta-templates-python.git
-# [submodule "stacks/java"]
-# 	path = stacks/java
-# 	url = https://github.com/hariharasudhand/appdarta-templates-java.git
-# [submodule "stacks/typescript"]
-# 	path = stacks/typescript
-# 	url = https://github.com/hariharasudhand/appdarta-templates-typescript.git
-# [submodule "stacks/infra"]
-# 	path = stacks/infra
-# 	url = https://github.com/hariharasudhand/appdarta-templates-infra.git
+[submodule "stacks/go"]
+	path = stacks/go
+	url = https://github.com/hariharasudhand/appdarta-templates-go.git
+[submodule "stacks/python"]
+	path = stacks/python
+	url = https://github.com/hariharasudhand/appdarta-templates-python.git
+[submodule "stacks/java"]
+	path = stacks/java
+	url = https://github.com/hariharasudhand/appdarta-templates-java.git
+[submodule "stacks/typescript"]
+	path = stacks/typescript
+	url = https://github.com/hariharasudhand/appdarta-templates-typescript.git
+[submodule "stacks/infra"]
+	path = stacks/infra
+	url = https://github.com/hariharasudhand/appdarta-templates-infra.git

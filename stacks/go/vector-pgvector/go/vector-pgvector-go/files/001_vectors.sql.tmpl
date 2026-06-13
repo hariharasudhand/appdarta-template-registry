@@ -1,5 +1,0 @@
-CREATE TABLE IF NOT EXISTS {{ snake .TankName }} (
-  id TEXT PRIMARY KEY,
-  content TEXT NOT NULL,
-  embedding VECTOR({{ .EmbeddingDim }})
-);
