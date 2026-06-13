@@ -2,7 +2,7 @@ apiVersion: appdarta.io/v1
 kind: TemplateRegistryIndex
 metadata:
   version: 1.0.0
-  generatedAt: '2026-06-13T09:19:32Z'
+  generatedAt: '2026-06-13T11:34:06Z'
 spec:
   templatesApiVersion: '1'
   entries:
@@ -247,6 +247,20 @@ spec:
     contributor: Dhruvia Labs
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: pydantic-ai-agent
+    path: stacks/python/pydantic-ai/python/pydantic-ai-agent
+    nodeKind: agent
+    patternKind: pydantic-ai
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:a05aa75c72d08f09bcd923e54397df353a025713733ce23eeaae1a670b65d7a7
+    status: active
+    description: PydanticAI agent skeleton with DHIL-routed tool calls and structured
+      outputs.
+    contributor: Dhruvia Labs
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: rag-agent-go
     path: stacks/go/rag-agent/go/rag-agent-go
     nodeKind: agent
@@ -466,7 +480,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: chromadb-local-infra
-    path: stacks/infra/chromadb-local/yaml/chromadb-local-infra
+    path: stacks/infra/chromadb-local/infra/chromadb-local-infra
     nodeKind: infrastructure
     patternKind: chromadb-local
     techStack:
@@ -480,7 +494,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: kafka-local-infra
-    path: stacks/infra/kafka-local/yaml/kafka-local-infra
+    path: stacks/infra/kafka-local/infra/kafka-local-infra
     nodeKind: infrastructure
     patternKind: kafka-local
     techStack:
@@ -494,7 +508,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: nats-local-infra
-    path: stacks/infra/nats-local/yaml/nats-local-infra
+    path: stacks/infra/nats-local/infra/nats-local-infra
     nodeKind: infrastructure
     patternKind: nats-local
     techStack:
@@ -508,7 +522,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: postgres-local-infra
-    path: stacks/infra/postgres-local/yaml/postgres-local-infra
+    path: stacks/infra/postgres-local/infra/postgres-local-infra
     nodeKind: infrastructure
     patternKind: postgres-local
     techStack:
@@ -522,7 +536,7 @@ spec:
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: redis-local-infra
-    path: stacks/infra/redis-local/yaml/redis-local-infra
+    path: stacks/infra/redis-local/infra/redis-local-infra
     nodeKind: infrastructure
     patternKind: redis-local
     techStack:

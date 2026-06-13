@@ -26,6 +26,7 @@ Requires the [Darta Framework](https://github.com/hariharasudhand/appdarta-frame
 - `opea-embedding-tei-python` — `stacks/python/opea-embedding/python/opea-embedding-tei-python`
 - `opea-llm-vllm-python` — `stacks/python/opea-llm/python/opea-llm-vllm-python`
 - `openai-agents-sdk-agent` — `stacks/python/openai-agents-sdk/python/openai-agents-sdk-agent`
+- `pydantic-ai-agent` — `stacks/python/pydantic-ai/python/pydantic-ai-agent`
 - `rag-agent-python` — `stacks/python/rag-agent/python/rag-agent-python`
 - `rag-evaluation-harness-python` — `stacks/python/rag-evaluation/python/rag-evaluation-harness-python`
 - `rag-pipeline-agent` — `stacks/python/rag-pipeline-agent/python/rag-pipeline-agent`
