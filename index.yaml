@@ -2,10 +2,23 @@ apiVersion: appdarta.io/v1
 kind: TemplateRegistryIndex
 metadata:
   version: 1.0.0
-  generatedAt: '2026-06-12T23:50:04Z'
+  generatedAt: '2026-06-13T00:22:57Z'
 spec:
   templatesApiVersion: '1'
   entries:
+  - name: autogen-agent
+    path: stacks/python/autogen/python/autogen-agent
+    nodeKind: agent
+    patternKind: autogen
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:edf21df07957f7e3f87fb9f5564ecefe4302b5e568333e6df7081763212cf27a
+    status: active
+    description: Microsoft AutoGen multi-agent skeleton with DHIL-routed LLM calls.
+    contributor: Dhruvia Labs
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: cqrs-go
     path: stacks/go/cqrs/go/cqrs-go
     nodeKind: agent
@@ -162,6 +175,20 @@ spec:
     status: active
     description: LangChain agent with LiteLLM-backed LLM - all AI calls through DHIL-RT.
     contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: llamaindex-agent
+    path: stacks/python/llamaindex/python/llamaindex-agent
+    nodeKind: agent
+    patternKind: llamaindex
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:adb713d54a8f2794088035d31a5de482345118b6df13e7952b804f6fd50d0720
+    status: active
+    description: LlamaIndex query engine skeleton wired for DHIL-routed embeddings
+      and LLM.
+    contributor: Dhruvia Labs
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: ml-embed-wrapper
@@ -329,6 +356,19 @@ spec:
     status: active
     description: Go saga coordinator for distributed step orchestration.
     contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: semantic-kernel-agent
+    path: stacks/python/semantic-kernel/python/semantic-kernel-agent
+    nodeKind: agent
+    patternKind: semantic-kernel
+    techStack:
+    - Python
+    version: 1.0.0
+    fingerprint: sha256:d9b1607a6ca9bc98777b6f44d57b9837000428cc53f09e96e1617258cd7c9ef0
+    status: active
+    description: Semantic Kernel planner/handler skeleton with DHIL-routed model calls.
+    contributor: Dhruvia Labs
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
   - name: simple-service-go

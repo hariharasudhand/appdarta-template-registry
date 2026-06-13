@@ -1,0 +1,29 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: llamaindex-agent
+  displayName: LlamaIndex Agent
+  description: LlamaIndex query engine skeleton wired for DHIL-routed embeddings and
+    LLM.
+  version: 1.0.0
+  author: Dhruvia Labs
+spec:
+  nodeKind: agent
+  techStacks:
+  - Python
+  patternKind: llamaindex
+  files:
+  - path: agents/{{ .AgentName }}/query_engine.py
+    template: query_engine.py.tmpl
+    description: LlamaIndex query engine entrypoint
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 3
+    complexityIdeal: 7
+    complexityCeiling: 14
+    tags:
+    - llamaindex
+    - rag
+    - agent
+    - python
+templatesApiVersion: '1'

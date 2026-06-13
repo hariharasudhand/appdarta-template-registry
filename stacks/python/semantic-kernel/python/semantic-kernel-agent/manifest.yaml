@@ -1,0 +1,27 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: semantic-kernel-agent
+  displayName: Semantic Kernel Agent
+  description: Semantic Kernel planner/handler skeleton with DHIL-routed model calls.
+  version: 1.0.0
+  author: Dhruvia Labs
+spec:
+  nodeKind: agent
+  techStacks:
+  - Python
+  patternKind: semantic-kernel
+  files:
+  - path: agents/{{ .AgentName }}/kernel.py
+    template: kernel.py.tmpl
+    description: Semantic Kernel setup and plugin registration
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 3
+    complexityIdeal: 7
+    complexityCeiling: 14
+    tags:
+    - semantic-kernel
+    - agent
+    - python
+templatesApiVersion: '1'

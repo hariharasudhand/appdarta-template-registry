@@ -1,0 +1,27 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: autogen-agent
+  displayName: AutoGen Agent
+  description: Microsoft AutoGen multi-agent skeleton with DHIL-routed LLM calls.
+  version: 1.0.0
+  author: Dhruvia Labs
+spec:
+  nodeKind: agent
+  techStacks:
+  - Python
+  patternKind: autogen
+  files:
+  - path: agents/{{ .AgentName }}/agent.py
+    template: agent.py.tmpl
+    description: AutoGen assistant agent entrypoint
+  intelligence:
+    maturityLevel: beta
+    complexityFloor: 3
+    complexityIdeal: 7
+    complexityCeiling: 14
+    tags:
+    - autogen
+    - agent
+    - python
+templatesApiVersion: '1'

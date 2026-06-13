@@ -8,6 +8,7 @@ Requires the [Darta Framework](https://github.com/hariharasudhand/appdarta-frame
 ## Bundles
 
 - `agent-runtime-docker-python` — `stacks/python/runtime-docker/python/agent-runtime-docker-python`
+- `autogen-agent` — `stacks/python/autogen/python/autogen-agent`
 - `cli-ingest-ocr` — `stacks/python/cli-ingest/python/cli-ingest-ocr`
 - `crewai-crew` — `stacks/python/crewai-crew/python/crewai-crew`
 - `event-driven-python` — `stacks/python/event-driven/python/event-driven-python`
@@ -15,6 +16,7 @@ Requires the [Darta Framework](https://github.com/hariharasudhand/appdarta-frame
 - `hexagonal-rag-python` — `stacks/python/hexagonal-rag/python/hexagonal-rag-python`
 - `ingestor-web-python` — `stacks/python/ingestor-web/python/ingestor-web-python`
 - `langchain-agent` — `stacks/python/langchain-agent/python/langchain-agent`
+- `llamaindex-agent` — `stacks/python/llamaindex/python/llamaindex-agent`
 - `mcp-server-python` — `stacks/python/mcp-server/python/mcp-server-python`
 - `multi-agent-orchestrator` — `stacks/python/multi-agent-orchestrator/python/multi-agent-orchestrator`
 - `multi-agent-orchestrator-python` — `stacks/python/multi-agent-orchestrator/python/multi-agent-orchestrator-python`
@@ -25,6 +27,7 @@ Requires the [Darta Framework](https://github.com/hariharasudhand/appdarta-frame
 - `rag-agent-python` — `stacks/python/rag-agent/python/rag-agent-python`
 - `rag-evaluation-harness-python` — `stacks/python/rag-evaluation/python/rag-evaluation-harness-python`
 - `rag-pipeline-agent` — `stacks/python/rag-pipeline-agent/python/rag-pipeline-agent`
+- `semantic-kernel-agent` — `stacks/python/semantic-kernel/python/semantic-kernel-agent`
 - `simple-service-python` — `stacks/python/simple-service/python/simple-service-python`
 - `sql-postgres-python` — `stacks/python/sql-postgres/python/sql-postgres-python`
 - `stateful-graph-workflow-python` — `stacks/python/stateful-graph-workflow/python/stateful-graph-workflow-python`
