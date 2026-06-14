@@ -2,7 +2,7 @@ apiVersion: appdarta.io/v1
 kind: TemplateRegistryIndex
 metadata:
   version: 1.0.0
-  generatedAt: '2026-06-13T11:34:06Z'
+  generatedAt: '2026-06-13T20:26:40Z'
 spec:
   templatesApiVersion: '1'
   entries:
@@ -13,7 +13,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:edf21df07957f7e3f87fb9f5564ecefe4302b5e568333e6df7081763212cf27a
+    fingerprint: sha256:7979ebdf506902a2b7a14ef4d2c3ecda272eec5030222762337593af2b7f82de
     status: active
     description: Microsoft AutoGen multi-agent skeleton with DHIL-routed LLM calls.
     contributor: Dhruvia Labs
@@ -105,7 +105,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:a5333b2c544cc9bed96b8ab2323edf271de3a157e396c6f867fd0f889ff9c302
+    fingerprint: sha256:3ec0c59fe4ec7a677e979306f1c26b7ce46ecf9c86018336414ac64e989418c8
     status: active
     description: deepset Haystack pipeline skeleton with DHIL-routed LLM and retriever
       hooks.
@@ -198,7 +198,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:adb713d54a8f2794088035d31a5de482345118b6df13e7952b804f6fd50d0720
+    fingerprint: sha256:068564073a26a90b791be9b30b2075a0dc0ea0fd0d9addf06f3361e2791d782c
     status: active
     description: LlamaIndex query engine skeleton wired for DHIL-routed embeddings
       and LLM.
@@ -240,7 +240,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:8b2b0692b9be988ef683bd1131814fc4920084c678ebd6a21f62dc6ff715727a
+    fingerprint: sha256:7a395d4ec0b80e2317452e323451c25842de1d9690146ac305a02fcffa9e5550
     status: active
     description: OpenAI Agents SDK skeleton with DHIL-routed tool calls and handoff
       hooks.
@@ -254,7 +254,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:a05aa75c72d08f09bcd923e54397df353a025713733ce23eeaae1a670b65d7a7
+    fingerprint: sha256:a7dcfdff926b9279a8e39406aa47873792a79811f7ee22bef7a1a88532590471
     status: active
     description: PydanticAI agent skeleton with DHIL-routed tool calls and structured
       outputs.
@@ -407,7 +407,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:d9b1607a6ca9bc98777b6f44d57b9837000428cc53f09e96e1617258cd7c9ef0
+    fingerprint: sha256:ccf4c776d3689440dd281437f91accd0254d9cf890f2f23b0c6fe2450dbcd191
     status: active
     description: Semantic Kernel planner/handler skeleton with DHIL-routed model calls.
     contributor: Dhruvia Labs
@@ -486,7 +486,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:f599e9380375edb4bc6db9017eb810b608d33ce8134507901fbd6725f3301940
+    fingerprint: sha256:654713d8d5d81c29a0dcc5e379a9fdd6fb35b4349d4b2590a1ecb6cdbefa6c76
     status: active
     description: docker-compose ChromaDB service and env contract for vector-store
       build dependencies.
@@ -500,7 +500,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:89a907d20401e7eb5c2b73bb436139f6f762c1d7c7963aabb2ba29bdc7c728d6
+    fingerprint: sha256:288f7a5138787c0a86fc5d962848ebd6c9efab3757ca07af6560ae17bd6bb175
     status: active
     description: docker-compose Kafka/Redpanda service and env contract for P8.3 event
       streaming.
@@ -514,7 +514,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:5eb7f0a8abf12dfa8800368704050da6c42eaadd8f6932da9cf967c601d7ceae
+    fingerprint: sha256:2f483e6e9ff34c87d2317381467e9754d25a2db290d74440429f9ec03b898413
     status: active
     description: docker-compose NATS service and env contract for messaging build
       dependencies.
@@ -528,7 +528,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:9bbeecaa04103f367d346d162e442b3760fa38e926b1ccaaa6e8f75d1992b2ed
+    fingerprint: sha256:5aac70932c40b3e3485b8287776de63b89e643623fd60083035a8d037786e15f
     status: active
     description: docker-compose postgres service, env contract, and starter migration
       for Analyze build-dependency assessment.
@@ -542,7 +542,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:13e80ddd3e24e972ae020573ba3f46a8b6973708d629a9baeac742b1c395f283
+    fingerprint: sha256:7abca7d0f05652e1b1ce66440360958b0af52df4cfc2bfccd55429ca6cdb56ce
     status: active
     description: ''
     contributor: Dhruvia Labs
