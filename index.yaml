@@ -439,6 +439,19 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: go-dockerfile
+    path: stacks/go/go-dockerfile/go/go-dockerfile
+    nodeKind: agent
+    patternKind: simple-service
+    techStack:
+    - Go
+    version: 1.1.0
+    fingerprint: sha256:go-dockerfile-v1.1.0
+    status: active
+    description: Multi-stage Go Dockerfile + compose fragment + entrypoint ./cmd/{{ .AgentName }}
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: rest-gateway
     path: stacks/go/rest-gateway/go/rest-gateway
     nodeKind: gateway
