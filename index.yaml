@@ -828,6 +828,20 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: tank-postgres-dockerfile
+    path: stacks/go/tank-postgres-dockerfile/go/tank-postgres-dockerfile
+    nodeKind: tank
+    patternKind: sql-connector
+    techStack:
+    - PostgreSQL
+    - postgres
+    version: 1.0.0
+    fingerprint: sha256:tank-postgres-dockerfile-v1
+    status: active
+    description: PostgreSQL service Dockerfile + compose fragment for tank packaging-scripts
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: tank-runtime-docker-go
     path: stacks/go/runtime-docker/go/tank-runtime-docker-go
     nodeKind: tank
