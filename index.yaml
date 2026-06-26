@@ -13,7 +13,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:7979ebdf506902a2b7a14ef4d2c3ecda272eec5030222762337593af2b7f82de
+    fingerprint: sha256:056e8de9276e4df8bd590bff3b2121c90543d4346d10ff5e85025a1718c168d7
     status: active
     description: Microsoft AutoGen multi-agent skeleton with DHIL-routed LLM calls.
     contributor: Dhruvia Labs
@@ -105,7 +105,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:3ec0c59fe4ec7a677e979306f1c26b7ce46ecf9c86018336414ac64e989418c8
+    fingerprint: sha256:648a02a39886e335090230cd6b305bc29f8932aed087ea1e24d312ce7b63693b
     status: active
     description: deepset Haystack pipeline skeleton with DHIL-routed LLM and retriever
       hooks.
@@ -198,7 +198,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:068564073a26a90b791be9b30b2075a0dc0ea0fd0d9addf06f3361e2791d782c
+    fingerprint: sha256:cc929c5f3045de40e88451a4a63e35aeb87663cf03dfcd56da544eb6e5d70599
     status: active
     description: LlamaIndex query engine skeleton wired for DHIL-routed embeddings
       and LLM.
@@ -240,7 +240,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:7a395d4ec0b80e2317452e323451c25842de1d9690146ac305a02fcffa9e5550
+    fingerprint: sha256:55e68d464ad70b11ced8b4791d29d4d2eab10675214f64405f12cfe2a9d00036
     status: active
     description: OpenAI Agents SDK skeleton with DHIL-routed tool calls and handoff
       hooks.
@@ -254,7 +254,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:a7dcfdff926b9279a8e39406aa47873792a79811f7ee22bef7a1a88532590471
+    fingerprint: sha256:0e3bf01d106e1405e71c1ceaa91726158ef10207509d562c65003b2d3e15cea9
     status: active
     description: PydanticAI agent skeleton with DHIL-routed tool calls and structured
       outputs.
@@ -407,7 +407,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:ccf4c776d3689440dd281437f91accd0254d9cf890f2f23b0c6fe2450dbcd191
+    fingerprint: sha256:9defe5f9a1386997c5dbca75052829d64c9b04a996954940fb1aa582033c13b4
     status: active
     description: Semantic Kernel planner/handler skeleton with DHIL-routed model calls.
     contributor: Dhruvia Labs
@@ -446,9 +446,10 @@ spec:
     techStack:
     - Go
     version: 1.1.0
-    fingerprint: sha256:go-dockerfile-v1.1.0
+    fingerprint: sha256:10d5eaed4163e2f82dab3704b64c7d43c5cb4baec478f2308b88b2c3404c9be3
     status: active
-    description: Multi-stage Go Dockerfile + compose fragment + entrypoint ./cmd/{{ .AgentName }}
+    description: Multi-stage Go Dockerfile + compose fragment + entrypoint ./cmd/{{
+      .AgentName }}
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -459,7 +460,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:a09a59a2d92c27da3e17a26d67cbfd5ca3673c238bb58939245b4a0fb4c4c5d4
+    fingerprint: sha256:90e9cea9767a8df7fc24fc055e5a42d64619143c0cb61153c89ea7bcc5135a10
     status: active
     description: Shared AppDarta gateway scaffold with routing, handler folders, policy
       hooks, and config handoff.
@@ -499,7 +500,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:654713d8d5d81c29a0dcc5e379a9fdd6fb35b4349d4b2590a1ecb6cdbefa6c76
+    fingerprint: sha256:72d52f625d5f292d82e34822111877f8a27e027ebf36bd3bb2ab8fdbd000e2c7
     status: active
     description: docker-compose ChromaDB service and env contract for vector-store
       build dependencies.
@@ -513,7 +514,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:288f7a5138787c0a86fc5d962848ebd6c9efab3757ca07af6560ae17bd6bb175
+    fingerprint: sha256:628407de9a953ab492a2d360ed96c148c6baf86540e2f2fabb504ed6ab0778e1
     status: active
     description: docker-compose Kafka/Redpanda service and env contract for P8.3 event
       streaming.
@@ -527,7 +528,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:2f483e6e9ff34c87d2317381467e9754d25a2db290d74440429f9ec03b898413
+    fingerprint: sha256:af60b3c8644594c822b89882fbf615258a679ed3fbe56f455d4089b6d1359153
     status: active
     description: docker-compose NATS service and env contract for messaging build
       dependencies.
@@ -541,7 +542,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:5aac70932c40b3e3485b8287776de63b89e643623fd60083035a8d037786e15f
+    fingerprint: sha256:1f6e1237131ad858605fb539e07d0179729fb69ef3124a4ed72a0aca0a094fb6
     status: active
     description: docker-compose postgres service, env contract, and starter migration
       for Analyze build-dependency assessment.
@@ -555,7 +556,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:7abca7d0f05652e1b1ce66440360958b0af52df4cfc2bfccd55429ca6cdb56ce
+    fingerprint: sha256:91acc0b32bdf66027676a42eb06f1f369e4f29cde61c3d8ff6960f1ee45aa637
     status: active
     description: ''
     contributor: Dhruvia Labs
@@ -612,9 +613,11 @@ spec:
     version: 1.0.0
     fingerprint: sha256:8534301d40f262fe1780a331f178dedda512f163f88ca2e4b7767f2c2bf0deb9
     status: active
-    description: "Standalone runtime module executing TankConnectorConfig.write-back\
-      \ operations. Wires approval-gate trigger to POST /callbacks/approval completion.\
-      \ P8.1 deliverable \u2014 Industry_readiness_plan Phase 5.\n"
+    description: 'Standalone runtime module executing TankConnectorConfig.write-back
+      operations. Wires approval-gate trigger to POST /callbacks/approval completion.
+      P8.1 deliverable — Industry_readiness_plan Phase 5.
+
+      '
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -725,10 +728,12 @@ spec:
     version: 1.0.0
     fingerprint: sha256:1b30f4e6474c83f8bf839d11494c4ccf5e4d68e4e9352db3defa3478fab32b99
     status: active
-    description: "CLI-driven ingestor for document files (PDF, Word, image). Optionally\
-      \ invokes OCR on scanned pages before persisting extracted text. RAG synthesis\
-      \ wiring deferred to P3 (cli-ingest-ocr-rag alias noted below). Default for\
-      \ document-pdf integration class (plan \xA77.3).\n"
+    description: 'CLI-driven ingestor for document files (PDF, Word, image). Optionally
+      invokes OCR on scanned pages before persisting extracted text. RAG synthesis
+      wiring deferred to P3 (cli-ingest-ocr-rag alias noted below). Default for document-pdf
+      integration class (plan §7.3).
+
+      '
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -741,9 +746,11 @@ spec:
     version: 1.0.0
     fingerprint: sha256:0a0bbd730d7f5b23376fa9f3ee3c73244405c4481c43cd86aabac3834e8d072b
     status: active
-    description: "Consumer sidecar for TankConnectorConfig.consumer \u2014 poll/consume\
-      \ events, transform, upsert to tank, DLQ on poison messages, offset commit,\
-      \ metrics. P8.3 deliverable.\n"
+    description: 'Consumer sidecar for TankConnectorConfig.consumer — poll/consume
+      events, transform, upsert to tank, DLQ on poison messages, offset commit, metrics.
+      P8.3 deliverable.
+
+      '
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -834,10 +841,12 @@ spec:
     version: 1.0.0
     fingerprint: sha256:8a342ca0b6a464249c69a19061553544830f637dc497be04785d71d20eb9cb62
     status: active
-    description: "Configures a tank to receive inbound webhook pushes from external\
-      \ systems. Uses TankConnectorConfig.push with HMAC-SHA256 verification. Context-service\
-      \ exposes POST /tanks/{name}/webhook/{path} automatically. Default for webhook-event\
-      \ integration class (plan \xA77.3).\n"
+    description: 'Configures a tank to receive inbound webhook pushes from external
+      systems. Uses TankConnectorConfig.push with HMAC-SHA256 verification. Context-service
+      exposes POST /tanks/{name}/webhook/{path} automatically. Default for webhook-event
+      integration class (plan §7.3).
+
+      '
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -849,7 +858,7 @@ spec:
     - PostgreSQL
     - postgres
     version: 1.0.0
-    fingerprint: sha256:tank-postgres-dockerfile-v1
+    fingerprint: sha256:1ec0db5628edbfdc6e9c28aa1d709182f346288deea8db9ff96feecd55ad8130
     status: active
     description: PostgreSQL service Dockerfile + compose fragment for tank packaging-scripts
     contributor: AppDarta Platform
@@ -1001,8 +1010,10 @@ spec:
     version: 1.0.0
     fingerprint: sha256:be8f23cc87d72a92eb1db422b3c144acb80f07ed00f30460cbecb52f6827bd3a
     status: active
-    description: "Operator UI for EvalSpec runs \u2014 criterion scores, weighted\
-      \ pass/fail, trend chart. P8.2 deliverable.\n"
+    description: 'Operator UI for EvalSpec runs — criterion scores, weighted pass/fail,
+      trend chart. P8.2 deliverable.
+
+      '
     contributor: Dhruvia Labs
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -1032,9 +1043,11 @@ spec:
     version: 1.0.0
     fingerprint: sha256:e8ba543e683a9ab1eeef929aedfab157c368b0f18141b6f7d66e5592641b79ad
     status: active
-    description: "Operator console module for human-in-the-loop approval queues. Overlays\
-      \ react-app-shell with queue list, item detail, and approve/reject/clear actions\
-      \ posting to POST /callbacks/approval. Plan \xA711 P2 deliverable.\n"
+    description: 'Operator console module for human-in-the-loop approval queues. Overlays
+      react-app-shell with queue list, item detail, and approve/reject/clear actions
+      posting to POST /callbacks/approval. Plan §11 P2 deliverable.
+
+      '
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -1094,10 +1107,23 @@ spec:
     - TypeScript
     - Vite
     version: 1.0.0
-    fingerprint: sha256:00a3bb6b9314c325f842cedf42a8501f2044417839835a0a888a553fd90aed0e
+    fingerprint: sha256:79f9238ee7c10ac5d2acf278ea2146f42b7e16e2ae5eba9db690605b0cb0a1d6
     status: active
     description: Vite + React SPA with routing, typed gateway API client, and layout
       scaffold.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: react-dockerfile
+    path: stacks/typescript/spa/react/react-dockerfile
+    nodeKind: ui
+    patternKind: simple-service
+    techStack:
+    - React
+    version: 1.0.0
+    fingerprint: sha256:81aee6a562f676e83fce24c9603ff5b68d467ff0189c2f85b4f773d30b8beb3b
+    status: active
+    description: Multi-stage React Dockerfile + compose fragment for UI packaging
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -1126,9 +1152,9 @@ spec:
     version: 1.0.0
     fingerprint: sha256:323943ba765c28498240b114b9984b17b746c8b43951a531b60e2f2cc361d793
     status: active
-    description: "Root workspace scaffold: Makefile, stitched docker-compose.yml,\
-      \ .env.example, .gitignore, README. Reads full topology \u2014 all agents, tanks,\
-      \ gateway, and UI nodes."
+    description: 'Root workspace scaffold: Makefile, stitched docker-compose.yml,
+      .env.example, .gitignore, README. Reads full topology — all agents, tanks, gateway,
+      and UI nodes.'
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
