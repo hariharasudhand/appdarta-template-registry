@@ -1107,7 +1107,7 @@ spec:
     - TypeScript
     - Vite
     version: 1.0.0
-    fingerprint: sha256:79f9238ee7c10ac5d2acf278ea2146f42b7e16e2ae5eba9db690605b0cb0a1d6
+    fingerprint: sha256:37aa7dd979e7e6802735ce69c08a7b360db6cfa49f1a5825a5eeea01c5e849fe
     status: active
     description: Vite + React SPA with routing, typed gateway API client, and layout
       scaffold.
