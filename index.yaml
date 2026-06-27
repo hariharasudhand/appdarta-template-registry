@@ -320,7 +320,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:9e2ebd4b668b052aad21b7df756c15aa09aba3a4c8a5912f56344bb426ddc19b
+    fingerprint: sha256:691727bb10a49a267350fb37d2c1cf214fb903a95f0aed1a3e66a5a12e246c7c
     status: active
     description: 'Build-time runtime overlay for Go agents: Dockerfile and docker-compose
       service.'
@@ -857,7 +857,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:03595afc306d548aa447a458c324887d6c04134ba5f0d3774252b4a7e938fdad
+    fingerprint: sha256:77f6b3029c753fcc1e68b4678f0cedcd7646fdf86d7939702bbd14870b376a6a
     status: active
     description: 'Build-time runtime overlay for Go tanks: Dockerfile and docker-compose
       service.'
@@ -1023,7 +1023,7 @@ spec:
     techStack:
     - React
     version: 1.0.0
-    fingerprint: sha256:a0eeadf42bae13a4b45ab1fbb43beebc803fce19f2c6f5800f6c1db9a572b6d6
+    fingerprint: sha256:19703713ebdf052e291c1bb98598df5f5732ce1a861505ed2c66f54b67402417
     status: active
     description: 'React SPA shell: Layout, vite env types, and a dashboard page that
       calls apiClient'
