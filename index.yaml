@@ -2,7 +2,7 @@ apiVersion: appdarta.io/v1
 kind: TemplateRegistryIndex
 metadata:
   version: 1.0.0
-  generatedAt: '2026-06-13T20:26:40Z'
+  generatedAt: '2026-06-26T21:22:51Z'
 spec:
   templatesApiVersion: '1'
   entries:
@@ -92,7 +92,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:8570abb1ba91cfaae1abd85db1e85eeb487db73164490af0b3ba13505d88e9e1
+    fingerprint: sha256:a202147c7fc64742d22140a30a672d4118589187cf73bf7ae726ea8de66c2d75
     status: active
     description: Go HTTP agent with checkpoint-aware state and DHIL-RT policy.
     contributor: AppDarta Platform
@@ -413,6 +413,20 @@ spec:
     contributor: Dhruvia Labs
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: go-dockerfile
+    path: stacks/go/simple-service/go/go-dockerfile
+    nodeKind: agent
+    patternKind: simple-service
+    techStack:
+    - Go
+    version: 1.1.0
+    fingerprint: sha256:96a702cd032024f5e18f4dbeae6954034fdd7398a23424fd27216f7ef46a7d49
+    status: active
+    description: 'Multi-stage Go Dockerfile + compose fragment + entrypoint: ./cmd/{{
+      .AgentName }}'
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: simple-service-go
     path: stacks/go/simple-service/go/simple-service-go
     nodeKind: agent
@@ -439,20 +453,6 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
-  - name: go-dockerfile
-    path: stacks/go/go-dockerfile/go/go-dockerfile
-    nodeKind: agent
-    patternKind: simple-service
-    techStack:
-    - Go
-    version: 1.1.0
-    fingerprint: sha256:10d5eaed4163e2f82dab3704b64c7d43c5cb4baec478f2308b88b2c3404c9be3
-    status: active
-    description: Multi-stage Go Dockerfile + compose fragment + entrypoint ./cmd/{{
-      .AgentName }}
-    contributor: AppDarta Platform
-    templatesApiVersion: '1'
-    dartaMinVersion: 0.1.0
   - name: rest-gateway
     path: stacks/go/rest-gateway/go/rest-gateway
     nodeKind: gateway
@@ -460,10 +460,10 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:90e9cea9767a8df7fc24fc055e5a42d64619143c0cb61153c89ea7bcc5135a10
+    fingerprint: sha256:0b0af4fdd67708a67aa8fd629ab8032c6d1b60335558b7d2e9c54ac12c6b6d8c
     status: active
-    description: Shared AppDarta gateway scaffold with routing, handler folders, policy
-      hooks, and config handoff.
+    description: 'GW-* compliant gateway scaffold: mounts routes from handler YAMLs,
+      real middleware'
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -628,7 +628,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:47ab4197749b5a9b976f9e3ebf356b1915668ff72df730fb2e698d1a6b48df51
+    fingerprint: sha256:192ee19cc0d25ccbe8a9e2a7fafbde36374e353209b6170d36e6c3efa0f470df
     status: active
     description: Model Context Protocol server in Go. Tools, Resources handlers with
       JSON-RPC 2.0 transport over stdio or HTTP.
@@ -850,20 +850,6 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
-  - name: tank-postgres-dockerfile
-    path: stacks/go/tank-postgres-dockerfile/go/tank-postgres-dockerfile
-    nodeKind: tank
-    patternKind: sql-connector
-    techStack:
-    - PostgreSQL
-    - postgres
-    version: 1.0.0
-    fingerprint: sha256:1ec0db5628edbfdc6e9c28aa1d709182f346288deea8db9ff96feecd55ad8130
-    status: active
-    description: PostgreSQL service Dockerfile + compose fragment for tank packaging-scripts
-    contributor: AppDarta Platform
-    templatesApiVersion: '1'
-    dartaMinVersion: 0.1.0
   - name: tank-runtime-docker-go
     path: stacks/go/runtime-docker/go/tank-runtime-docker-go
     nodeKind: tank
@@ -906,6 +892,20 @@ spec:
     fingerprint: sha256:2693f4a62c3f70324e16ba4f97a6563618a8ca25ec4e43354c8acb839d1d3996
     status: active
     description: Build-time runtime overlay for local process execution.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: tank-postgres-dockerfile
+    path: stacks/postgresql/sql-connector/postgresql/tank-postgres-dockerfile
+    nodeKind: tank
+    patternKind: sql-connector
+    techStack:
+    - PostgreSQL
+    - postgres
+    version: 1.0.0
+    fingerprint: sha256:e404c1c9022376e7f6b77a0d45750ed655af59c72504e54088cd8b766886ff62
+    status: active
+    description: PostgreSQL service Dockerfile + compose fragment for tank packaging
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
@@ -974,6 +974,22 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: tank-python-dockerfile
+    path: stacks/python/vector-connector/python/tank-python-dockerfile
+    nodeKind: tank
+    patternKind: vector-connector
+    techStack:
+    - Python
+    - ChromaDB
+    - chromadb
+    version: 1.0.0
+    fingerprint: sha256:52129737f17fc1260fdb68469fe78f88cd7943fb8e6a808f82e0030bc465aa1f
+    status: active
+    description: Python/ChromaDB tank Dockerfile + compose fragment + project build
+      manifests
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: vector-pgvector-go
     path: stacks/go/vector-pgvector/go/vector-pgvector-go
     nodeKind: tank
@@ -1000,6 +1016,20 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: react-app-shell
+    path: stacks/typescript/app-shell/react/react-app-shell
+    nodeKind: ui
+    patternKind: app-shell
+    techStack:
+    - React
+    version: 1.0.0
+    fingerprint: sha256:a0eeadf42bae13a4b45ab1fbb43beebc803fce19f2c6f5800f6c1db9a572b6d6
+    status: active
+    description: 'React SPA shell: Layout, vite env types, and a dashboard page that
+      calls apiClient'
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: eval-dashboard-module
     path: stacks/typescript/eval-dashboard/react/eval-dashboard-module
     nodeKind: ui
@@ -1008,7 +1038,7 @@ spec:
     - React
     - TypeScript
     version: 1.0.0
-    fingerprint: sha256:be8f23cc87d72a92eb1db422b3c144acb80f07ed00f30460cbecb52f6827bd3a
+    fingerprint: sha256:e7fc274a47bb742ec07d4e4d7b51dfed9bfa498f2822441f8b9dc80f11930de0
     status: active
     description: 'Operator UI for EvalSpec runs — criterion scores, weighted pass/fail,
       trend chart. P8.2 deliverable.
@@ -1026,7 +1056,7 @@ spec:
     - TypeScript
     - Next.js
     version: 1.0.0
-    fingerprint: sha256:f07ca563dbc1b32057e568e107c4872a27b39188dc4c9945958345a6e1e1789a
+    fingerprint: sha256:b2213a86d39f49f2fe1b6ef0c6268f2c4a609f24e183e5af914bc474b2c4dcde
     status: active
     description: Next.js 14 App Router shell with typed gateway client, layout, and
       env-based proxy config.
@@ -1041,7 +1071,7 @@ spec:
     - React
     - TypeScript
     version: 1.0.0
-    fingerprint: sha256:e8ba543e683a9ab1eeef929aedfab157c368b0f18141b6f7d66e5592641b79ad
+    fingerprint: sha256:92b0b35e989d380229ba80045d885f19dc5c3f3d4e396e129332eec8b85e9c3d
     status: active
     description: 'Operator console module for human-in-the-loop approval queues. Overlays
       react-app-shell with queue list, item detail, and approve/reject/clear actions
@@ -1059,7 +1089,7 @@ spec:
     - React
     - TypeScript
     version: 1.0.0
-    fingerprint: sha256:eec20dce9f52051a25cc5c6948f300e8be86c90ab0d5b4c466cb2ccd3e97ba28
+    fingerprint: sha256:6753d38a1f5b7cd60d77d2e868461dfe90742a10d7d0c52dc85bf34d11a12e80
     status: active
     description: 'Operator console for grounded RAG queries against /context/rag/synthesize.
       Shows answer, citations, and provenance inline. P3.3 deliverable.
@@ -1098,30 +1128,14 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
-  - name: react-app-shell
-    path: stacks/typescript/spa/react/react-app-shell
-    nodeKind: ui
-    patternKind: spa
-    techStack:
-    - React
-    - TypeScript
-    - Vite
-    version: 1.0.0
-    fingerprint: sha256:794ce709a41c7ae4012b15ad8114dd58890029d82e1013c5954734150a89ad31
-    status: active
-    description: Vite + React SPA with routing, typed gateway API client, and layout
-      scaffold.
-    contributor: AppDarta Platform
-    templatesApiVersion: '1'
-    dartaMinVersion: 0.1.0
   - name: react-dockerfile
-    path: stacks/typescript/spa/react/react-dockerfile
+    path: stacks/typescript/simple-service/react/react-dockerfile
     nodeKind: ui
     patternKind: simple-service
     techStack:
     - React
     version: 1.0.0
-    fingerprint: sha256:81aee6a562f676e83fce24c9603ff5b68d467ff0189c2f85b4f773d30b8beb3b
+    fingerprint: sha256:c4a552954947eb6e7e10738a4891a2767296c6e533c4eb32c7fccc03bc012bab
     status: active
     description: Multi-stage React Dockerfile + compose fragment for UI packaging
     contributor: AppDarta Platform
@@ -1143,6 +1157,21 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: typed-api-client
+    path: stacks/typescript/typed-api-client/typescript/typed-api-client
+    nodeKind: ui
+    patternKind: typed-api-client
+    techStack:
+    - TypeScript
+    - React
+    version: 1.0.0
+    fingerprint: sha256:7a3e05a7541692cc4cd81fef6d361f4bf14c12c85b825f9cba956a247bf13e77
+    status: active
+    description: TypeScript typed HTTP client for gateway.inbound.routes; env-driven
+      base URL
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: monorepo-standard
     path: stacks/default/monorepo-standard/default/monorepo-standard
     nodeKind: workspace
@@ -1150,7 +1179,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:323943ba765c28498240b114b9984b17b746c8b43951a531b60e2f2cc361d793
+    fingerprint: sha256:27c7aa7e71de1d108a74430e757d110fb7e14e70e350e6d6f20cbe120d6544ee
     status: active
     description: 'Root workspace scaffold: Makefile, stitched docker-compose.yml,
       .env.example, .gitignore, README. Reads full topology — all agents, tanks, gateway,
