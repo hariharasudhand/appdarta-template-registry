@@ -460,7 +460,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:0b0af4fdd67708a67aa8fd629ab8032c6d1b60335558b7d2e9c54ac12c6b6d8c
+    fingerprint: sha256:61d92dc8d3d2fc3d63647160e54fbec2a73423c6f052d2b8434fec7ecad3e7e4
     status: active
     description: 'GW-* compliant gateway scaffold: mounts routes from handler YAMLs,
       real middleware'
