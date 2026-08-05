@@ -1,0 +1,12 @@
+rulebooks:
+  tank-sql-connector:
+    title: tank structure
+    summary: Structure-only scaffold conventions; domain substance stays in build/prompts.yaml.
+    template_hints:
+    - tank-postgres-dockerfile
+    - sql-connector
+    required_rules:
+    - use {{ .Var }} placeholders for domain-specific names
+    anti_patterns:
+    - hardcoded entity names
+    - literal SQL without placeholders

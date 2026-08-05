@@ -1,0 +1,11 @@
+services:
+  {{ .TankName }}-db:
+    build:
+      context: ./tanks/{{ .TankName }}
+      dockerfile: Dockerfile
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_DB={{ .TankName }}
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=secret

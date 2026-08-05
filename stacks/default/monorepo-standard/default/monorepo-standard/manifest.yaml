@@ -9,6 +9,8 @@ metadata:
   version: 1.0.0
   author: AppDarta Platform
 spec:
+  provenance:
+    sourceKind: core
   nodeKind: workspace
   deploymentIntent:
     required: true
