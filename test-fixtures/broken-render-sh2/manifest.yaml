@@ -1,0 +1,23 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: broken-render-sh2
+  displayName: "Broken Render (SH-2 regression fixture)"
+  description: "One good file and one broken template — used by TestScaffoldAllHardFailOnBrokenRender"
+  version: "1.0.0"
+  author: "AppDarta Platform"
+spec:
+  nodeKind: agent
+  techStacks: [Go]
+  patternKind: hexagonal
+  files:
+    - path: "agents/{{ .AgentName }}/good.go"
+      template: "good.go.tmpl"
+      description: "Renders successfully"
+    - path: "agents/{{ .AgentName }}/broken.go"
+      template: "broken.go.tmpl"
+      description: "Broken syntax — triggers render error"
+  promptHints: {}
+  intelligence:
+    maturityLevel: experimental
+    tags: [test, sh2]

@@ -1,0 +1,37 @@
+package main
+
+import (
+	"log"
+	"net/http"
+	"os"
+
+	"gateway"
+)
+
+func main() {
+	port := os.Getenv("GATEWAY_PORT")
+	if port == "" {
+		port = "8080"
+	}
+	configDir := os.Getenv("GATEWAY_CONFIG_DIR")
+	if configDir == "" {
+		configDir = "config/gateway"
+	}
+
+	mux := http.NewServeMux()
+
+	// Health / readiness probe registered directly on the mux.
+	mux.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	})
+
+	// All inbound and outbound routes come from the handler catalog YAMLs.
+	gateway.Setup(mux, configDir)
+
+	handler := gateway.Chain(mux)
+
+	log.Printf("gateway: listening on :%s (config=%s)", port, configDir)
+	if err := http.ListenAndServe(":"+port, handler); err != nil {
+		log.Fatalf("gateway: server error: %v", err)
+	}
+}

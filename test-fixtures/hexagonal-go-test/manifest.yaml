@@ -1,0 +1,28 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: hexagonal-go-test
+  displayName: "Hexagonal Go (test)"
+  description: "Minimal test bundle for dartamint engine tests"
+  version: "1.0.0"
+  author: "AppDarta Platform"
+spec:
+  nodeKind: agent
+  techStacks: [Go]
+  patternKind: hexagonal
+  files:
+    - path: "agents/{{ .AgentName }}/handler/handler.go"
+      template: "handler.go.tmpl"
+      description: "Entry point handler"
+    - path: "agents/{{ .AgentName }}/dto/dto.go"
+      template: "dto.go.tmpl"
+      description: "Data Transfer Objects"
+  promptHints:
+    skeleton: "Hexagonal Architecture: handler/ is entry, domain/ is business logic."
+    implementation: "Implement domain logic. No framework imports in domain/."
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 1
+    complexityIdeal: 4
+    complexityCeiling: 12
+    tags: [hexagonal, go, test]

@@ -1,0 +1,13 @@
+// Shared API response types for {{ .NodeID }}
+export interface ApiResponse<T = unknown> {
+  data: T;
+  status: number;
+  ok: boolean;
+  message?: string;
+}
+
+export interface PaginatedResponse<T = unknown> extends ApiResponse<T[]> {
+  total: number;
+  page: number;
+  pageSize: number;
+}

@@ -1,0 +1,17 @@
+package handler
+
+import "{{ .ModulePath }}/agents/{{ .AgentName }}/dto"
+
+// {{ pascal .AgentName }}Handler handles inbound requests for the {{ .AgentName }} agent.
+type {{ pascal .AgentName }}Handler struct{}
+
+func New() *{{ pascal .AgentName }}Handler {
+	return &{{ pascal .AgentName }}Handler{}
+}
+
+func (h *{{ pascal .AgentName }}Handler) Handle(req dto.{{ pascal .AgentName }}Request) (dto.{{ pascal .AgentName }}Response, error) {
+	return dto.{{ pascal .AgentName }}Response{}, nil
+}
+{{ if .HasTanks }}
+// Tank dependencies: {{ joinComma .TankRefs }}
+{{ end }}

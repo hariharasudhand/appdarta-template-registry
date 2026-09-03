@@ -1,0 +1,54 @@
+package gateway
+
+import (
+	"log"
+	"net/http"
+	"time"
+
+	"github.com/google/uuid"
+
+	"gateway/handlers/in"
+)
+
+// Chain wraps a handler with the standard gateway middleware stack: bearer
+// AuthGate (outermost — rejects unauthenticated requests with 401 before
+// request-ID injection, logging, or mux/proxy dispatch ever run) → request-ID
+// injection → structured access logging → next handler.
+// GW-NO-NOOP-MW compliant: this is not a pass-through — it adds observable behaviour.
+func Chain(next http.Handler) http.Handler {
+	return in.AuthGate(loggingMiddleware(next))
+}
+
+// loggingMiddleware injects a correlation request ID and logs method/path/status/
+// duration for every request that passes AuthGate.
+func loggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		start := time.Now()
+
+		// Inject request ID so downstream services can correlate log lines.
+		reqID := r.Header.Get("X-Request-ID")
+		if reqID == "" {
+			reqID = uuid.New().String()
+		}
+		w.Header().Set("X-Request-ID", reqID)
+		r.Header.Set("X-Request-ID", reqID)
+
+		// Delegate to next handler.
+		wrapped := &responseWriter{ResponseWriter: w, status: http.StatusOK}
+		next.ServeHTTP(wrapped, r)
+
+		log.Printf("gateway: %s %s %d %s req=%s",
+			r.Method, r.URL.Path, wrapped.status, time.Since(start), reqID)
+	})
+}
+
+// responseWriter wraps http.ResponseWriter to capture the status code for logging.
+type responseWriter struct {
+	http.ResponseWriter
+	status int
+}
+
+func (rw *responseWriter) WriteHeader(code int) {
+	rw.status = code
+	rw.ResponseWriter.WriteHeader(code)
+}

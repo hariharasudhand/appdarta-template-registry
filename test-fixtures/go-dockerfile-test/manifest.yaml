@@ -1,0 +1,22 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: go-dockerfile-test
+  displayName: "Go Service Dockerfile (test fixture)"
+  description: "Generic multi-stage Go Dockerfile: builder → distroless; ./cmd/{{ .NodeID }} is the build target"
+  version: "1.0.0"
+  author: "AppDarta Platform"
+spec:
+  nodeKind: agent
+  techStacks: [Go]
+  patternKind: simple-service
+  files:
+    - path: "Dockerfile"
+      template: "Dockerfile.tmpl"
+      description: "Multi-stage Docker build — build target and binary name derived from NodeID"
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 1
+    complexityIdeal: 2
+    complexityCeiling: 5
+    tags: [go, dockerfile, agent, service]

@@ -1,0 +1,28 @@
+apiVersion: appdarta.io/v1
+kind: CodeTemplate
+metadata:
+  name: typed-api-client-test
+  displayName: "Typed API Client (test fixture)"
+  description: "TypeScript typed HTTP client scaffold for gateway.inbound.routes; base URL read from NEXT_PUBLIC_GATEWAY_URL"
+  version: "1.0.0"
+  author: "AppDarta Platform"
+spec:
+  nodeKind: ui
+  techStacks: [TypeScript]
+  patternKind: typed-api-client
+  files:
+    - path: "src/api/gatewayClient.ts"
+      template: "gatewayClient.ts.tmpl"
+      description: "Typed gateway client — env-driven base URL, typed get/post/put/del helpers"
+    - path: "src/api/types.ts"
+      template: "types.ts.tmpl"
+      description: "Shared ApiResponse and PaginatedResponse types"
+  promptHints:
+    skeleton: "Typed HTTP client that reads gateway.inbound.routes from @var: context at build time."
+    implementation: "Add one typed method per inbound route using the route name and method from gateway.inbound.routes export."
+  intelligence:
+    maturityLevel: stable
+    complexityFloor: 1
+    complexityIdeal: 3
+    complexityCeiling: 8
+    tags: [typescript, ui, api-client, gateway, typed-client]

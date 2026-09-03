@@ -1,0 +1,107 @@
+package gateway
+
+import (
+	"log"
+	"net/http"
+	"net/http/httputil"
+	"net/url"
+	"os"
+	"strings"
+
+	"gopkg.in/yaml.v3"
+)
+
+// handlerEntry mirrors one entry in config/gateway/in-handlers.yaml and out-handlers.yaml.
+type handlerEntry struct {
+	Name    string `yaml:"name"`
+	Package string `yaml:"package"`
+	File    string `yaml:"file"`
+	Backend string `yaml:"backend"` // optional agent upstream base URL
+}
+
+type handlerCatalog struct {
+	Version  string         `yaml:"version"`
+	Handlers []handlerEntry `yaml:"handlers"`
+}
+
+func loadHandlerCatalog(path string) handlerCatalog {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		log.Printf("gateway: handler catalog not found at %s: %v", path, err)
+		return handlerCatalog{}
+	}
+	var catalog handlerCatalog
+	if err := yaml.Unmarshal(data, &catalog); err != nil {
+		log.Printf("gateway: failed to parse %s: %v", path, err)
+		return handlerCatalog{}
+	}
+	return catalog
+}
+
+func mountInboundHandler(mux *http.ServeMux, h handlerEntry) {
+	routePath := "/in/" + h.Name
+	backend := strings.TrimSpace(h.Backend)
+	if backend != "" {
+		target, err := url.Parse(backend)
+		if err != nil {
+			log.Printf("gateway: invalid backend for %s: %v", h.Name, err)
+			return
+		}
+		proxy := httputil.NewSingleHostReverseProxy(target)
+		proxy.ErrorHandler = func(w http.ResponseWriter, r *http.Request, err error) {
+			log.Printf("gateway: proxy %s → %s failed: %v", routePath, backend, err)
+			http.Error(w, "upstream unavailable", http.StatusBadGateway)
+		}
+		mux.Handle(routePath+"/", http.StripPrefix(routePath, proxy))
+		mux.Handle(routePath, http.StripPrefix(routePath, proxy))
+		return
+	}
+	// http-proxy default: no backend configured — backend must be set via port
+	// registry sync before routes are live. Return 502 so the misconfiguration
+	// is visible rather than silently succeeding with a 200 stub.
+	log.Printf("gateway: no backend configured for inbound route %s — run matrix CHECK to sync port registry", routePath)
+	name := h.Name
+	mux.HandleFunc(routePath, func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("gateway: request to %s dropped — no backend (agent %s not reachable)", r.URL.Path, name)
+		http.Error(w, "backend not configured", http.StatusBadGateway)
+	})
+}
+
+func mountOutboundHandler(mux *http.ServeMux, h handlerEntry) {
+	routePath := "/out/" + h.Name
+	backend := strings.TrimSpace(h.Backend)
+	if backend != "" {
+		target, err := url.Parse(backend)
+		if err != nil {
+			log.Printf("gateway: invalid backend for %s: %v", h.Name, err)
+			return
+		}
+		proxy := httputil.NewSingleHostReverseProxy(target)
+		mux.Handle(routePath+"/", http.StripPrefix(routePath, proxy))
+		mux.Handle(routePath, http.StripPrefix(routePath, proxy))
+		return
+	}
+	log.Printf("gateway: no backend configured for outbound route %s", routePath)
+	name := h.Name
+	mux.HandleFunc(routePath, func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("gateway: request to %s dropped — no backend (agent %s not reachable)", r.URL.Path, name)
+		http.Error(w, "backend not configured", http.StatusBadGateway)
+	})
+}
+
+// Setup mounts inbound and outbound gateway routes onto mux.
+// It loads config/gateway/in-handlers.yaml and config/gateway/out-handlers.yaml
+// at startup to build the route table — no hard-coded handler list.
+// Catalog entries with backend reverse-proxy to the agent; others are local middleware stubs.
+func Setup(mux *http.ServeMux, configDir string) {
+	inCatalog := loadHandlerCatalog(configDir + "/in-handlers.yaml")
+	outCatalog := loadHandlerCatalog(configDir + "/out-handlers.yaml")
+
+	for _, h := range inCatalog.Handlers {
+		mountInboundHandler(mux, h)
+	}
+
+	for _, h := range outCatalog.Handlers {
+		mountOutboundHandler(mux, h)
+	}
+}

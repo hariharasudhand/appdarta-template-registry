@@ -1,0 +1,32 @@
+// Typed gateway client for {{ .NodeID }}
+// Base URL is resolved from environment — no hardcoded host (local-first).
+const BASE_URL = process.env.NEXT_PUBLIC_GATEWAY_URL ?? 'http://localhost:8080';
+
+async function apiFetch<T>(
+  path: string,
+  init?: RequestInit,
+): Promise<T> {
+  const res = await fetch(`${BASE_URL}${path}`, {
+    ...init,
+    headers: { 'Content-Type': 'application/json', ...init?.headers },
+  });
+  if (!res.ok) {
+    throw new Error(`Gateway ${res.status}: ${path}`);
+  }
+  return res.json() as Promise<T>;
+}
+
+// Route methods — typed per gateway.inbound.routes (injected at build step).
+export const gatewayClient = {
+  get: <T>(path: string) =>
+    apiFetch<T>(path),
+
+  post: <T>(path: string, body: unknown) =>
+    apiFetch<T>(path, { method: 'POST', body: JSON.stringify(body) }),
+
+  put: <T>(path: string, body: unknown) =>
+    apiFetch<T>(path, { method: 'PUT', body: JSON.stringify(body) }),
+
+  del: <T>(path: string) =>
+    apiFetch<T>(path, { method: 'DELETE' }),
+};
