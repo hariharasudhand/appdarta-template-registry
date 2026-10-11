@@ -13,7 +13,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:056e8de9276e4df8bd590bff3b2121c90543d4346d10ff5e85025a1718c168d7
+    fingerprint: sha256:a5b509512fd7ec4c2058a2d5a139db2cc64f73ee1fe986b911c84490a22b6d33
     status: active
     description: Microsoft AutoGen multi-agent skeleton with DHIL-routed LLM calls.
     contributor: Dhruvia Labs
@@ -92,7 +92,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:a202147c7fc64742d22140a30a672d4118589187cf73bf7ae726ea8de66c2d75
+    fingerprint: sha256:8570abb1ba91cfaae1abd85db1e85eeb487db73164490af0b3ba13505d88e9e1
     status: active
     description: Go HTTP agent with checkpoint-aware state and DHIL-RT policy.
     contributor: AppDarta Platform
@@ -105,7 +105,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:648a02a39886e335090230cd6b305bc29f8932aed087ea1e24d312ce7b63693b
+    fingerprint: sha256:c4010893c34dccb6a5c1c70b6ceec14e43c94fd8784a60d60290f0c85c2bd97a
     status: active
     description: deepset Haystack pipeline skeleton with DHIL-routed LLM and retriever
       hooks.
@@ -119,7 +119,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:ee481662f0a782564c4573c57efd35e859218309169d1c878174043d9fdb2996
+    fingerprint: sha256:e5772a637f9172a3c5d4e309e8448a540ebaa71fa98e2390048b7a4b33e2d050
     status: active
     description: Ports and adapters agent scaffold for Go.
     contributor: AppDarta Platform
@@ -133,7 +133,7 @@ spec:
     - Java
     - Spring Boot
     version: 1.0.0
-    fingerprint: sha256:e9b676cea3dd03094d4801ca0895e8e32786a3bb9379ede08530aed0898e0759
+    fingerprint: sha256:f0aa47bf98a052868ebec0f8514d07927d9b6c71f087294c6db94c2c4ff9f1db
     status: active
     description: Java hexagonal scaffold for Spring-style services.
     contributor: AppDarta Platform
@@ -146,7 +146,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:00b25997395cc6af9728a318a8be8a4040dd7a5ebdd77361337bdd09b0175c0e
+    fingerprint: sha256:494a5479475140417b09388b9635aeeef07683ccd1156e530b511524349c21cd
     status: active
     description: Hexagonal Python scaffold with FastAPI entrypoint.
     contributor: AppDarta Platform
@@ -185,7 +185,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:de4a37bcaa8b053c32d147a6d6ddd1458897b0f60792cf7388147137249f0319
+    fingerprint: sha256:c690521573d70ef30012fcad1b5870974e6dda9011d3512e4d1015426597ee39
     status: active
     description: LangChain agent with LiteLLM-backed LLM - all AI calls through DHIL-RT.
     contributor: AppDarta Platform
@@ -198,7 +198,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:cc929c5f3045de40e88451a4a63e35aeb87663cf03dfcd56da544eb6e5d70599
+    fingerprint: sha256:73f7a9efca060544bdf0777db912cfa9373e951e769638c1b4012af1d1d3b88e
     status: active
     description: LlamaIndex query engine skeleton wired for DHIL-routed embeddings
       and LLM.
@@ -240,7 +240,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:55e68d464ad70b11ced8b4791d29d4d2eab10675214f64405f12cfe2a9d00036
+    fingerprint: sha256:96f12bd789cd431f6adac24bdb6759ee6ecbf67be759a55574a7a7281d6b1868
     status: active
     description: OpenAI Agents SDK skeleton with DHIL-routed tool calls and handoff
       hooks.
@@ -254,7 +254,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:0e3bf01d106e1405e71c1ceaa91726158ef10207509d562c65003b2d3e15cea9
+    fingerprint: sha256:2f76430e00d8a81691cab9c1018fb780a6cff6d9c4a87b16ee59360dcaf019e2
     status: active
     description: PydanticAI agent skeleton with DHIL-routed tool calls and structured
       outputs.
@@ -307,7 +307,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:1b05c3ae353219a48a344460c682926b0557f8bd3ef36bce1b96790b81a4d411
+    fingerprint: sha256:eed6c2489030dee3a8c88105bbf6d6b50c097c96197ccb945abec921c4f6b7c4
     status: active
     description: Knative-style service fragment for Cloud Run deployment.
     contributor: AppDarta Platform
@@ -320,7 +320,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:691727bb10a49a267350fb37d2c1cf214fb903a95f0aed1a3e66a5a12e246c7c
+    fingerprint: sha256:e9102144ad723b5f2df758311083a5abc31a272d7b7add7fdaf3eb9f9aa8d268
     status: active
     description: 'Build-time runtime overlay for Go agents: Dockerfile and docker-compose
       service.'
@@ -335,7 +335,7 @@ spec:
     - Java
     - Spring Boot
     version: 1.0.0
-    fingerprint: sha256:d9d1a2a0a57f55b2bc5f49cb9d0d2e93a6f2166390abfb4945a373c661c0f920
+    fingerprint: sha256:4f9de1d3485570e0befa92416d1f3806fbee0670be2b73541f74a3626cec508a
     status: active
     description: 'Build-time runtime overlay for Java agents: Dockerfile and docker-compose
       service.'
@@ -352,7 +352,7 @@ spec:
     - LangGraph
     - FastAPI
     version: 1.0.0
-    fingerprint: sha256:54370a2f5ab940afafd89b2bf79d8915a21a9e9a231d4f0ce76c9f055af70077
+    fingerprint: sha256:701ff61843f97410dfea738a9761988cfec0e2fa61a4812a71a4eaa822d7e29b
     status: active
     description: 'Build-time runtime overlay for Python agents: Dockerfile and docker-compose
       service.'
@@ -366,7 +366,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:b071783be92c5e97cb51bef0b924d61e7aed2515b1b9116e0d0fcc46b1029165
+    fingerprint: sha256:e81f4fd21ba91716f0343a50d15fa0d16892a064a3a43bee122f414dbe392280
     status: active
     description: Build-time runtime overlay for Go agents with WASM sidecar support.
     contributor: AppDarta Platform
@@ -381,7 +381,7 @@ spec:
     - Python
     - Java
     version: 1.0.0
-    fingerprint: sha256:cfb476058aff840e89be8eb2afc26b5c66ff41b7e68d28ad76dba6ff3f66a1d8
+    fingerprint: sha256:1f113a35f16cc59146ff5fb3460e0cdc045e93bcc373e0cab901aaa35be6ad57
     status: active
     description: Build-time runtime overlay for local process execution.
     contributor: AppDarta Platform
@@ -407,7 +407,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:9defe5f9a1386997c5dbca75052829d64c9b04a996954940fb1aa582033c13b4
+    fingerprint: sha256:d04ebc86ff08d392b879a7c075656226576accb20d953ce73cfb2d01c7eed5a4
     status: active
     description: Semantic Kernel planner/handler skeleton with DHIL-routed model calls.
     contributor: Dhruvia Labs
@@ -420,7 +420,7 @@ spec:
     techStack:
     - Go
     version: 1.1.0
-    fingerprint: sha256:96a702cd032024f5e18f4dbeae6954034fdd7398a23424fd27216f7ef46a7d49
+    fingerprint: sha256:933eb8c7f607e1762e0ac02591b6401ef88b1a6d53a2898a9bf0fa7fa71b3fee
     status: active
     description: 'Multi-stage Go Dockerfile + compose fragment + entrypoint: ./cmd/{{
       .AgentName }}'
@@ -434,7 +434,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:80a01acc7d5d9fb28437e672c49ee0e4a8520e451745cb9aacb36b8a1cddd3c8
+    fingerprint: sha256:a19a64ba8da7c89961517206be60fc6ba208b7e34ea40346b8d1fa51c610494c
     status: active
     description: Thin Go handler and service for straightforward workflows.
     contributor: AppDarta Platform
@@ -447,7 +447,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:2a734b367c2fea1558d4494dbb4e7844c82150418407bcee1b2466e2203e0fe5
+    fingerprint: sha256:d376ef6587f029880858ba9fc0e12e5b9ce570094c036c4c66207a9b8cbdcdfb
     status: active
     description: Minimal FastAPI service for low-complexity flows.
     contributor: AppDarta Platform
@@ -474,7 +474,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:4e3e4e52713ff00510cb9f6fa5e87b43133d91028777b4e5051d6720fcc199df
+    fingerprint: sha256:100c620fbb58b6df847703c471bc400571001277782ff2c97b927ce54462217b
     status: active
     description: Build-time runtime overlay for the AppDarta gateway.
     contributor: AppDarta Platform
@@ -487,7 +487,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:e6c81e87092cab1c5716429e62232444c0b6785e2cd3f1b37ad79eadbffd8848
+    fingerprint: sha256:1c619d632f92f97d30204678b7429f00766a6d10d5a16a3c27595bca7e71f718
     status: active
     description: Build-time runtime overlay for local gateway execution.
     contributor: AppDarta Platform
@@ -500,7 +500,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:72d52f625d5f292d82e34822111877f8a27e027ebf36bd3bb2ab8fdbd000e2c7
+    fingerprint: sha256:db5720354f8023d6f2937cdb3c3a5a1787469dcc1f5eaf70765da82aaa9db703
     status: active
     description: docker-compose ChromaDB service and env contract for vector-store
       build dependencies.
@@ -514,7 +514,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:628407de9a953ab492a2d360ed96c148c6baf86540e2f2fabb504ed6ab0778e1
+    fingerprint: sha256:07747a5bf0907c6c84e7797f23d9afe94139fa3d60711440822c518d1c0e32e4
     status: active
     description: docker-compose Kafka/Redpanda service and env contract for P8.3 event
       streaming.
@@ -528,7 +528,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:af60b3c8644594c822b89882fbf615258a679ed3fbe56f455d4089b6d1359153
+    fingerprint: sha256:6bf0181c329be7e35711dee7508c91d6a86bea499d3cbea6d01ac325f9011e4a
     status: active
     description: docker-compose NATS service and env contract for messaging build
       dependencies.
@@ -542,7 +542,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:1f6e1237131ad858605fb539e07d0179729fb69ef3124a4ed72a0aca0a094fb6
+    fingerprint: sha256:a7003df0ff1bd5ad35170217ebdac29d9f8564cb59abaa55aa4ff9ec3c43c116
     status: active
     description: docker-compose postgres service, env contract, and starter migration
       for Analyze build-dependency assessment.
@@ -556,7 +556,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:91acc0b32bdf66027676a42eb06f1f369e4f29cde61c3d8ff6960f1ee45aa637
+    fingerprint: sha256:7ee1e2e3b8493fbc31b7c68e0243a89e1a6a65b1b18841ec4c30a3db6635015c
     status: active
     description: ''
     contributor: Dhruvia Labs
@@ -628,7 +628,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:192ee19cc0d25ccbe8a9e2a7fafbde36374e353209b6170d36e6c3efa0f470df
+    fingerprint: sha256:47ab4197749b5a9b976f9e3ebf356b1915668ff72df730fb2e698d1a6b48df51
     status: active
     description: Model Context Protocol server in Go. Tools, Resources handlers with
       JSON-RPC 2.0 transport over stdio or HTTP.
@@ -787,7 +787,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:f458ddaecae8daa0db636202697ce4b8cd9233ebb57a8dd56cf54a9f459adcc0
+    fingerprint: sha256:33590695c3fc3ddaeee385fad12498501c34912e8d3a8ee95b61320c516cd9fb
     status: active
     description: Go MongoDB connector scaffold.
     contributor: AppDarta Platform
@@ -800,7 +800,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:23915427e4a65ef047e5eef8a679e041f52f23a8db9624f1980eef242eb07e72
+    fingerprint: sha256:e78111d59eb4705638d95069982bc7f81be05093bcb63f1d5141d6ff63ba84c4
     status: active
     description: Python Motor connector scaffold.
     contributor: AppDarta Platform
@@ -813,7 +813,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:fed8809de75f67138d105cbf3a12b8ba854f9e0cbf44f949c71c6a4431d264a9
+    fingerprint: sha256:87a02d11a8b54a9bd3c08566653e324290fbb2900501fa1470b0edd6cfea7dae
     status: active
     description: Go Redis connector scaffold for cache-style tanks.
     contributor: AppDarta Platform
@@ -826,7 +826,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:cd1065d06e1157560565385449ff07bbf50b00c5803ce6328b46ee896eb73417
+    fingerprint: sha256:0aff770eeb76d2fc54a010da5986c40d55fcb8f588860bd82bec9ea33e1f6dbf
     status: active
     description: Python Redis connector scaffold.
     contributor: AppDarta Platform
@@ -857,7 +857,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:77f6b3029c753fcc1e68b4678f0cedcd7646fdf86d7939702bbd14870b376a6a
+    fingerprint: sha256:3abb54bf3aa01f77aeb723342f70fc477f4ca7f584008d91b27666cd07db9193
     status: active
     description: 'Build-time runtime overlay for Go tanks: Dockerfile and docker-compose
       service.'
@@ -874,7 +874,7 @@ spec:
     - MongoDB
     - Redis
     version: 1.0.0
-    fingerprint: sha256:62006c5f0106368cafbf647ed1d467056c32cf10ca96fc93518802ad20918b85
+    fingerprint: sha256:76cc8563a1268a3bbd36fa0ff604bfa31d7d11d3832b5f1a034028ffd3eb8a87
     status: active
     description: 'Build-time runtime overlay for Python/vector tanks: Dockerfile and
       docker-compose service.'
@@ -889,7 +889,7 @@ spec:
     - Go
     - Python
     version: 1.0.0
-    fingerprint: sha256:2693f4a62c3f70324e16ba4f97a6563618a8ca25ec4e43354c8acb839d1d3996
+    fingerprint: sha256:ca7b89dd6f9029fc8b30910410276b34114b13c48aaa2c7228e2e719f6847d7f
     status: active
     description: Build-time runtime overlay for local process execution.
     contributor: AppDarta Platform
@@ -916,7 +916,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:ee3d037994957c8df7ae7af2328849178f146c9ab983f47b66b9523e7d614562
+    fingerprint: sha256:0639cf4d08e2302928240d232066f135c6e0b3152f9ba6ccee7852c0d537082f
     status: active
     description: Go SQL connector scaffold for MySQL-backed tanks.
     contributor: AppDarta Platform
@@ -929,7 +929,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:9e919aae778ec42e8f30f3ce17c50d97cbc8dd1987accb62c12a89cb7cb57ac3
+    fingerprint: sha256:6a8957e54a98d176f4f4a76b0660eaa790fa060b3578f889e7e424485fb05994
     status: active
     description: Go SQL connector scaffold for Postgres-backed tanks.
     contributor: AppDarta Platform
@@ -942,7 +942,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:3fc48fa17ea05d0360c6ad8fbb37592f887aa55b50ae05b971db489896a0fd42
+    fingerprint: sha256:26e3070cfe6ed8d2dc8d9b4018bd1f55a62ea18e64eaf9a302da4692871a1fd4
     status: active
     description: Python async Postgres connector for relational tanks.
     contributor: AppDarta Platform
@@ -955,7 +955,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:6ff6cb3a3e5bde1afeb6d607b79d9c4fa61f1d11dd34171f907b5f891b5782b9
+    fingerprint: sha256:fffbddd84fbee64aa2b6965c2defd6e44a128b28d65593144267d56603c2a8e2
     status: active
     description: Embedded SQLite connector scaffold for lightweight local tanks.
     contributor: AppDarta Platform
@@ -968,7 +968,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:aebd06e999f6ab34e91e636c6155b39ca8cc9027b99df2ea36c0c5d9608bf1f7
+    fingerprint: sha256:e3546b2aacfdaca7895154de8407ea60d2f65eb7e0668f681acc0205e7c56b85
     status: active
     description: Python Chroma vector collection scaffold.
     contributor: AppDarta Platform
@@ -983,7 +983,7 @@ spec:
     - ChromaDB
     - chromadb
     version: 1.0.0
-    fingerprint: sha256:52129737f17fc1260fdb68469fe78f88cd7943fb8e6a808f82e0030bc465aa1f
+    fingerprint: sha256:fc57a3dfff92e80a35c5273fa2199f93842192c56a13dcdaa181156411811469
     status: active
     description: Python/ChromaDB tank Dockerfile + compose fragment + project build
       manifests
@@ -997,7 +997,7 @@ spec:
     techStack:
     - Go
     version: 1.0.0
-    fingerprint: sha256:2d6a92587263419960722ad2d2335f0fafb109377af4fcbaceb79cc066299f3f
+    fingerprint: sha256:0edf42bb24547a2120f3814738665674f4edf598e9010e9de6ec208d9a5be566
     status: active
     description: Go vector store scaffold on Postgres pgvector.
     contributor: AppDarta Platform
@@ -1010,7 +1010,7 @@ spec:
     techStack:
     - Python
     version: 1.0.0
-    fingerprint: sha256:5859ee6476d5e1c880b1bdd989c49ec13ac8a2beaea62f00b9d6e5c2911c2daf
+    fingerprint: sha256:d4807876636c8a4cd1cc0691e63fe78abac9d1ea9b2594f131ff7f33d82aa3c8
     status: active
     description: Python vector store scaffold on Postgres pgvector.
     contributor: AppDarta Platform
@@ -1023,7 +1023,7 @@ spec:
     techStack:
     - React
     version: 1.0.0
-    fingerprint: sha256:19703713ebdf052e291c1bb98598df5f5732ce1a861505ed2c66f54b67402417
+    fingerprint: sha256:795ee195964197b44f7f749fca1f23cd2288326f08e3793e3091006d5354f6f6
     status: active
     description: 'React SPA shell: Layout, vite env types, and a dashboard page that
       calls apiClient'
@@ -1038,7 +1038,7 @@ spec:
     - React
     - TypeScript
     version: 1.0.0
-    fingerprint: sha256:e7fc274a47bb742ec07d4e4d7b51dfed9bfa498f2822441f8b9dc80f11930de0
+    fingerprint: sha256:be8f23cc87d72a92eb1db422b3c144acb80f07ed00f30460cbecb52f6827bd3a
     status: active
     description: 'Operator UI for EvalSpec runs — criterion scores, weighted pass/fail,
       trend chart. P8.2 deliverable.
@@ -1056,7 +1056,7 @@ spec:
     - TypeScript
     - Next.js
     version: 1.0.0
-    fingerprint: sha256:b2213a86d39f49f2fe1b6ef0c6268f2c4a609f24e183e5af914bc474b2c4dcde
+    fingerprint: sha256:7b7a94f288a8913127ce895251ad17e52781b50a02638ab432e5ecb1eabd617c
     status: active
     description: Next.js 14 App Router shell with typed gateway client, layout, and
       env-based proxy config.
@@ -1071,7 +1071,7 @@ spec:
     - React
     - TypeScript
     version: 1.0.0
-    fingerprint: sha256:92b0b35e989d380229ba80045d885f19dc5c3f3d4e396e129332eec8b85e9c3d
+    fingerprint: sha256:e8ba543e683a9ab1eeef929aedfab157c368b0f18141b6f7d66e5592641b79ad
     status: active
     description: 'Operator console module for human-in-the-loop approval queues. Overlays
       react-app-shell with queue list, item detail, and approve/reject/clear actions
@@ -1089,7 +1089,7 @@ spec:
     - React
     - TypeScript
     version: 1.0.0
-    fingerprint: sha256:6753d38a1f5b7cd60d77d2e868461dfe90742a10d7d0c52dc85bf34d11a12e80
+    fingerprint: sha256:eec20dce9f52051a25cc5c6948f300e8be86c90ab0d5b4c466cb2ccd3e97ba28
     status: active
     description: 'Operator console for grounded RAG queries against /context/rag/synthesize.
       Shows answer, citations, and provenance inline. P3.3 deliverable.
@@ -1107,7 +1107,7 @@ spec:
     - Vue
     - Next.js
     version: 1.0.0
-    fingerprint: sha256:29ef08d5ee65ba1fca85a08d4c521c8f3dfecd362f72291194f0802ddd3ca0d5
+    fingerprint: sha256:45c5bcfa44f53ad6b6e8965aa3e9893f12ed9acb89cb3de3fab3cfdb4dbb2f16
     status: active
     description: Build-time runtime overlay for the product UI.
     contributor: AppDarta Platform
@@ -1122,7 +1122,7 @@ spec:
     - Vue
     - Next.js
     version: 1.0.0
-    fingerprint: sha256:2e4f2db8fc5bc0e116b5b294afd1336e9b7aa0237e8fad8d75d4613cdf64b48c
+    fingerprint: sha256:c4d540117dd4b1ca26f51afa57ae30cf2d24ecf3c3bad30a326f876ff2238a8d
     status: active
     description: Build-time runtime overlay for local UI execution.
     contributor: AppDarta Platform
@@ -1135,7 +1135,7 @@ spec:
     techStack:
     - React
     version: 1.0.0
-    fingerprint: sha256:c4a552954947eb6e7e10738a4891a2767296c6e533c4eb32c7fccc03bc012bab
+    fingerprint: sha256:dba2a67b3bdc2cd8adf60f34df948e2134bfe2a4126d179bdc8ba8b6c90060c3
     status: active
     description: Multi-stage React Dockerfile + compose fragment for UI packaging
     contributor: AppDarta Platform
@@ -1150,7 +1150,7 @@ spec:
     - TypeScript
     - Vite
     version: 1.0.0
-    fingerprint: sha256:ce8a31b9151dbfa71b0a27aca48d16944558be81d5aaed65046df43d15021d1f
+    fingerprint: sha256:776ea370c654c7b3ab54c2aac2797635202205f6f7819f2d64c66b33f187ce0f
     status: active
     description: Vue 3 + Vite SPA with Vue Router, Pinia store, and typed gateway
       API client.
@@ -1165,7 +1165,7 @@ spec:
     - TypeScript
     - React
     version: 1.0.0
-    fingerprint: sha256:7a3e05a7541692cc4cd81fef6d361f4bf14c12c85b825f9cba956a247bf13e77
+    fingerprint: sha256:46fbf73d09390c82482c965bc312b63855cb27b06a939ea8b1ee670a5f4369fb
     status: active
     description: TypeScript typed HTTP client for gateway.inbound.routes; env-driven
       base URL
@@ -1179,7 +1179,7 @@ spec:
     techStack:
     - default
     version: 1.0.0
-    fingerprint: sha256:27c7aa7e71de1d108a74430e757d110fb7e14e70e350e6d6f20cbe120d6544ee
+    fingerprint: sha256:e24ea323e2672ff73a85dbefe055d4890357b1fb9a7d786a0dad357db5712071
     status: active
     description: 'Root workspace scaffold: Makefile, stitched docker-compose.yml,
       .env.example, .gitignore, README. Reads full topology — all agents, tanks, gateway,
