@@ -387,6 +387,20 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: agent-runtime-process-native
+    path: stacks/go/runtime-process/go/agent-runtime-process-native
+    nodeKind: agent
+    patternKind: runtime-process
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:847a25a4b7211873b8f7732366f2753ec45e74da752bf9b3bd94c93d013b1034
+    status: active
+    description: 'Local process launcher for runtime: process Go agents (go run, PORT).
+      Docker-free (D1).'
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: saga-go
     path: stacks/go/saga/go/saga-go
     nodeKind: agent
@@ -490,6 +504,20 @@ spec:
     fingerprint: sha256:1c619d632f92f97d30204678b7429f00766a6d10d5a16a3c27595bca7e71f718
     status: active
     description: Build-time runtime overlay for local gateway execution.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
+  - name: gateway-runtime-process-native
+    path: stacks/go/runtime-process/go/gateway-runtime-process-native
+    nodeKind: gateway
+    patternKind: runtime-process
+    techStack:
+    - Go
+    version: 1.0.0
+    fingerprint: sha256:0b772c7299b50377c4694daa5461d71756a0236c6ce36534a8461c809fd2608a
+    status: active
+    description: 'Local process launcher for runtime: process Go gateway (go run,
+      GATEWAY_PORT). Docker-free (D1).'
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
