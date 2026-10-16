@@ -9,8 +9,6 @@ metadata:
   version: 1.0.0
   author: AppDarta Platform
 spec:
-  provenance:
-    sourceKind: core
   nodeKind: workspace
   deploymentIntent:
     required: true
@@ -54,4 +52,8 @@ spec:
     - makefile
     - docker-compose
     - devops
+  provenance:
+    sourceKind: core
+    signedBy: appdarta-registry
+    signature: sha256:f776fcfb2d7fa563998b058635fef767b787dfa3d61aa52ca2bd0309498f4e52
 templatesApiVersion: '1'

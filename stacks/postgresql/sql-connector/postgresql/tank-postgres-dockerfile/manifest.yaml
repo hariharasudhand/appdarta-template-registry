@@ -29,6 +29,8 @@ spec:
     - dockerfile
     - tank
     - sql
+  provenance:
+    sourceKind: core
+    signedBy: appdarta-registry
+    signature: sha256:b80fa39daf8a0f761d55ca7c3b6fd2abf193db2f81b38a529c021656d3fa513c
 templatesApiVersion: '1'
-provenance:
-  signature: sha256:72889bc2022a2fa177578fcdbca559436b8b1b01c742e634927ac3edb2aff801
