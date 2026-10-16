@@ -1058,6 +1058,21 @@ spec:
     contributor: AppDarta Platform
     templatesApiVersion: '1'
     dartaMinVersion: 0.1.0
+  - name: lovable-react-app-shell
+    path: stacks/typescript/app-shell/react/lovable-react-app-shell
+    nodeKind: ui
+    patternKind: app-shell
+    techStack:
+    - React
+    - TypeScript
+    version: 1.0.0
+    fingerprint: sha256:a37ff776e9cde5a9ae47e138c69a7fc041ffc5dbe8a0696c8c41b02ab55eb729
+    status: active
+    description: Creates a minimal Vite + React + TypeScript SPA shell with a router,
+      root layout, one sample page, and typed gateway env.
+    contributor: AppDarta Platform
+    templatesApiVersion: '1'
+    dartaMinVersion: 0.1.0
   - name: eval-dashboard-module
     path: stacks/typescript/eval-dashboard/react/eval-dashboard-module
     nodeKind: ui
